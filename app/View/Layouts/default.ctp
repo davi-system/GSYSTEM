@@ -27,6 +27,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<?php
 			echo $this->Html->meta('icon');		
 			echo $this->Html->css('bootstrap.min.css');
+			echo $this->Html->css('style_usuarios.css');
 			echo $this->Html->script('bootstrap.bundle.min');
 			echo $this->Html->script('jquery-3.6.0.min.js');
 			echo $this->Html->script('https://unpkg.com/sweetalert/dist/sweetalert.min.js');
