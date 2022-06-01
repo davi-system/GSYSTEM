@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#principal {
+    width: 30%;
+    margin-top: 150px;
+    padding: 5px;
+}
+
+#titulo-login {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
