@@ -41,7 +41,16 @@
                     'class' => 'btn btn-primary',
                     'onclick' => 'verificaEmailExiste();'
                 )); 
-            ?>            
+            ?>
+
+            &nbsp;
+
+            <?php 
+                echo $this->Html->link('cadastra-se', array(
+                    'controller' => 'Usuarios', 
+                    'action' => 'add'
+                )); 
+            ?>    
 
         </div>
     </div>
