@@ -3,6 +3,11 @@
     padding: 0; 
 }
 
+#principal-add { 
+    width: 60%; 
+    margin: 0 auto; 
+}
+
 #principal { 
     width: 50%; 
     margin: 0 auto; 
@@ -11,3 +16,4 @@
 #principal h2 { 
     text-align: center; 
 }
+
