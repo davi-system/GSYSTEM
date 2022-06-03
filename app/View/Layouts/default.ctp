@@ -20,7 +20,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 <!DOCTYPE html>
 <html>
-	<head>
+	<head lang="pt-br">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<?php echo $this->Html->charset(); ?>
 		<title></title>
 
@@ -28,9 +31,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			echo $this->Html->meta('icon');		
 			echo $this->Html->css('bootstrap.min.css');
 			echo $this->Html->css('style_usuarios.css');
+			echo $this->Html->css('style_login.css');
 			echo $this->Html->script('bootstrap.bundle.min');
 			echo $this->Html->script('jquery-3.6.0.min.js');
-			echo $this->Html->script('https://unpkg.com/sweetalert/dist/sweetalert.min.js');
+			echo $this->Html->script('sweetalert.min.js');
 						
 			echo $this->fetch('meta');
 			echo $this->fetch('css');
