@@ -35,14 +35,10 @@ class AppController extends Controller {
     public $components = array(
         'DebugKit.Toolbar', 
         'Session',
-        'Flash',
-        'Auth' => array(
-            'loginRedirect' => array('controller' => 'Menu', 'action' => 'index'),
-            'logoutRedirect' => array('controller' => 'Login', 'action' => 'index')
-        )
+        'Flash'
     );
 
-    function beforeFilter() {
-        $this->Auth->allow('index', 'view');
-    }
+    // function beforeFilter() {
+    //     $this->Auth->allow('index', 'view');
+    // }
 }

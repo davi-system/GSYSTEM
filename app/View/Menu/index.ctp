@@ -1,3 +1,3 @@
 <?php echo $this->Session->flash(); ?>
 
-<h1>Teste</h1>
+<?php echo $this->Html->link('cadastro despesa', array('controller' => 'Despesas', 'action' => 'add')); ?>
