@@ -45,12 +45,12 @@
 
             &nbsp;
 
-            <?php 
+            <?php            
                 echo $this->Html->link('cadastra-se', array(
                     'controller' => 'Usuarios', 
                     'action' => 'add'
                 )); 
-            ?>    
+            ?>
 
         </div>
     </div>

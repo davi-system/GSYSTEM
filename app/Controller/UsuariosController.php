@@ -45,9 +45,15 @@ class UsuariosController extends AppController {
         }
     }
 
+    public function edit()
+    {        
+    }
+
     public function view()
     {
         $usuarios = $this->Usuarios->find('all');
         $this->set('usuarios', $usuarios);
     }
+
+
 }
