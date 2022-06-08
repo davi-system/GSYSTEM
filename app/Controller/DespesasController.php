@@ -4,7 +4,11 @@ App::uses('Controller', 'Controller');
 
 class DespesasController extends AppController {
 
-    var $uses = array('Tipos', 'FormaPagamento', 'Despesas');
+    var $uses = array(
+        'Tipos', 
+        'FormaPagamento', 
+        'Despesas'
+    );
 
     public function add()
     {
@@ -46,6 +50,19 @@ class DespesasController extends AppController {
                 </script>');
                 $this->redirect(array('controller' => 'Menu', 'action' => 'index'));
             }
+        }
+    }
+
+    public function index()
+    {
+        if($this->request->is('post')) {            
+
+            $tipo = $this->request->data['Despesas']['des_tipo_fk'];
+            $descricao = strtoupper(trim($this->request->data['Despesas']['des_descricao']));
+
+            $despesas = $this->Despesas->listaDespesas($tipo, $descricao);
+            $this->set($despesas);
+            $this->set('despesas', $despesas);
         }
     }
 }
