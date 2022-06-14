@@ -65,4 +65,9 @@ class DespesasController extends AppController {
             $this->set('despesas', $despesas);
         }
     }
+
+    public function modalEditDespesa()
+    {
+        $this->layout = null;
+    }
 }
