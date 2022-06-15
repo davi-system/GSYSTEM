@@ -69,5 +69,50 @@ class DespesasController extends AppController {
     public function modalEditDespesa()
     {
         $this->layout = null;
+        
+        $this->set('id', $this->request->data['id']);
+        
+        $tipos = $this->Tipos->find('list', array(
+            'fields' => array(
+                'tip_descricao'
+            ),
+            'order' => array(
+                'tip_descricao'
+            )
+        ));
+        $this->set('tipos', $tipos);
+
+        $formaPagamento = $this->FormaPagamento->find('list', array(
+            'fields' => array(
+                'frp_descricao'
+            ),
+            'order' => array(
+                'frp_descricao'
+            )
+        ));
+        $this->set('formaPagamento', $formaPagamento);
+
+        $despesa = $this->Despesas->find('first', array(
+            'conditions' => array(
+                'des_id' => $this->request->data['id']
+            )
+        ));
+        $this->set('despesa', $despesa);        
+    }
+
+    public function salvaEditDespesa()
+    {
+        $this->layout = null;
+        $this->autoRender = false;
+
+        $des = array();
+        $des['des_id'] = $this->request->data['id'];
+        $des['des_descricao'] = $this->request->data['descricao'];
+        $des['des_valor'] = $this->request->data['valor'];
+        $des['des_tipo_fk'] = $this->request->data['tipo'];
+        $des['des_frp_fk'] = $this->request->data['formaPagamento'];
+        $des['des_parcela'] = $this->request->data['parcelas'];
+
+        $this->Despesas->save($des);  
     }
 }
