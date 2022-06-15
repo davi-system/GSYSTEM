@@ -16,8 +16,8 @@
                                 echo $this->Form->input('des_descricao', array(
                                     'label' => 'Descrição',
                                     'type' => 'text',
-                                    'class' => 'form-control'                                    
-                                    // 'required'
+                                    'class' => 'form-control',
+                                    'required'
                                 )); 
                             ?>
                         </div>
@@ -29,8 +29,8 @@
                                 echo $this->Form->input('des_valor', array(
                                     'label' => 'Valor',
                                     'type' => 'number',
-                                    'class' => 'form-control'                                    
-                                    // 'required'
+                                    'class' => 'form-control',
+                                    'required'
                                 )); 
                             ?>
                         </div>
@@ -42,38 +42,40 @@
                                     'type' => 'select',
                                     'options' => $tipos,
                                     'empty' => true,
-                                    'class' => 'form-control'
-                                    // 'required'
+                                    'class' => 'form-control',
+                                    'required'
                                 )); 
                             ?>
                         </div>
 
-                        <div class="col-auto">
+                        <div class="col-md-3">
                             <?php 
                                 echo $this->Form->input('des_frp_fk', array(
                                     'label' => 'Forma de Pagamento',
                                     'type' => 'select',
                                     'options' => $formaPagamento,
                                     'empty' => true,
-                                    'class' => 'form-control'
-                                    // 'required'
+                                    'class' => 'form-control',
+                                    'required'
                                 )); 
                             ?>
                         </div>
 
-                        <div class="col-auto">
+                        <div class="col-md-3">
                             <?php 
                                 echo $this->Form->input('des_parcela', array(
                                     'label' => 'Parcela',
                                     'type' => 'number',
-                                    'class' => 'form-control'                                    
-                                    // 'required'
+                                    'class' => 'form-control',
+                                    'required'
                                 )); 
                             ?>
                         </div>
                     </div>
 
-                    <div class="col-auto">
+                    <br />
+
+                    <div class="col-md-3">
                         <?php 
                             echo $this->Form->button('Salvar', array(
                                 'title' => 'Salvar cadastro de despesa',
