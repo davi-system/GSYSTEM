@@ -37,4 +37,11 @@ class Despesas extends AppModel {
             ORDER BY des_descricao"
         );
     }
+
+    function deletaDespesa($id)
+    {        
+        return $this->query(
+            "DELETE FROM despesas WHERE des_id = $id"
+        );
+    }
 }
