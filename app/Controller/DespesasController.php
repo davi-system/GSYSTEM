@@ -115,4 +115,46 @@ class DespesasController extends AppController {
 
         $this->Despesas->save($des);  
     }
+
+    public function modalViewDespesa()
+    {
+        $this->layout = null;
+        
+        $this->set('id', $this->request->data['id']);
+        
+        $tipos = $this->Tipos->find('list', array(
+            'fields' => array(
+                'tip_descricao'
+            ),
+            'order' => array(
+                'tip_descricao'
+            )
+        ));
+        $this->set('tipos', $tipos);
+
+        $formaPagamento = $this->FormaPagamento->find('list', array(
+            'fields' => array(
+                'frp_descricao'
+            ),
+            'order' => array(
+                'frp_descricao'
+            )
+        ));
+        $this->set('formaPagamento', $formaPagamento);
+
+        $despesa = $this->Despesas->find('first', array(
+            'conditions' => array(
+                'des_id' => $this->request->data['id']
+            )
+        ));
+        $this->set('despesa', $despesa);
+    }
+
+    public function deletaDespesa()
+    {
+        $this->layout = null;
+        $this->autoRender = false;        
+
+        $this->Despesas->deletaDespesa($this->request->data['id']);
+    }
 }
