@@ -72,21 +72,30 @@
                                             <td>
                                                 ".
                                                     $this->Form->button('<i class="bi bi-search"></i>', array(
-                                                        'title' => 'Editar despesa',
+                                                        'title' => 'Visualizar despesa',
                                                         'type' => 'button',                                                        
-                                                        'onclick' => "",
+                                                        'onclick' => "abreModalViewDespesa({$des['des']['des_id']});",
                                                         'class' => 'btn btn-warning'                                                                                                                         
                                                     ))
                                                 ."                                                
 
                                                 ".
                                                     $this->Form->button('<i class="bi bi-pencil-square"></i>', array(
-                                                        'title' => '',
+                                                        'title' => 'Editar despesa',
                                                         'type' => 'button',
                                                         'onclick' => "abreModalEditDespesa({$des['des']['des_id']});",
                                                         'class' => 'btn btn-success'                                
                                                     ))
                                                 ."
+
+                                                ".
+                                                $this->Form->button('<i class="bi bi-trash"></i>', array(
+                                                    'title' => 'Excluir despesa',
+                                                    'type' => 'button',
+                                                    'onclick' => "deletarDespesa({$des['des']['des_id']});",
+                                                    'class' => 'btn btn-danger'                                
+                                                ))
+                                            ."
                                             </td>
                                             <td>{$des['des']['des_id']}</td>
                                             <td>{$des['tip']['tip_descricao']}</td>
@@ -123,6 +132,41 @@
         }).done((data) => {            
             $('#modal').html(data);
             $('#modalEditDespesa').modal('show');
+        });
+    }
+
+    function abreModalViewDespesa(id) {
+        
+        $.ajax({
+            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'modalViewDespesa')); ?>`,
+            type: 'POST',
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            data: { 'id': id }
+        }).done((data) => {            
+            $('#modal').html(data);
+            $('#modalViewDespesa').modal('show');
+        });
+    }
+
+    function deletarDespesa(id) {
+        
+        console.log(id)
+
+        $.ajax({
+            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'deletaDespesa')); ?>`,
+            type: 'POST',
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            data: { 'id': id }
+        }).done((data) => {            
+            swal({
+                title: "Sucesso!",
+                text: "Registro excluido com sucesso!",
+                icon: "success",
+                button: false
+            });
+                setTimeout((data) => {
+                $(window.location.reload()).hide();
+            }, 2000);  
         });
     }
         
