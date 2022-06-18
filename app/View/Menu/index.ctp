@@ -1,6 +1,18 @@
 <?php echo $this->Session->flash(); ?>
 
 <?php 
+    echo $this->Html->link('<i class="bi bi-box-arrow-left"></i> Voltar', array(
+        'controller' => 'Login',
+        'action' => 'index'
+    ), array(
+        'class' => 'btn btn-secondary',
+        'escape' => false
+    ));
+?>
+
+<br /><br />
+
+<?php 
     echo $this->Form->button('visualizar cadastro', array(
         'title' => '',
         'type' => 'button',
@@ -8,6 +20,10 @@
         'class' => 'btn btn-primary'
     )); 
 ?>
+
+<br />
+
+<?php echo $this->Html->link('cadastrar despesa', array('controller' => 'Despesas', 'action' => 'add')); ?>
 
 <br />
 
