@@ -148,9 +148,7 @@
         });
     }
 
-    function deletarDespesa(id) {
-        
-        console.log(id)
+    function deletarDespesa(id) {        
 
         $.ajax({
             url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'deletaDespesa')); ?>`,
