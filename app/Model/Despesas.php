@@ -9,7 +9,7 @@ class Despesas extends AppModel {
     public $displayField = 'des_descricao';
     public $alias = 'des';
 
-    function listaDespesas($tipo, $descricao)
+    function listaDespesas($tipo, $descricao, $usuario)
     {        
         if($tipo == 0) {
             $where = "upper(des_descricao) like '%$descricao%'";
@@ -34,6 +34,7 @@ class Despesas extends AppModel {
             INNER JOIN tipos AS tip ON tip.tip_id = des.des_tipo_fk
             INNER JOIN forma_pagamento AS frp ON frp.frp_id = des.des_frp_fk
             WHERE $where
+            and des_usu_fk = $usuario
             ORDER BY des_descricao"
         );
     }
