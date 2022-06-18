@@ -23,7 +23,7 @@ class LoginController extends AppController {
                 )
             ));            
             
-            $this->Session->write('Person.usuario', $usuario['usu']['usu_id']);
+            $this->Session->write('Person.usuario', isset($usuario['usu']['usu_id']));                              
 
             return json_encode($this->Usuarios->find('count', array(
                 'conditions' => array(
