@@ -2,10 +2,25 @@
 
 <div id="principal-add">
     <div class="modal-header">
-        <h3>Listar Despesas</h3>
+        <div class="modal-title">
+            <h3>Listar Despesas</h3>
+        </div>
     </div>
 
     <div class="modal-body">
+
+        <?php 
+            echo $this->Html->link('<i class="bi bi-arrow-left"></i> Voltar', array(
+                'controller' => 'Menu',
+                'action' => 'index'
+            ), array(
+                'class' => 'btn btn-secondary',
+                'escape' => false
+            ));
+        ?>
+
+        <br /><br />
+
         <div class="row">
             <div class="col-md-12">
                 <?php echo $this->Form->create('Despesas', array('url' => array('controller' => 'Despesas', 'action' => 'index'))); ?>
@@ -148,9 +163,7 @@
         });
     }
 
-    function deletarDespesa(id) {
-        
-        console.log(id)
+    function deletarDespesa(id) {        
 
         $.ajax({
             url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'deletaDespesa')); ?>`,

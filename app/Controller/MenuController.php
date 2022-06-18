@@ -6,6 +6,7 @@ class MenuController extends AppController {
 
     public function index()
     {
-        # code...
+        // pegando o id do usuario logado
+        $this->set('codUsuario', $this->Session->read('Person.usuario'));
     }
 }

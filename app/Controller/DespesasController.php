@@ -10,6 +10,19 @@ class DespesasController extends AppController {
         'Despesas'
     );
 
+    public function index()
+    {
+        if($this->request->is('post')) {            
+
+            $tipo = $this->request->data['Despesas']['des_tipo_fk'];
+            $descricao = strtoupper(trim($this->request->data['Despesas']['des_descricao']));
+            $usuario = $this->Session->read('Person.usuario');
+
+            $despesas = $this->Despesas->listaDespesas($tipo, $descricao, $usuario);            
+            $this->set('despesas', $despesas);
+        }
+    }
+
     public function add()
     {
         $tipos = $this->Tipos->find('list', array(
@@ -34,6 +47,7 @@ class DespesasController extends AppController {
 
         if($this->request->is('post')) {
 
+            $this->request->data['Despesas']['des_usu_fk'] = $this->Session->read('Person.usuario');
             $this->request->data['Despesas']['des_situacao'] = 'A';
             $this->request->data['Despesas']['des_dtcriacao'] = date('Y-m-d');
             $this->request->data['Despesas']['des_horacriacao'] = date('H:i:s');
@@ -50,19 +64,6 @@ class DespesasController extends AppController {
                 </script>');
                 $this->redirect(array('controller' => 'Menu', 'action' => 'index'));
             }
-        }
-    }
-
-    public function index()
-    {
-        if($this->request->is('post')) {            
-
-            $tipo = $this->request->data['Despesas']['des_tipo_fk'];
-            $descricao = strtoupper(trim($this->request->data['Despesas']['des_descricao']));
-
-            $despesas = $this->Despesas->listaDespesas($tipo, $descricao);
-            $this->set($despesas);
-            $this->set('despesas', $despesas);
         }
     }
 
@@ -144,10 +145,10 @@ class DespesasController extends AppController {
 
         $despesa = $this->Despesas->find('first', array(
             'conditions' => array(
-                'des_id' => $this->request->data['id']
+                'des_id' => $this->request->data['id']                
             )
         ));
-        $this->set('despesa', $despesa);
+        $this->set('despesa', $despesa);        
     }
 
     public function deletaDespesa()

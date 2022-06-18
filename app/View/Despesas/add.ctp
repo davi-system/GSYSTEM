@@ -6,6 +6,19 @@
     </div>
 
     <div class="modal-body">
+
+        <?php 
+            echo $this->Html->link('<i class="bi bi-arrow-left"></i> Voltar', array(
+                'controller' => 'Menu',
+                'action' => 'index'
+            ), array(
+                'class' => 'btn btn-secondary',
+                'escape' => false
+            ));
+        ?>
+
+        <br /><br />
+
         <div class="row">
             <div class="col-md-12">
                 <?php echo $this->Form->create('Despesas', array('url' => array('controller' => 'Despesas', 'action' => 'add'))); ?>
