@@ -16,15 +16,17 @@ class DespesasController extends AppController {
 
             $tipo = $this->request->data['Despesas']['des_tipo_fk'];
             $descricao = strtoupper(trim($this->request->data['Despesas']['des_descricao']));
-            $usuario = $this->Session->read('Person.usuario');
+            $usuario = $this->Session->read('Person.usuario');            
 
-            $despesas = $this->Despesas->listaDespesas($tipo, $descricao, $usuario);            
+            $despesas = $this->Despesas->listaDespesas($tipo, $descricao, $usuario['usu']['usu_id']);            
             $this->set('despesas', $despesas);
         }
     }
 
     public function add()
     {
+        $usuario = $this->Session->read('Person.usuario');
+
         $tipos = $this->Tipos->find('list', array(
             'fields' => array(
                 'tip_descricao'
@@ -47,7 +49,7 @@ class DespesasController extends AppController {
 
         if($this->request->is('post')) {
 
-            $this->request->data['Despesas']['des_usu_fk'] = $this->Session->read('Person.usuario');
+            $this->request->data['Despesas']['des_usu_fk'] = $usuario['usu']['usu_id'];
             $this->request->data['Despesas']['des_situacao'] = 'A';
             $this->request->data['Despesas']['des_dtcriacao'] = date('Y-m-d');
             $this->request->data['Despesas']['des_horacriacao'] = date('H:i:s');
