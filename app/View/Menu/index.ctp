@@ -3,7 +3,7 @@
 <?php 
     echo $this->Html->link('<i class="bi bi-box-arrow-left"></i> Voltar', array(
         'controller' => 'Login',
-        'action' => 'index'
+        'action' => 'logout'
     ), array(
         'class' => 'btn btn-secondary',
         'escape' => false
