@@ -9,32 +9,36 @@
             <?php echo $this->Form->create('LoginUser', array('url', array('controller' => 'Login', 'action' => 'index'))); ?>
 
                 <div class="row">
-                    <div class="col-md-12">
-                        <label class="form-label">E-mail</label>
-                        <?php 
-                            echo $this->Form->input('usu_email', array(
-                                'label' => false, 
-                                'type' => 'text', 
-                                'class' => 'form-control',
-                                'id' => 'email'
-                            )); 
-                        ?>            
+                    <div class="input-group mb-2">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <div class="col-md-10">
+                            <?php 
+                                echo $this->Form->input('usu_email', array(
+                                    'label' => false, 
+                                    'type' => 'text', 
+                                    'class' => 'form-control',                                    
+                                    'placeholder' => 'E-mail'
+                                )); 
+                            ?>
+                        </div>
                     </div>
-                </div>
-        
+                </div>                
+                            
                 <div class="row">
-                    <div class="col-md-12">
-                    <label class="form-label">Senha</label>
-                        <?php 
-                            echo $this->Form->input('usu_senha', array(
-                                'label' => false, 
-                                'type' => 'password', 
-                                'class' => 'form-control',
-                                'id' => 'senha'                            
-                            )); 
-                        ?>  
-                    </div>        
-                </div>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-key"></i></span>
+                        <div class="col-md-10">
+                            <?php 
+                                echo $this->Form->input('usu_senha', array(
+                                    'label' => false, 
+                                    'type' => 'password', 
+                                    'class' => 'form-control',                                    
+                                    'placeholder' => 'Senha'
+                                )); 
+                            ?> 
+                        </div>
+                    </div>
+                </div>                
 
                 <br />                
 
@@ -46,42 +50,19 @@
                     )); 
                 ?>
 
+                &nbsp;
+
+                <?php            
+                    echo $this->Html->link('cadastra-se', array(
+                        'controller' => 'Usuarios', 
+                        'action' => 'add'
+                    ), array(
+                        'style' => 'text-decoration:none'
+                    ))
+                ?>
+
             <?php echo $this->Form->end(); ?>
 
         </div>
     </div>
 </div>
-
-<script>
-
-    function verificaEmailExiste() {
-        
-        $.ajax({
-            type: "POST",
-            url: `<?php echo $this->Html->url(array('controller' => 'Login', 'action' => 'index')); ?>`,
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-            data: {
-                'email': $('#email').val(),
-                'senha': $('#senha').val()
-            }
-        }).done((data) => {
-            
-            let obj = JSON.parse(data);
-
-            if(obj > 0) {
-                window.location.href = `<?php echo $this->Html->url(array('controller' => 'Menu', 'action' => 'index')); ?>`;
-            } else {                
-                swal({
-                    title: "Erro!",
-                    text: "Email ou senha inválidos!",
-                    icon: "warning",
-                    button: false
-                });
-                setTimeout((data) => {
-                    $(window.location.reload());
-                }, 2000);   
-            }           
-        });
-    }
-
-</script>
