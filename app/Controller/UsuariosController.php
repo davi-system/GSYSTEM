@@ -39,7 +39,7 @@ class UsuariosController extends AppController {
                             "success"
                         );
                     </script>');
-                    $this->redirect(array('controller' => 'Menu', 'action' => 'index'));
+                    $this->redirect(array('controller' => 'Login', 'action' => 'index'));
                 }
             }
         }
