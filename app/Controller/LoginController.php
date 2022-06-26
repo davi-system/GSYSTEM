@@ -28,6 +28,16 @@ class LoginController extends AppController {
                     )
                 )));
 
+                $this->Session->write('Person.nome', $this->Usuarios->find('first', array(
+                    'fields' => array(
+                        'usu_nome'
+                    ),
+                    'conditions' => array(
+                        'usu_email' => $this->request->data['LoginUser']['usu_email'],
+                        'usu_senha' => $this->request->data['LoginUser']['usu_senha']
+                    )
+                )));
+
                 $this->redirect(array(
                     'controller' => 'Menu', 
                     'action' => 'index'
@@ -50,6 +60,7 @@ class LoginController extends AppController {
     public function logout()
     {
         $this->Session->delete('Person.usuario');
+        $this->Session->delete('Person.nome');
         $this->redirect(array('action' => 'index'));
     }
 }
