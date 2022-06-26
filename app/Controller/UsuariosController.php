@@ -20,7 +20,7 @@ class UsuariosController extends AppController {
                 $this->Session->setFlash('
                 <script>                
                     swal(
-                        "Acesso negado!", 
+                        "Atenção!", 
                         "Esse e-mail já existe cadastrado no sistema!", 
                         "warning"
                     );
