@@ -1,11 +1,11 @@
 <?php echo $this->Session->flash(); ?>
 
-<div class="modal fade" id="modalEditUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="modalEditUsuario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Cadastro</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Editar Cadastro</h5>
+                <button type="button" onclick="fechaModal(<?php echo $usuario['usu']['usu_id']; ?>)" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
@@ -63,7 +63,7 @@
                     echo $this->Form->button('Fechar', array(
                         'title' => 'Fechar tela',
                         'type' => 'button',
-                        'onclick' => "",
+                        'onclick' => "fechaModal({$usuario['usu']['usu_id']});",
                         'class' => 'btn btn-secondary'
                     )); 
                 ?>                
@@ -97,6 +97,12 @@
                 $(window.location.reload()).hide();                
             }, 2000);         
         });
+    }
+
+    function fechaModal(id) {
+
+        $('#modalEditUsuario').modal('hide');
+        attAbreModalViewUsuario(id);
     }
     
 </script>

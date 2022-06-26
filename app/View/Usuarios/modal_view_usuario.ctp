@@ -1,10 +1,10 @@
 <?php echo $this->Session->flash(); ?>
 
-<div class="modal fade" id="modalViewUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalViewUsuario" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Visualizar Cadastro</h5>
+                <h5 class="modal-title">Visualizar Cadastro</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -73,12 +73,12 @@
 
         $.ajax({
             url: `<?php echo $this->Html->url(array('controller' => 'Usuarios', 'action' => 'modalEditUsuario')); ?>`,
-            type: 'POST',
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            type: 'POST',            
             data: { 'id': id }
-        }).done((data) => {      
-            $('#modal').html(data);
-            $('#modalEditUsuario').modal('show');            
+        }).done((data) => {            
+            $('#modalViewUsuario').modal('hide'); 
+            $('#modalEdit').html(data);
+            $('#modalEditUsuario').modal('show');          
         });
     }
     
