@@ -7,7 +7,7 @@
 
             <li class="nav-item">
                 <a class="nav-link">
-                    <i class="bi bi-person-fill"></i>&nbsp;<?php echo '<font color="#000"><b>'.$nomeUsuario.'</b></font>' ?>
+                    <i class="bi bi-person-fill"></i>&nbsp;<?php echo '<font color="#000"><b>'.$usuario['usu']['usu_nome'].'</b></font>' ?>
                 </a>
             </li>
 
