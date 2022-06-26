@@ -24,15 +24,19 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row">                                                
+                        
                         <div class="col-md-6">
+                            <p id="alert" class="alert alert-danger" role="alert" style="display:none; position:absolute; top:40px;">E-mail inválido</p>
                             <?php 
                                 echo $this->Form->input('usu_email', array(
                                     'label' => 'E-mail',
                                     'type' => 'text',
                                     'class' => 'form-control',
                                     'placeholder' => 'fulano@gmail.com',
-                                    'required'
+                                    'required',
+                                    'id' => 'email',
+                                    'onblur' => 'validateEmail(this);'                                   
                                 )); 
                             ?>
                         </div>
@@ -55,7 +59,8 @@
                         echo $this->Form->button('Salvar', array(
                             'title' => 'Salvar cadastro do usuário',
                             'type' => 'submit',
-                            'class' => 'btn btn-primary'
+                            'class' => 'btn btn-primary',
+                            'id' => 'btnSalvar'  
                         )); 
                     ?>
                     
@@ -64,3 +69,19 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    function validateEmail() {
+        let re = /\S+@\S+\.\S+/;        
+        if(re.test(document.getElementById('email').value) == false) {            
+            document.getElementById('alert').style.display = ''; 
+            document.getElementById('btnSalvar').setAttribute('disabled', 'disabled');
+        } else {
+            document.getElementById('alert').style.display = 'none';
+            document.getElementById('btnSalvar').removeAttribute('disabled');
+            return true;
+        }
+    }    
+    
+</script>
