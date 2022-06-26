@@ -25,14 +25,16 @@
 
                     <div class="row">
                         <div class="col-md-6">
+                            <p id="alert" class="alert alert-danger" role="alert" style="display:none; position:absolute; top:40px;">E-mail inválido</p>
                             <?php 
                                 echo $this->Form->input('usu_email', array(
                                     'label' => 'E-mail',
                                     'type' => 'text',
                                     'class' => 'form-control',
-                                    'placeholder' => 'fulano@gmail.com',
+                                    'placeholder' => 'exemplo@gmail.com',
                                     'value' => $usuario['usu']['usu_email'],
-                                    'id' => 'email'                                    
+                                    'id' => 'email',
+                                    'onblur' => 'validateEmail()'                                  
                                 )); 
                             ?>
                         </div>
@@ -57,7 +59,8 @@
                         'title' => 'Editar cadastro',
                         'type' => 'button',
                         'onclick' => "salvarEditCadUsuario({$usuario['usu']['usu_id']});",
-                        'class' => 'btn btn-primary'
+                        'class' => 'btn btn-primary',
+                        'id' => 'btnSalvar'
                     ));
 
                     echo $this->Form->button('Fechar', array(
@@ -103,6 +106,18 @@
 
         $('#modalEditUsuario').modal('hide');
         attAbreModalViewUsuario(id);
+    }
+
+    function validateEmail() {
+        let re = /\S+@\S+\.\S+/;        
+        if(re.test(document.getElementById('email').value) == false) {            
+            document.getElementById('alert').style.display = ''; 
+            document.getElementById('btnSalvar').setAttribute('disabled', 'disabled');
+        } else {
+            document.getElementById('alert').style.display = 'none';
+            document.getElementById('btnSalvar').removeAttribute('disabled');
+            return true;
+        }
     }
     
 </script>
