@@ -16,8 +16,7 @@
                                 echo $this->Form->input('usu_nome', array(
                                     'label' => 'Nome',
                                     'type' => 'text',
-                                    'class' => 'form-control',
-                                    'placeholder' => 'Fulano...',
+                                    'class' => 'form-control',                                    
                                     'required'
                                 )); 
                             ?>
@@ -33,7 +32,7 @@
                                     'label' => 'E-mail',
                                     'type' => 'text',
                                     'class' => 'form-control',
-                                    'placeholder' => 'fulano@gmail.com',
+                                    'placeholder' => 'exemplo@gmail.com',
                                     'required',
                                     'id' => 'email',
                                     'onblur' => 'validateEmail(this);'                                   
