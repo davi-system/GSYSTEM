@@ -4,6 +4,8 @@ App::uses('Controller', 'Controller');
 
 class MenuController extends AppController {
 
+    var $uses = array('Usuarios');
+
     public function index()
     {
         // pegando o id e nome do usuario logado
@@ -11,5 +13,14 @@ class MenuController extends AppController {
         $nomeUser = $this->Session->read('Person.nome');
         $this->set('codUsuario', $codUser['usu']['usu_id']);
         $this->set('nomeUsuario', $nomeUser['usu']['usu_nome']);
+
+        $usuario = $this->Usuarios->find('first', array(
+            'fields' => array(
+                'usu_nome'
+            ), 'conditions' => array(
+                'usu_id' => $codUser['usu']['usu_id']
+            )
+        ));        
+        $this->set('usuario', $usuario);
     }
 }

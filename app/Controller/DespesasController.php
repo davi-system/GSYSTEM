@@ -160,4 +160,21 @@ class DespesasController extends AppController {
 
         $this->Despesas->deletaDespesa($this->request->data['id']);
     }
+
+    public function modalAddTipo()
+    {
+        $this->layout = null;
+    }
+
+    public function salvarTipo()
+    {
+        $this->layout = null;
+        $this->autoRender = false;
+
+        $tip = array();
+        $tip['tip_descricao'] = $this->request->data['descricao'];
+
+        $this->Tipos->create();
+        $this->Tipos->save($tip);
+    }
 }
