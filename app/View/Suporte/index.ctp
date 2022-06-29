@@ -45,14 +45,18 @@
                         </p>
                     </div>
 
-                    <div class="col-md-6">                        
+                    <div class="col-md-6">
                         <p class="texto2">
-                            daviteste@gmail.com
+                            Contatos
                         </p>
-
+                    
                         <p class="texto2">
-                            (14) 99999-9999
+                            <i class="bi bi-envelope-fill" style="color:red;"></i> daviteste@gmail.com
                         </p>
+    
+                        <p class="texto2">
+                            <i class="bi bi-telephone-fill" style="color:green;"></i> (14) 99999-9999
+                        </p>                        
                     </div>
                 </div>
 
@@ -60,22 +64,14 @@
 
                 <div class="row">                    
                     <div class="col-md-6">
-                        <div style="text-align:right;">
-                            <?php 
-                                echo $this->Form->button('<i class="bi bi-pencil-square"></i>', array(
-                                    'title' => '',
-                                    'type' => 'button',
-                                    'class' => 'btn btn-outline-info',
-                                    'escape' => false
-                                )); 
-                            ?>                            
-                        </div>
-
                         <?php 
-                            echo $this->Form->input('', array(   
+                            echo $this->Form->input('descricao', array(   
                                 'label' => 'Feedback',                             
                                 'type' => 'textarea',
-                                'class' => 'form-control'
+                                'class' => 'form-control',
+                                'required',
+                                'minlength' => '8',
+                                'maxlength' => '500'
                             )); 
                         ?>
 
@@ -92,8 +88,9 @@
                         <?php 
                             echo $this->Form->button('Histórico', array(
                                 'title' => '',
-                                'type' => 'submit',
-                                'class' => 'btn btn-warning'
+                                'type' => 'button',
+                                'class' => 'btn btn-warning',
+                                'onclick' => "abreModalHistoricoSuporte({$codUsuario['usu']['usu_id']});"
                             )); 
                         ?>
                     </div>
@@ -102,3 +99,68 @@
         </div>
     </div>
 </div>
+
+<div id="modal">
+
+</div>
+
+<script>
+
+    function abreModalHistoricoSuporte(codUsuario) {
+        
+        $.ajax({
+            url: `<?php echo $this->Html->url(array('controller' => 'Suporte', 'action' => 'modalHistoricoSuporte')); ?>`,
+            type: 'POST',
+            data: { 'codUsuario': codUsuario }           
+        }).done((data) => {            
+            $('#modal').html(data);
+            $('#modalHistoricoSup').modal('show');
+        });
+    }
+
+    function btnExcluirChamado(codChamado, codUsuario) {
+
+        if(confirm('Realmente você quer excluir? ') == true) {
+
+            $.ajax({
+                url: `<?php echo $this->Html->url(array('controller' => 'Suporte', 'action' => 'excluirChamado')); ?>`,
+                type: 'POST',
+                data: { 
+                    'codChamado': codChamado,
+                    'codUsuario': codUsuario
+                }           
+            }).done((data) => {            
+                swal({
+                    title: "Exluido!",
+                    text: "Registro excluido com sucesso!",
+                    icon: "success",                    
+                });                    
+                $('#modalHistoricoSup').modal('hide');
+                abreModalHistoricoSuporte(codUsuario);                
+            });
+        }
+    }
+
+    function btnLimparHistoricoChamado(codUsuario) {
+
+        if(confirm('Realmente você quer limpar o histórico? ') == true) {
+
+            $.ajax({
+                url: `<?php echo $this->Html->url(array('controller' => 'Suporte', 'action' => 'limparHistorico')); ?>`,
+                type: 'POST',
+                data: {                     
+                    'codUsuario': codUsuario
+                }  
+            }).done((data) => {            
+                swal({
+                    title: "Exluido(s)!",
+                    text: "Histórico limpo com sucessos!",
+                    icon: "success",                    
+                });                    
+                $('#modalHistoricoSup').modal('hide');
+                abreModalHistoricoSuporte(codUsuario);                
+            });
+        }
+    }
+
+</script>
