@@ -47,20 +47,34 @@
                                 )); 
                             ?>
                         </div>
+                        
+                        <div class="input-group" style="width: 300px;">
+                            <div class="col-md-10">
+                                <?php 
+                                    echo $this->Form->input('des_tipo_fk', array(
+                                        'label' => 'Tipo',
+                                        'type' => 'select',
+                                        'options' => $tipos,
+                                        'empty' => true,
+                                        'class' => 'form-select',
+                                        'required'
+                                    ));                                                                 
+                                ?>
+                            </div>
 
-                        <div class="col-md-3">
-                            <?php 
-                                echo $this->Form->input('des_tipo_fk', array(
-                                    'label' => 'Tipo',
-                                    'type' => 'select',
-                                    'options' => $tipos,
-                                    'empty' => true,
-                                    'class' => 'form-control',
-                                    'required'
-                                )); 
-                            ?>
+                            <div>
+                                <?php 
+                                    echo $this->Form->button('<i class="bi bi-plus"></i>', array(
+                                        'title' => 'Adicionar novo tipo',
+                                        'type' => 'button',
+                                        'class' => 'btn btn-outline-secondary',
+                                        'style' => 'margin-top:24px;',
+                                        'onclick' => 'abreModalAddTipo();'
+                                    )); 
+                                ?>
+                            </div>                            
                         </div>
-
+                        
                         <div class="col-md-3">
                             <?php 
                                 echo $this->Form->input('des_frp_fk', array(
@@ -68,24 +82,25 @@
                                     'type' => 'select',
                                     'options' => $formaPagamento,
                                     'empty' => true,
-                                    'class' => 'form-control',
+                                    'class' => 'form-select',
+                                    'id' => 'formaPagamento',
+                                    'onchange' => 'qtdParcelas();',
                                     'required'
                                 )); 
                             ?>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2" id="qtdParcela" style="display:none;">
                             <?php 
                                 echo $this->Form->input('des_parcela', array(
                                     'label' => 'Parcela',
-                                    'type' => 'number',
-                                    'class' => 'form-control',
-                                    'required'
+                                    'type' => 'number',                                    
+                                    'class' => 'form-control'                                    
                                 )); 
                             ?>
                         </div>
                     </div>
-
+                                        
                     <br />
 
                     <div class="col-md-3">
@@ -103,3 +118,33 @@
         </div>
     </div>
 </div>
+
+<div id="modal">
+
+</div>
+
+<script>
+
+    function qtdParcelas() {
+
+        const qtdParcela = document.querySelector('#formaPagamento');
+
+        if(qtdParcela.selectedIndex === 2) {
+            document.getElementById('qtdParcela').style.display = '';
+        } else {
+            document.getElementById('qtdParcela').style.display = 'none';
+        }
+    }
+
+    function abreModalAddTipo() {
+        
+        $.ajax({
+            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'modalAddTipo')); ?>`,
+            type: 'GET'            
+        }).done((data) => {            
+            $('#modal').html(data);
+            $('#modalAddTipo').modal('show');
+        });
+    }
+
+</script>
