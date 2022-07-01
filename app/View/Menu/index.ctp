@@ -28,7 +28,17 @@
                 <ul class="dropdown-menu">
                     <li>
                         <a style="cursor:pointer;" onclick="abreModalViewUsuario(<?php echo $codUsuario; ?>);" class="dropdown-item">Minha Conta</a>
-                    </li>                    
+                    </li>
+                    <li>
+                        <?php 
+                            echo $this->Html->link('Suporte', array(
+                                'controller' => 'Suporte', 
+                                'action' => 'index'
+                            ), array(
+                                'class' => 'dropdown-item'
+                            ));
+                        ?>
+                    </li>                  
                 </ul>
             </li>
     
