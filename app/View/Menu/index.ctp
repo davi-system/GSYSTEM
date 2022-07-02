@@ -89,7 +89,17 @@
                         'class' => 'nav-link',
                         'escape' => false
                     ));
-                ?>                    
+                ?>
+                
+                <?php 
+                    echo $this->Html->link('<i class="bi bi-card-text"></i> Relatório de Despesas', array(
+                        'controller' => 'Relatorios',
+                        'action' => 'index'
+                    ), array(
+                        'class' => 'nav-link',
+                        'escape' => false
+                    ));
+                ?> 
             </nav>
         </nav>
     </div>
