@@ -78,9 +78,10 @@
                         <?php 
                             echo $this->Html->link('<i class="bi bi-file-earmark-spreadsheet"></i> Exportar Excel', array(                                
                                 'controller' => 'Relatorios',
-                                'action' => ''                                
+                                'action' => 'r01Excel'                                
                             ), array(
                                 'class' => 'btn btn-success',
+                                'target' => '_blank',
                                 'escape' => false
                             )); 
                         ?>                        
