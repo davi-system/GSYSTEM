@@ -57,7 +57,7 @@
                                 'required',
                                 'onkeyup' => "mascaraData(this, this.value)",
                                 'minlength' => '10',
-                                'maxlength' => '10'
+                                'maxlength' => '10'                                
                             )); 
                         ?>
                     </div>                    
@@ -71,20 +71,24 @@
                                 'titile' => '',
                                 'type' => 'submit',
                                 'class' => 'btn btn-primary',
-                                'escape' => false                                                          
+                                'escape' => false                                                                                    
                             )); 
-                        ?>
-
+                        ?>                      
+                        
                         <?php 
-                            echo $this->Html->link('<i class="bi bi-file-earmark-spreadsheet"></i> Exportar Excel', array(                                
-                                'controller' => 'Relatorios',
-                                'action' => 'r01Excel'                                
+                            $dataInicio = (isset($data1)) ? $this->Utilitarios->separaData($data1) : '';
+                            $dataFim = (isset($data2)) ? $this->Utilitarios->separaData($data2) : '';                            
+
+                            echo $this->Html->link('<i class="bi bi-file-earmark-spreadsheet"></i> Exportar Excel', array(
+                                'controller' => 'Relatorios', 
+                                'action' => 'r01Excel',
+                                $usuario, $dataInicio, $dataFim
                             ), array(
                                 'class' => 'btn btn-success',
                                 'target' => '_blank',
-                                'escape' => false
+                                'escape' => false,
                             )); 
-                        ?>                        
+                        ?>
                     </div>
                 </div>
             <?php echo $this->Form->end(); ?>
@@ -92,32 +96,37 @@
             <br />
             
             <?php if(isset($despesas)) { ?>
+
                 <div class="row">
                     <div class="col-md-12">                    
                         <table class="table table-striped table-hover">
-                            <thead>                                
-                                <th>Cod. Despesa</th>
-                                <th>Tipo</th>
-                                <th>Forma de Pagamento</th>
-                                <th>Descrição</th>
-                                <th>Valor</th>
-                                <th>Parcelas</th>
-                                <th>Data Criação</th>
-                                <th>Hora Criação</th>
+                            <thead>
+                                <tr>
+                                    <th>Cod. Despesa</th>
+                                    <th>Tipo</th>
+                                    <th>Forma de Pagamento</th>
+                                    <th>Descrição</th>
+                                    <th>Valor</th>
+                                    <th>Parcelas</th>
+                                    <th>Data Criação</th>
+                                    <th>Hora Criação</th>
+                                </tr>                              
                             </thead>
 
                             <tbody>
                                 <?php
                                     foreach($despesas as $des) {
                                         echo "
-                                            <td>{$des['des']['des_id']}</td>
-                                            <td>{$des['tip']['tip_descricao']}</td>
-                                            <td>{$des['frp']['frp_descricao']}</td>
-                                            <td>{$des['des']['des_descricao']}</td>
-                                            <td>{$des['des']['des_valor']}</td>
-                                            <td>{$des['des']['des_parcela']}</td>
-                                            <td>{$des['des']['des_dtcriacao']}</td>
-                                            <td>{$des['des']['des_horacriacao']}</td>
+                                            <tr>
+                                                <td>{$des['des']['des_id']}</td>
+                                                <td>{$des['tip']['tip_descricao']}</td>
+                                                <td>{$des['frp']['frp_descricao']}</td>
+                                                <td>{$des['des']['des_descricao']}</td>
+                                                <td>{$des['des']['des_valor']}</td>
+                                                <td>{$des['des']['des_parcela']}</td>
+                                                <td>{$des['des']['des_dtcriacao']}</td>
+                                                <td>{$des['des']['des_horacriacao']}</td>
+                                            </tr>
                                         ";
                                     }
                                 ?>
