@@ -34,8 +34,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			echo $this->Html->css('style_usuarios.css');
 			echo $this->Html->css('style_login.css');
 			echo $this->Html->css("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
-			echo $this->Html->script('bootstrap.bundle.min.js');
-			echo $this->Html->script('jquery-3.6.0.min.js');
+			echo $this->Html->css('jquery-ui.css');
+
+			echo $this->Html->script('jquery-3.6.0.min.js'); // tem que ficar em primeiro
+			echo $this->Html->script('bootstrap.bundle.min.js'); // tem que ficar em segundo
+			echo $this->Html->script('jquery-ui.js');
+			echo $this->Html->script('datepicker.js');
 			echo $this->Html->script('sweetalert.min.js');
 						
 			echo $this->fetch('meta');
