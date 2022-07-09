@@ -31,9 +31,29 @@ App::uses('Helper', 'View');
  */
 class UtilitariosHelper extends Helper {
 
-    function formatarData($data)
+    public function formatarData($data)
     {
         $date = DateTime::createFromFormat('d/m/Y', $data);
         return $date->format('Y-m-d');
+    }
+
+    public function exportarDadosExcel($fileName, $html)
+    {                             
+        header("Content-type: application/xls");
+        header("Content-type: application/force-download");     
+        header("Content-Disposition: attachment; filename=$fileName.xls");                 
+        header("Pragma: no-cache");
+        echo $html;
+    }
+
+    public function separaData($data)
+    {        
+        $date = explode('/', $data);        
+
+        $dia = $date['0'];
+        $mes = $date['1'];
+        $ano = $date['2'];            
+        
+        return $dia.$mes.$ano;                
     }
 }

@@ -8,8 +8,18 @@ class UtilitariosComponent extends Component {
         return $date->format('Y-m-d');
     }
         
-    public function exportarDadosExcel()
+    public function exportarDadosExcel($fileName)
     {
-        # code...
+        header("Content-type: application/vnd.ms-excel");
+        header("Content-type: application/force-download");
+        header("Content-Disposition: attachment; filename=$fileName.xls");
+        header("Pragma: no-cache");    
+    }
+
+    public function ajuntaFormataData($data)
+    {
+        $date = str_split($data, 2);        
+
+        return $date['0'].'/'.$date['1'].'/'.$date['2'].$date['3'];        
     }
 }
