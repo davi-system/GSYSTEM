@@ -39,11 +39,11 @@
                             echo $this->Form->input('data1', array(
                                 'label' => 'De',
                                 'type' => 'text',
-                                'class' => 'form-control',
+                                'class' => 'form-control date',
                                 'required',
                                 'onkeyup' => "mascaraData(this, this.value)",
                                 'minlength' => '10',
-                                'maxlength' => '10'
+                                'maxlength' => '10'                                
                             )); 
                         ?>
                     </div>
@@ -53,7 +53,7 @@
                             echo $this->Form->input('data2', array(
                                 'label' => 'Até',
                                 'type' => 'text',
-                                'class' => 'form-control',
+                                'class' => 'form-control date',
                                 'required',
                                 'onkeyup' => "mascaraData(this, this.value)",
                                 'minlength' => '10',
