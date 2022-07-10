@@ -84,7 +84,7 @@
                                     'empty' => true,
                                     'class' => 'form-select',
                                     'id' => 'formaPagamento',
-                                    'onchange' => 'qtdParcelas();',
+                                    'onchange' => 'opcaoDePagamento();',
                                     'required'
                                 )); 
                             ?>
@@ -95,7 +95,8 @@
                                 echo $this->Form->input('des_parcela', array(
                                     'label' => 'Parcela',
                                     'type' => 'number',                                    
-                                    'class' => 'form-control'                                    
+                                    'class' => 'form-control',
+                                    'id' => 'parcela'                                   
                                 )); 
                             ?>
                         </div>
@@ -125,14 +126,18 @@
 
 <script>
 
-    function qtdParcelas() {
+    function opcaoDePagamento() {
 
-        const qtdParcela = document.querySelector('#formaPagamento');
+        const qtdParcela = document.querySelector('#formaPagamento');     
+        
+        console.log(qtdParcela.value);
 
-        if(qtdParcela.selectedIndex === 2) {
+        if(qtdParcela.value === '1') {        
             document.getElementById('qtdParcela').style.display = '';
+            document.getElementById('parcela').removeAttribute('disabled');
         } else {
-            document.getElementById('qtdParcela').style.display = 'none';
+            document.getElementById('qtdParcela').style.display = 'none'; 
+            document.getElementById('parcela').setAttribute('disabled', 'disabled');
         }
     }
 
