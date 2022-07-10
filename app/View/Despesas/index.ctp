@@ -26,38 +26,60 @@
                 <?php echo $this->Form->create('Despesas', array('url' => array('controller' => 'Despesas', 'action' => 'index'))); ?>
 
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <?php 
-                                echo $this->Form->input('des_tipo_fk', array(
-                                    'label' => 'Descrição',
-                                    'type' => 'select',
+                                echo $this->Form->input('opcaoPesquisa', array(
+                                    'label' => 'Buscar por',
+                                    'type' => 'select',                                    
                                     'options' => array('0' => 'Descrição', '1' => 'Tipo'),
-                                    'class' => 'form-control'
+                                    'class' => 'form-select',
+                                    'id' => 'opcaoPesquisa',
+                                    'onchange' => 'tipoPesquisa();'
                                 )); 
                             ?>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4" id="div_descricao">
                             <?php 
                                 echo $this->Form->input('des_descricao', array(
                                     'label' => '',
-                                    'type' => 'text',
-                                    'class' => 'form-control'
+                                    'type' => 'text',                                    
+                                    'class' => 'form-control',
+                                    'id' => 'descricao',
+                                    'required'
                                 )); 
                             ?>
-                        </div>  
+                        </div>
                         
+                        <div class="col-md-4" id="div_tipo" style="display:none;">
+                            <?php 
+                                echo $this->Form->input('des_tipo', array(
+                                    'label' => '',
+                                    'type' => 'select',
+                                    'options' => $tipos,
+                                    'empty' => true,
+                                    'class' => 'form-select',
+                                    'id' => 'tipo',
+                                    'disabled',
+                                    'required'
+                                )); 
+                            ?>
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <?php 
+                                echo $this->Form->button('<i class="bi bi-search"></i> Buscar', array(
+                                    'title' => 'Consultar despesas',
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary',
+                                    'style' => 'margin-top:24px;'                               
+                                )); 
+                            ?>
+                        </div>
                     </div>                    
 
                     <br />
-                                          
-                    <?php 
-                        echo $this->Form->button('<i class="bi bi-search"></i> Buscar', array(
-                            'title' => 'Consultar despesas',
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary'                                
-                        )); 
-                    ?>
+                            
                                         
                 <?php echo $this->Form->end(); ?>
 
@@ -118,7 +140,7 @@
                                             <td>{$des['des']['des_descricao']}</td>
                                             <td>{$des['des']['des_valor']}</td>
                                             <td>{$des['des']['des_parcela']}</td>
-                                            <td>{$des['des']['des_dtcriacao']}</td>
+                                            <td>{$this->Utilitarios->formatarData($des['des']['des_dtcriacao'])}</td>
                                             <td>{$des['des']['des_horacriacao']}</td>                                    
                                             </tr>
                                         ";
@@ -136,6 +158,23 @@
 </div>
 
 <script>
+
+    function tipoPesquisa() {
+
+        const input = document.querySelector('#opcaoPesquisa');
+
+        if(input.selectedIndex == '0') {
+            document.getElementById('div_tipo').style.display = 'none';
+            document.getElementById('div_descricao').style.display = '';
+            document.getElementById('tipo').setAttribute('disabled', 'disabled');
+            document.getElementById('descricao').removeAttribute('disabled');
+        } else {
+            document.getElementById('div_descricao').style.display = 'none';
+            document.getElementById('div_tipo').style.display = '';
+            document.getElementById('tipo').removeAttribute('disabled');
+            document.getElementById('descricao').setAttribute('disabled', 'disabled');
+        }
+    }
 
     function abreModalEditDespesa(id) {
         
