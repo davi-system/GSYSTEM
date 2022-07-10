@@ -15,7 +15,7 @@
                             <?php foreach($chamados as $cha): ?>
                                 <div class="col-md-12">
                                     <div style="text-align:right; font-weight: bold;">
-                                        <span><i class="bi bi-calendar"></i> <?php echo $cha['sup']['sup_dtcriacao']; ?></span>
+                                        <span><i class="bi bi-calendar"></i> <?php echo $this->Utilitarios->formatarData($cha['sup']['sup_dtcriacao']); ?></span>
                                         &nbsp;
                                         <span><i class="bi bi-hourglass-split"></i> <?php echo $cha['sup']['sup_horacriacao']; ?></span>
                                     </div>

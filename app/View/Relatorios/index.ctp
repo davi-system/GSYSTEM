@@ -124,7 +124,7 @@
                                                 <td>{$des['des']['des_descricao']}</td>
                                                 <td>{$des['des']['des_valor']}</td>
                                                 <td>{$des['des']['des_parcela']}</td>
-                                                <td>{$des['des']['des_dtcriacao']}</td>
+                                                <td>{$this->Utilitarios->formatarData($des['des']['des_dtcriacao'])}</td>
                                                 <td>{$des['des']['des_horacriacao']}</td>
                                             </tr>
                                         ";
