@@ -11,21 +11,32 @@ class DespesasController extends AppController {
     );
 
     public function index()
-    {
-        if($this->request->is('post')) {            
+    {   
+        $tipos = $this->Tipos->find('list', array(
+            'fields' => array(
+                'tip_descricao'
+            ),
+            'order' => array(
+                'tip_descricao'
+            )
+        ));
+        $this->set('tipos', $tipos);
 
-            $tipo = $this->request->data['Despesas']['des_tipo_fk'];
-            $descricao = strtoupper(trim($this->request->data['Despesas']['des_descricao']));
+        if($this->request->is('post')) {                    
+
+            $opcaoPesquisa = $this->request->data['Despesas']['opcaoPesquisa'];
+            $descricao = (isset($this->request->data['Despesas']['des_descricao'])) ? strtoupper(trim($this->request->data['Despesas']['des_descricao'])) : '';
+            $tipo = (isset($this->request->data['Despesas']['des_tipo'])) ? $this->request->data['Despesas']['des_tipo'] : '';
             $usuario = $this->Session->read('Person.usuario');            
 
-            $despesas = $this->Despesas->listaDespesas($tipo, $descricao, $usuario['usu']['usu_id']);            
+            $despesas = $this->Despesas->listaDespesas($opcaoPesquisa, $descricao, $tipo, $usuario['usu']['usu_id']);            
             $this->set('despesas', $despesas);
         }
     }
 
     public function add()
     {
-        $usuario = $this->Session->read('Person.usuario');
+        $usuario = $this->Session->read('Person.usuario');        
 
         $tipos = $this->Tipos->find('list', array(
             'fields' => array(
@@ -48,8 +59,12 @@ class DespesasController extends AppController {
         $this->set('formaPagamento', $formaPagamento);
 
         if($this->request->is('post')) {
+            
+
+            $quantidadeParcela = (!empty($this->request->data['Despesas']['des_parcela'])) ? $this->request->data['Despesas']['des_parcela'] : 0;
 
             $this->request->data['Despesas']['des_usu_fk'] = $usuario['usu']['usu_id'];
+            $this->request->data['Despesas']['des_parcela'] = $quantidadeParcela;            
             $this->request->data['Despesas']['des_situacao'] = 'A';
             $this->request->data['Despesas']['des_dtcriacao'] = date('Y-m-d');
             $this->request->data['Despesas']['des_horacriacao'] = date('H:i:s');
