@@ -45,4 +45,28 @@ class Despesas extends AppModel {
             "DELETE FROM despesas WHERE des_id = $id"
         );
     }
+
+    function relatorioDespesas($id, $data1, $data2) {
+
+        return $this->query(
+            "SELECT 
+                des.des_id, 
+                des.des_tipo_fk, 
+                tip.tip_descricao, 
+                des.des_frp_fk, 
+                frp.frp_descricao, 
+                des.des_descricao, 
+                des.des_valor, 
+                des.des_parcela, 
+                des.des_dtcriacao, 
+                des.des_horacriacao
+            FROM 
+                despesas AS des
+            INNER JOIN tipos AS tip ON tip.tip_id = des.des_tipo_fk
+            INNER JOIN forma_pagamento AS frp ON frp.frp_id = des.des_frp_fk
+            WHERE des_dtcriacao between '$data1' and '$data2'
+            and des_usu_fk = $id
+            ORDER BY des_descricao"
+        );
+    }
 }
