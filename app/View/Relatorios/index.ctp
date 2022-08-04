@@ -2,7 +2,7 @@
 
 <style>
     .date {
-        text-align: center;
+        /* text-align: center; */
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
     }
@@ -43,7 +43,8 @@
                                 'required',
                                 'onkeyup' => "mascaraData(this, this.value)",
                                 'minlength' => '10',
-                                'maxlength' => '10'                                
+                                'maxlength' => '10',
+                                'placeholder' => 'Data início'                              
                             )); 
                         ?>
                     </div>
@@ -57,7 +58,8 @@
                                 'required',
                                 'onkeyup' => "mascaraData(this, this.value)",
                                 'minlength' => '10',
-                                'maxlength' => '10'                                
+                                'maxlength' => '10',
+                                'placeholder' => 'Data fim'                              
                             )); 
                         ?>
                     </div>                    
@@ -102,14 +104,14 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Cod. Despesa</th>
+                                    <th style="text-align:center;">Cod. Despesa</th>
                                     <th>Tipo</th>
                                     <th>Forma de Pagamento</th>
                                     <th>Descrição</th>
-                                    <th>Valor</th>
+                                    <th style="text-align:center;">Valor</th>
                                     <th>Parcelas</th>
-                                    <th>Data Criação</th>
-                                    <th>Hora Criação</th>
+                                    <th style="text-align:center;">Data Criação</th>
+                                    <th style="text-align:center;">Hora Criação</th>
                                 </tr>                              
                             </thead>
 
@@ -118,14 +120,14 @@
                                     foreach($despesas as $des) {
                                         echo "
                                             <tr>
-                                                <td>{$des['des']['des_id']}</td>
+                                                <td style='text-align:center;'>{$des['des']['des_id']}</td>
                                                 <td>{$des['tip']['tip_descricao']}</td>
                                                 <td>{$des['frp']['frp_descricao']}</td>
                                                 <td>{$des['des']['des_descricao']}</td>
-                                                <td>{$des['des']['des_valor']}</td>
-                                                <td>{$des['des']['des_parcela']}</td>
-                                                <td>{$this->Utilitarios->formatarData($des['des']['des_dtcriacao'])}</td>
-                                                <td>{$des['des']['des_horacriacao']}</td>
+                                                <td style='text-align:center;'>{$des['des']['des_valor']}</td>
+                                                <td style='text-align:center;'>{$des['des']['des_parcela']}</td>
+                                                <td style='text-align:center;'>{$this->Utilitarios->formatarData($des['des']['des_dtcriacao'])}</td>
+                                                <td style='text-align:center;'>{$des['des']['des_horacriacao']}</td>
                                             </tr>
                                         ";
                                     }
