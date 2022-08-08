@@ -7,14 +7,22 @@ class SuporteController extends AppController {
     var $uses = array('Suporte');
 
     public function index()
-    {
-        $codUsuario = $this->Session->read('Person.usuario');
+    {        
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');         
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $codUsuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $codUsuario = $ultimoUsuarioAdd;
+        }
+
         $this->set('codUsuario', $codUsuario);
 
         if($this->request->is('post')) {            
 
             $sup = array();
-            $sup['sup_usu_fk'] = $codUsuario['usu']['usu_id'];
+            $sup['sup_usu_fk'] = $codUsuario;
             $sup['sup_descricao'] = $this->request->data['Suporte']['descricao'];
             $sup['sup_situacao'] = 'A';
             $sup['sup_dtcriacao'] = date('Y-m-d');
@@ -24,14 +32,14 @@ class SuporteController extends AppController {
             if($this->Suporte->save($sup)) {
 
                 $this->Session->setFlash('
-                    <script>                
-                        swal(
-                            "Sucesso!", 
-                            "Feedback enviando com sucesso!", 
-                            "success"
-                        );
-                    </script>');
-                    $this->redirect(array('controller' => 'Suporte', 'action' => 'index'));
+                <script>                
+                    swal(
+                        "Sucesso!", 
+                        "Feedback enviando com sucesso!", 
+                        "success"
+                    );
+                </script>');
+                $this->redirect(array('controller' => 'Suporte', 'action' => 'index'));
             }
         }
     }

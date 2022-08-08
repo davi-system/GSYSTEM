@@ -30,7 +30,8 @@
                                     'label' => 'Descrição',
                                     'type' => 'text',
                                     'class' => 'form-control',
-                                    'required'
+                                    'required',
+                                    'placeholder' => 'Informe uma descrição'
                                 )); 
                             ?>
                         </div>
@@ -43,7 +44,8 @@
                                     'label' => 'Valor',
                                     'type' => 'number',
                                     'class' => 'form-control',
-                                    'required'
+                                    'required',
+                                    'placeholder' => 'Informe um valor'
                                 )); 
                             ?>
                         </div>
@@ -55,7 +57,7 @@
                                         'label' => 'Tipo',
                                         'type' => 'select',
                                         'options' => $tipos,
-                                        'empty' => true,
+                                        'empty' => 'Informe um tipo',
                                         'class' => 'form-select',
                                         'required'
                                     ));                                                                 
@@ -81,10 +83,10 @@
                                     'label' => 'Forma de Pagamento',
                                     'type' => 'select',
                                     'options' => $formaPagamento,
-                                    'empty' => true,
+                                    'empty' => 'Informe meio de pagamento',
                                     'class' => 'form-select',
                                     'id' => 'formaPagamento',
-                                    'onchange' => 'qtdParcelas();',
+                                    'onchange' => 'opcaoDePagamento();',
                                     'required'
                                 )); 
                             ?>
@@ -95,7 +97,8 @@
                                 echo $this->Form->input('des_parcela', array(
                                     'label' => 'Parcela',
                                     'type' => 'number',                                    
-                                    'class' => 'form-control'                                    
+                                    'class' => 'form-control',
+                                    'id' => 'parcela'                                   
                                 )); 
                             ?>
                         </div>
@@ -125,14 +128,18 @@
 
 <script>
 
-    function qtdParcelas() {
+    function opcaoDePagamento() {
 
-        const qtdParcela = document.querySelector('#formaPagamento');
+        const qtdParcela = document.querySelector('#formaPagamento');     
+        
+        console.log(qtdParcela.value);
 
-        if(qtdParcela.selectedIndex === 2) {
+        if(qtdParcela.value === '1') {        
             document.getElementById('qtdParcela').style.display = '';
+            document.getElementById('parcela').removeAttribute('disabled');
         } else {
-            document.getElementById('qtdParcela').style.display = 'none';
+            document.getElementById('qtdParcela').style.display = 'none'; 
+            document.getElementById('parcela').setAttribute('disabled', 'disabled');
         }
     }
 

@@ -31,6 +31,9 @@ class UsuariosController extends AppController {
     
                 $this->Usuarios->create();    
                 if($this->Usuarios->save($this->request->data['Usuarios'])) {
+
+                    $this->Session->write('idUsuario.add', $this->Usuarios->id);            
+
                     $this->Session->setFlash('
                     <script>                
                         swal(
@@ -39,7 +42,7 @@ class UsuariosController extends AppController {
                             "success"
                         );
                     </script>');
-                    $this->redirect(array('controller' => 'Login', 'action' => 'index'));
+                    $this->redirect(array('controller' => 'Menu', 'action' => 'index'));
                 }
             }
         }

@@ -8,17 +8,22 @@ class MenuController extends AppController {
 
     public function index()
     {
-        // pegando o id e nome do usuario logado
-        $codUser = $this->Session->read('Person.usuario');
-        $nomeUser = $this->Session->read('Person.nome');
-        $this->set('codUsuario', $codUser['usu']['usu_id']);
-        $this->set('nomeUsuario', $nomeUser['usu']['usu_nome']);
+        // pegando o id e nome do usuario logado ou adicionado
+        $codUser = $this->Session->read('Person.usuario');        
+        
+        if(isset($codUser['usu']['usu_id'])) {
+            $codUsuario = $codUser['usu']['usu_id'];
+        } else {
+            $codUsuario = $this->Session->read('idUsuario.add');
+        }        
+
+        $this->set('codUsuario', $codUsuario);        
 
         $usuario = $this->Usuarios->find('first', array(
             'fields' => array(
                 'usu_nome'
             ), 'conditions' => array(
-                'usu_id' => $codUser['usu']['usu_id']
+                'usu_id' => $codUsuario
             )
         ));        
         $this->set('usuario', $usuario);
