@@ -33,8 +33,8 @@ class UtilitariosHelper extends Helper {
 
     public function formatarData($data)
     {
-        $date = DateTime::createFromFormat('d/m/Y', $data);
-        return $date->format('Y-m-d');
+        $date = DateTime::createFromFormat('Y-m-d', $data);
+        return $date->format('d/m/Y');
     }
 
     public function exportarDadosExcel($fileName, $html)

@@ -51,8 +51,7 @@ class LoginController extends AppController {
                         "Usuário ou Senha inválido!", 
                         "warning"
                     );
-                </script>');
-                // $this->redirect(array('action' => 'index'));
+                </script>');                
             }
         }
     }
