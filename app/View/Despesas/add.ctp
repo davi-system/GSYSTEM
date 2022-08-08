@@ -30,7 +30,8 @@
                                     'label' => 'Descrição',
                                     'type' => 'text',
                                     'class' => 'form-control',
-                                    'required'
+                                    'required',
+                                    'placeholder' => 'Informe uma descrição'
                                 )); 
                             ?>
                         </div>
@@ -43,7 +44,8 @@
                                     'label' => 'Valor',
                                     'type' => 'number',
                                     'class' => 'form-control',
-                                    'required'
+                                    'required',
+                                    'placeholder' => 'Informe um valor'
                                 )); 
                             ?>
                         </div>
@@ -55,7 +57,7 @@
                                         'label' => 'Tipo',
                                         'type' => 'select',
                                         'options' => $tipos,
-                                        'empty' => true,
+                                        'empty' => 'Informe um tipo',
                                         'class' => 'form-select',
                                         'required'
                                     ));                                                                 
@@ -81,7 +83,7 @@
                                     'label' => 'Forma de Pagamento',
                                     'type' => 'select',
                                     'options' => $formaPagamento,
-                                    'empty' => true,
+                                    'empty' => 'Informe meio de pagamento',
                                     'class' => 'form-select',
                                     'id' => 'formaPagamento',
                                     'onchange' => 'opcaoDePagamento();',

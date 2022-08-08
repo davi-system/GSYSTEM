@@ -90,7 +90,7 @@
                                 'title' => '',
                                 'type' => 'button',
                                 'class' => 'btn btn-warning',
-                                'onclick' => "abreModalHistoricoSuporte({$codUsuario['usu']['usu_id']});"
+                                'onclick' => "abreModalHistoricoSuporte({$codUsuario});"
                             )); 
                         ?>
                     </div>
