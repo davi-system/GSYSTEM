@@ -9,9 +9,17 @@ class RelatoriosController extends AppController {
     var $uses = array('Despesas');    
 
     public function index()
-    {
-        $usuario = $this->Session->read('Person.usuario');
-        $this->set('usuario', $usuario['usu']['usu_id']);         
+    {    
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');            
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $usuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $usuario = $ultimoUsuarioAdd;
+        }
+
+        $this->set('usuario', $usuario);
 
         if($this->request->is('post')) {            
 
@@ -22,7 +30,7 @@ class RelatoriosController extends AppController {
             $this->set('data2', $data2);
     
             $this->set('despesas', $this->Despesas->relatorioDespesas(
-                $usuario['usu']['usu_id'], 
+                $usuario, 
                 $this->Utilitarios->formataData($data1), 
                 $this->Utilitarios->formataData($data2)
             ));            

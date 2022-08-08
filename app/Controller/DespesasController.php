@@ -26,17 +26,32 @@ class DespesasController extends AppController {
 
             $opcaoPesquisa = $this->request->data['Despesas']['opcaoPesquisa'];
             $descricao = (isset($this->request->data['Despesas']['des_descricao'])) ? strtoupper(trim($this->request->data['Despesas']['des_descricao'])) : '';
-            $tipo = (isset($this->request->data['Despesas']['des_tipo'])) ? $this->request->data['Despesas']['des_tipo'] : '';
-            $usuario = $this->Session->read('Person.usuario');            
+            $tipo = (isset($this->request->data['Despesas']['des_tipo'])) ? $this->request->data['Despesas']['des_tipo'] : '';             
+            
+            $usuarioLogin = $this->Session->read('Person.usuario');
+            $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');    
+            
+            if(isset($usuarioLogin['usu']['usu_id'])) {
+                $usuario = $usuarioLogin['usu']['usu_id'];
+            } else {
+                $usuario = $ultimoUsuarioAdd;
+            }
 
-            $despesas = $this->Despesas->listaDespesas($opcaoPesquisa, $descricao, $tipo, $usuario['usu']['usu_id']);            
+            $despesas = $this->Despesas->listaDespesas($opcaoPesquisa, $descricao, $tipo, $usuario);            
             $this->set('despesas', $despesas);
         }
     }
 
     public function add()
     {
-        $usuario = $this->Session->read('Person.usuario');        
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $usuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $usuario = $ultimoUsuarioAdd;
+        }    
 
         $tipos = $this->Tipos->find('list', array(
             'fields' => array(
@@ -63,7 +78,7 @@ class DespesasController extends AppController {
 
             $quantidadeParcela = (!empty($this->request->data['Despesas']['des_parcela'])) ? $this->request->data['Despesas']['des_parcela'] : 0;
 
-            $this->request->data['Despesas']['des_usu_fk'] = $usuario['usu']['usu_id'];
+            $this->request->data['Despesas']['des_usu_fk'] = $usuario;
             $this->request->data['Despesas']['des_parcela'] = $quantidadeParcela;            
             $this->request->data['Despesas']['des_situacao'] = 'A';
             $this->request->data['Despesas']['des_dtcriacao'] = date('Y-m-d');
@@ -121,7 +136,7 @@ class DespesasController extends AppController {
     public function salvaEditDespesa()
     {
         $this->layout = null;
-        $this->autoRender = false;
+        $this->autoRender = false;        
 
         $des = array();
         $des['des_id'] = $this->request->data['id'];
