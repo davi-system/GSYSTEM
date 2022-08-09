@@ -207,4 +207,21 @@ class DespesasController extends AppController {
         $this->Tipos->create();
         $this->Tipos->save($tip);
     }
+
+    public function modalAddFrp()
+    {
+        $this->layout = null;
+    }
+
+    public function salvarFormaPagamento()
+    {
+        $this->layout = null;
+        $this->autoRender = false;
+
+        $frp = array();
+        $frp['frp_descricao'] = $this->request->data['descricao'];
+
+        $this->FormaPagamento->create();
+        $this->FormaPagamento->save($frp);
+    }
 }
