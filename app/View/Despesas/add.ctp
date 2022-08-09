@@ -76,22 +76,36 @@
                                 ?>
                             </div>                            
                         </div>
-                        
-                        <div class="col-md-3">
-                            <?php 
-                                echo $this->Form->input('des_frp_fk', array(
-                                    'label' => 'Forma de Pagamento',
-                                    'type' => 'select',
-                                    'options' => $formaPagamento,
-                                    'empty' => 'Informe meio de pagamento',
-                                    'class' => 'form-select',
-                                    'id' => 'formaPagamento',
-                                    'onchange' => 'opcaoDePagamento();',
-                                    'required'
-                                )); 
-                            ?>
-                        </div>
 
+                        <div class="input-group" style="width: 300px;">                           
+                            <div class="col-md-10">
+                                <?php 
+                                    echo $this->Form->input('des_frp_fk', array(
+                                        'label' => 'Forma de Pagamento',
+                                        'type' => 'select',
+                                        'options' => $formaPagamento,
+                                        'empty' => 'Informe meio de pagamento',
+                                        'class' => 'form-select',
+                                        'id' => 'formaPagamento',
+                                        'onchange' => 'opcaoDePagamento();',
+                                        'required'
+                                    )); 
+                                ?>
+                            </div>
+
+                            <div>
+                                <?php 
+                                    echo $this->Form->button('<i class="bi bi-plus"></i>', array(
+                                        'title' => 'Adicionar nova forma de pagamento',
+                                        'type' => 'button',
+                                        'class' => 'btn btn-outline-secondary',
+                                        'style' => 'margin-top:24px;',
+                                        'onclick' => "abreModalAddFrp();"
+                                    )); 
+                                ?>
+                            </div>                            
+                        </div>
+                                            
                         <div class="col-md-2" id="qtdParcela" style="display:none;">
                             <?php 
                                 echo $this->Form->input('des_parcela', array(
@@ -132,7 +146,7 @@
 
         const qtdParcela = document.querySelector('#formaPagamento');     
         
-        console.log(qtdParcela.value);
+        // console.log(qtdParcela.value);
 
         if(qtdParcela.value === '1') {        
             document.getElementById('qtdParcela').style.display = '';
@@ -151,6 +165,17 @@
         }).done((data) => {            
             $('#modal').html(data);
             $('#modalAddTipo').modal('show');
+        });
+    }
+
+    function abreModalAddFrp() {
+        
+        $.ajax({
+            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'modalAddFrp')); ?>`,
+            type: 'GET'            
+        }).done((data) => {            
+            $('#modal').html(data);
+            $('#modalAddFrp').modal('show');
         });
     }
 
