@@ -11,10 +11,22 @@ class DespesasController extends AppController {
     );
 
     public function index()
-    {   
+    {
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $usuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $usuario = $ultimoUsuarioAdd;
+        }   
+
         $tipos = $this->Tipos->find('list', array(
             'fields' => array(
                 'tip_descricao'
+            ),
+            'conditions' => array(
+                'tip_usu_fk' => $usuario
             ),
             'order' => array(
                 'tip_descricao'
@@ -57,6 +69,9 @@ class DespesasController extends AppController {
             'fields' => array(
                 'tip_descricao'
             ),
+            'conditions' => array(
+                'tip_usu_fk' => $usuario
+            ),
             'order' => array(
                 'tip_descricao'
             )
@@ -67,8 +82,11 @@ class DespesasController extends AppController {
             'fields' => array(
                 'frp_descricao'
             ),
+            'conditions' => array(
+                'frp_usu_fk' => $usuario    
+            ),
             'order' => array(
-                'frp_descricao'
+                'frp_descricao'                
             )
         ));
         $this->set('formaPagamento', $formaPagamento);
@@ -102,12 +120,24 @@ class DespesasController extends AppController {
     public function modalEditDespesa()
     {
         $this->layout = null;
+
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $usuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $usuario = $ultimoUsuarioAdd;
+        }
         
         $this->set('id', $this->request->data['id']);
         
         $tipos = $this->Tipos->find('list', array(
             'fields' => array(
                 'tip_descricao'
+            ),
+            'conditions' => array(
+                'tip_usu_fk' => $usuario
             ),
             'order' => array(
                 'tip_descricao'
@@ -118,6 +148,9 @@ class DespesasController extends AppController {
         $formaPagamento = $this->FormaPagamento->find('list', array(
             'fields' => array(
                 'frp_descricao'
+            ),
+            'conditions' => array(
+                'frp_usu_fk' => $usuario
             ),
             'order' => array(
                 'frp_descricao'
@@ -201,8 +234,18 @@ class DespesasController extends AppController {
         $this->layout = null;
         $this->autoRender = false;
 
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $usuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $usuario = $ultimoUsuarioAdd;
+        }
+
         $tip = array();
         $tip['tip_descricao'] = $this->request->data['descricao'];
+        $tip['tip_usu_fk'] = $usuario;
 
         $this->Tipos->create();
         $this->Tipos->save($tip);
@@ -218,8 +261,18 @@ class DespesasController extends AppController {
         $this->layout = null;
         $this->autoRender = false;
 
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $usuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $usuario = $ultimoUsuarioAdd;
+        }
+
         $frp = array();
         $frp['frp_descricao'] = $this->request->data['descricao'];
+        $frp['frp_usu_fk'] = $usuario;
 
         $this->FormaPagamento->create();
         $this->FormaPagamento->save($frp);
