@@ -1,10 +1,10 @@
 <?php echo $this->Session->flash(); ?>
 
-<div class="modal fade" id="modalAddTipo" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+<div class="modal fade" id="modalAddFrp" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Adicionar novo tipo</h5>
+                <h5 class="modal-title">Adicionar nova forma de pagamento</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -12,11 +12,12 @@
                 <div class="row">
                     <div class="col-md-12">                                                                            
                         <?php 
-                            echo $this->Form->input('tip_descricao', array(
+                            echo $this->Form->input('frp_descricao', array(
                                 'label' => 'Descrição',
                                 'type' => 'text',
                                 'class' => 'form-control',
-                                'id' => 'descricao'
+                                'id' => 'descricao',
+                                'placeholder' => 'Informe descrição'
                             )); 
                         ?>                        
                     </div>                    
@@ -29,7 +30,7 @@
                         'title' => 'Salvar cadastro',
                         'type' => 'button',
                         'class' => 'btn btn-primary',
-                        'onclick' => 'saveNovoTipo();'
+                        'onclick' => 'saveNovaFormaDePagamento();'
                     )); 
                 ?>
 
@@ -41,10 +42,10 @@
 
 <script>
 
-    function saveNovoTipo() {        
+    function saveNovaFormaDePagamento() {        
 
         $.ajax({
-            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'salvarTipo')); ?>`,
+            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'salvarFormaPagamento')); ?>`,
             type: "POST",            
             data: {                
                 'descricao': $('#descricao').val()                
@@ -52,7 +53,7 @@
         }).done((data) => {            
             swal({
                 title: "Sucesso!",
-                text: "Novo tipo cadastrado com sucesso!",
+                text: "Nova forma de pagamento cadastrada com sucesso!",
                 icon: "success",
                 button: false
             });
