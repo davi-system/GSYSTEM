@@ -1,6 +1,6 @@
 <?php echo $this->Session->flash(); ?>
 
-<div class="modal fade" id="modalAddFrp" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modalAddFrp" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

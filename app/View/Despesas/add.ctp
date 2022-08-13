@@ -106,13 +106,14 @@
                             </div>                            
                         </div>
                                             
-                        <div class="col-md-2" id="qtdParcela" style="display:none;">
+                        <div class="col-md-2">
                             <?php 
                                 echo $this->Form->input('des_parcela', array(
                                     'label' => 'Parcela',
                                     'type' => 'number',                                    
                                     'class' => 'form-control',
-                                    'id' => 'parcela'                                   
+                                    'id' => 'parcela',
+                                    'placeholder' => '(opcional)'                             
                                 )); 
                             ?>
                         </div>
@@ -140,22 +141,7 @@
 
 </div>
 
-<script>
-
-    function opcaoDePagamento() {
-
-        const qtdParcela = document.querySelector('#formaPagamento');     
-        
-        // console.log(qtdParcela.value);
-
-        if(qtdParcela.value === '1') {        
-            document.getElementById('qtdParcela').style.display = '';
-            document.getElementById('parcela').removeAttribute('disabled');
-        } else {
-            document.getElementById('qtdParcela').style.display = 'none'; 
-            document.getElementById('parcela').setAttribute('disabled', 'disabled');
-        }
-    }
+<script>    
 
     function abreModalAddTipo() {
         
