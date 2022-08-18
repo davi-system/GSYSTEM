@@ -227,6 +227,23 @@ class DespesasController extends AppController {
     public function modalAddTipo()
     {
         $this->layout = null;
+
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $usuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $usuario = $ultimoUsuarioAdd;
+        }
+
+        $tipoDespesa = $this->Tipos->find('all', array(
+            'conditions' => array(
+                'tip_usu_fk' => $usuario
+            )
+        ));
+        $this->set('tipoDespesa', $tipoDespesa);
+        // pr($tipoDespesa);exit;
     }
 
     public function salvarTipo()
@@ -251,9 +268,33 @@ class DespesasController extends AppController {
         $this->Tipos->save($tip);
     }
 
+    public function deletaTipoDespesa($tipId)
+    {
+        $this->layout = null;
+        $this->autoRender = false;
+
+        $this->Tipos->delete($tipId);
+    }
+
     public function modalAddFrp()
     {
         $this->layout = null;
+
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $usuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $usuario = $ultimoUsuarioAdd;
+        }
+
+        $formaPagamento = $this->FormaPagamento->find('all', array(
+            'conditions' => array(
+                'frp_usu_fk' => $usuario
+            )
+        ));
+        $this->set('formaPagamento', $formaPagamento);        
     }
 
     public function salvarFormaPagamento()
@@ -277,4 +318,13 @@ class DespesasController extends AppController {
         $this->FormaPagamento->create();
         $this->FormaPagamento->save($frp);
     }
+
+    public function deletaFormaPagamento($frpId)
+    {
+        $this->layout = null;
+        $this->autoRender = false;
+
+        $this->FormaPagamento->delete($frpId);
+    }
+
 }
