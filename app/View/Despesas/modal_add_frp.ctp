@@ -42,6 +42,15 @@
                                             <tr>
                                                 <td>
                                                     ".
+                                                        $this->Form->button('<i class="bi bi-pencil-square"></i>', array(
+                                                            'title' => 'Editar forma de pagamento',
+                                                            'type' => 'button',                                                        
+                                                            'onclick' => "abreModalEditFrp({$value['frp']['frp_id']});",
+                                                            'class' => 'btn btn-success'                                                                                                                         
+                                                        ))
+                                                    ."
+
+                                                    ".
                                                         $this->Form->button('<i class="bi bi-trash"></i>', array(
                                                             'title' => 'Exluir tipo',
                                                             'type' => 'button',                                                        
@@ -120,6 +129,18 @@
                 }, 2000);
             });
         }
+    }
+
+    function abreModalEditFrp(idFrp) {
+        
+        $.ajax({
+            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'modalEditFrp')); ?>/${idFrp}`,
+            type: 'GET'            
+        }).done((data) => { 
+            $('#modalAddFrp').modal('hide');
+            $('#modal').html(data);
+            $('#modalEditFrp').modal('show');
+        });
     }
 
 </script>

@@ -41,6 +41,15 @@
                                             <tr>
                                                 <td>
                                                     ".
+                                                        $this->Form->button('<i class="bi bi-pencil-square"></i>', array(
+                                                            'title' => 'Editar tipo',
+                                                            'type' => 'button',                                                        
+                                                            'onclick' => "abreModalEditTipo({$value['tip']['tip_id']});",
+                                                            'class' => 'btn btn-success'                                                                                                                         
+                                                        ))
+                                                    ."
+
+                                                    ".
                                                         $this->Form->button('<i class="bi bi-trash"></i>', array(
                                                             'title' => 'Exluir tipo',
                                                             'type' => 'button',                                                        
@@ -75,6 +84,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="modal">
+
 </div>
 
 <script>
@@ -120,6 +133,18 @@
                 }, 2000);
             });
         }
+    }
+
+    function abreModalEditTipo(idTipo) {
+        
+        $.ajax({
+            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'modalEditTipo')); ?>/${idTipo}`,
+            type: 'GET'            
+        }).done((data) => {   
+            $('#modalAddTipo').modal('hide');
+            $('#modal').html(data);
+            $('#modalEditTipo').modal('show');
+        });
     }
 
 </script>
