@@ -276,6 +276,34 @@ class DespesasController extends AppController {
         $this->Tipos->delete($tipId);
     }
 
+    public function modalEditTipo($idTipo)
+    {
+        $this->layout = null;
+
+        $this->set('idTipo', $idTipo);
+
+        $tipoDespesa = $this->Tipos->find('first', array(
+            'fields' => array(
+                'tip_descricao'
+            ),
+            'conditions' => array(
+                'tip_id' => $idTipo
+            )
+        ));
+        $this->set('tipoDespesa', $tipoDespesa);        
+    }
+
+    public function salvaEditTipo()
+    {
+        $this->layout = null;
+        $this->autoRender = false;
+
+        $tip = array();
+        $tip['tip_id'] = $this->request->data['tip_id'];
+        $tip['tip_descricao'] = $this->request->data['descricao'];
+        $this->Tipos->save($tip);
+    }
+
     public function modalAddFrp()
     {
         $this->layout = null;
@@ -325,6 +353,34 @@ class DespesasController extends AppController {
         $this->autoRender = false;
 
         $this->FormaPagamento->delete($frpId);
+    }
+
+    public function modalEditFrp($idFrp)
+    {
+        $this->layout = null;
+
+        $this->set('idFrp', $idFrp);
+
+        $formaPagamento = $this->FormaPagamento->find('first', array(
+            'fields' => array(
+                'frp_descricao'
+            ),
+            'conditions' => array(
+                'frp_id' => $idFrp
+            )
+        ));
+        $this->set('formaPagamento', $formaPagamento);
+    }
+
+    public function salvaFormaPagamento()
+    {
+        $this->layout = null;
+        $this->autoRender = false;
+
+        $frp = array();
+        $frp['frp_id'] = $this->request->data['frpId'];
+        $frp['frp_descricao'] = $this->request->data['descricao'];
+        $this->FormaPagamento->save($frp);
     }
 
 }
