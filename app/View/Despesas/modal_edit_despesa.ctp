@@ -46,7 +46,7 @@
                                         'type' => 'select',
                                         'options' => $tipos,
                                         'empty' => true,
-                                        'class' => 'form-control',
+                                        'class' => 'form-select',
                                         'value' => $despesa['des']['des_tipo_fk'],
                                         'id' => 'tipo'
                                     ));
