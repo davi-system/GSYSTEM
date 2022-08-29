@@ -3,13 +3,14 @@
     padding: 0; 
 }
 
+/* cadastro de usuário */
 #principal-add { 
     width: 80%; 
     margin: 0 auto; 
 }
 
 #principal { 
-    width: 50%; 
+    width: 70%; 
     margin: 0 auto; 
 }
 
