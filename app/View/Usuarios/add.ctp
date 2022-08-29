@@ -1,67 +1,102 @@
 <?php echo $this->Session->flash(); ?>
 
-<div id="principal-add">
-    <div class="modal-header">
-        <h3>Cadastro de Usuário</h3>
-    </div>
-
+<div id="principal-add">    
+    
     <div class="modal-body">
-        <div class="row">
-            <div class="col-md-12">
-                <?php echo $this->Form->create('Usuarios', array('url' => array('controller' => 'Usuarios', 'action' => 'add'))); ?>
+        <div class="row">        
+            <div class="col-md-6" style="margin: 20px auto;">
+
+                <div>            
+                    <?php 
+                        echo $this->Html->link('<i class="bi bi-arrow-left"></i> Voltar', array(
+                            'controller' => 'Login', 
+                            'action' => 'index'
+                        ), array(
+                            'class' => 'btn btn-secondary',
+                            'escape' => false,
+                            'title' => 'Voltar para tela de login'
+                        )); 
+                    ?>
+                </div>
+
+                <br />
+
+                <h3 style="text-align:center;">Cadastro de Usuário</h3>  
+                                
+                <br />
+
+                <div class="alert alert-primary" role="alert">
+                    Atenção! Campos com <b>*</b> são de preenchimento obrigatório.
+                </div>
+
+                <?php echo $this->Form->create('Usuarios', array('url' => array('controller' => 'Usuarios', 'action' => 'add'), 'id' => 'form')); ?>
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <?php 
-                                echo $this->Form->input('usu_nome', array(
-                                    'label' => 'Nome',
-                                    'type' => 'text',
-                                    'class' => 'form-control',                                    
-                                    'required'
-                                )); 
-                            ?>
-                        </div>
+                        <?php 
+                            echo $this->Form->input('usu_nome', array(
+                                'label' => 'Nome <font color="red">*</font>',
+                                'type' => 'text',
+                                'class' => 'form-control',                                    
+                                'required',
+                                'placeholder' => 'informe um nome'
+                            )); 
+                        ?>
                     </div>
 
-                    <div class="row">                                                
-                        
-                        <div class="col-md-6">
-                            <p id="alert" class="alert alert-danger" role="alert" style="display:none; position:absolute; top:40px;">E-mail inválido</p>
-                            <?php 
-                                echo $this->Form->input('usu_email', array(
-                                    'label' => 'E-mail',
-                                    'type' => 'text',
-                                    'class' => 'form-control',
-                                    'placeholder' => 'exemplo@gmail.com',
-                                    'required',
-                                    'id' => 'email',
-                                    'onblur' => 'validateEmail(this);'                                   
-                                )); 
-                            ?>
-                        </div>
+                    <div class="row">                                                                                                
+                        <?php 
+                            echo $this->Form->input('usu_email', array(
+                                'label' => 'E-mail <font color="red">*</font>',
+                                'type' => 'text',
+                                'class' => 'form-control',
+                                'placeholder' => 'exemplo@exemplo.com',
+                                'required',
+                                'id' => 'email',
+                                'onblur' => 'validateEmail(this);'                                   
+                            )); 
+                        ?>                        
+                    </div>
 
-                        <div class="col-md-6">
-                            <?php 
-                                echo $this->Form->input('usu_senha', array(
-                                    'label' => 'Senha',
-                                    'type' => 'password',
-                                    'class' => 'form-control',
-                                    'required'
-                                )); 
-                            ?>
-                        </div>
+                    <div class="row">
+                        <?php 
+                            echo $this->Form->input('usu_senha', array(
+                                'label' => 'Senha <font color="red">*</font>',
+                                'type' => 'password',
+                                'class' => 'form-control',
+                                'required',
+                                'placeholder' => 'informe uma senha',
+                                'id' => 'senha'
+                            )); 
+                        ?>
+                    </div>
+
+                    <div class="row">
+                        <?php 
+                            echo $this->Form->input('confirmaSenha', array(
+                                'label' => 'Confirmar senha <font color="red">*</font>',
+                                'type' => 'password',
+                                'class' => 'form-control',
+                                'required',
+                                'id' => 'confirma_senha',
+                                'placeholder' => 'confirmar senha'
+                            )); 
+                        ?>
                     </div>
 
                     <br />
-
-                    <?php 
-                        echo $this->Form->button('Salvar', array(
-                            'title' => 'Salvar cadastro do usuário',
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary',
-                            'id' => 'btnSalvar'  
-                        )); 
-                    ?>
+                    
+                    <div>
+                        <?php 
+                            echo $this->Form->button('Salvar', array(
+                                'title' => 'Salvar cadastro do usuário',
+                                'type' => 'button',
+                                'class' => 'btn btn-primary',
+                                'id' => 'btnSalvar',
+                                'style' => 'width:100%',
+                                'onclick' => "validarSenha();"                        
+                            )); 
+                        ?>
+                    </div>
                     
                 <?php echo $this->Form->end(); ?>
             </div>
@@ -73,14 +108,25 @@
 
     function validateEmail() {
         let re = /\S+@\S+\.\S+/;        
-        if(re.test(document.getElementById('email').value) == false) {            
-            document.getElementById('alert').style.display = ''; 
+        if(re.test(document.getElementById('email').value) == false) {                        
+            alert('E-mail inválido!');
             document.getElementById('btnSalvar').setAttribute('disabled', 'disabled');
-        } else {
-            document.getElementById('alert').style.display = 'none';
+        } else {            
             document.getElementById('btnSalvar').removeAttribute('disabled');
             return true;
         }
     }    
+
+    function validarSenha() {
+
+        const senha = document.getElementById('senha').value;
+        const confirmaSenha = document.getElementById('confirma_senha').value;        
+
+        if(senha != confirmaSenha) {
+            alert('Senhas não são iguais!')
+        } else {
+            document.getElementById('form').submit();
+        }
+    }
     
 </script>
