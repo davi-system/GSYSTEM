@@ -1,7 +1,7 @@
 <?php echo $this->Session->flash(); ?>
 
 <div class="modal fade" id="modalViewUsuario" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Visualizar Cadastro</h5>
@@ -9,46 +9,48 @@
             </div>
 
             <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <?php 
-                                echo $this->Form->input('usu_nome', array(
-                                    'label' => 'Nome',
-                                    'type' => 'text',
-                                    'class' => 'form-control',                                    
-                                    'value' => $usuario['usu']['usu_nome'],
-                                    'disabled'                                 
-                                )); 
-                            ?>
-                        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php 
+                            echo $this->Form->input('usu_nome', array(
+                                'label' => 'Nome',
+                                'type' => 'text',
+                                'class' => 'form-control',                                    
+                                'value' => $usuario['usu']['usu_nome'],
+                                'disabled'                                 
+                            )); 
+                        ?>
                     </div>
+                </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <?php 
-                                echo $this->Form->input('usu_email', array(
-                                    'label' => 'E-mail',
-                                    'type' => 'text',
-                                    'class' => 'form-control',
-                                    'placeholder' => 'fulano@gmail.com',
-                                    'value' => $usuario['usu']['usu_email'],
-                                    'disabled'
-                                )); 
-                            ?>
-                        </div>
-
-                        <div class="col-md-6">
-                            <?php 
-                                echo $this->Form->input('usu_senha', array(
-                                    'label' => 'Senha',
-                                    'type' => 'password',
-                                    'class' => 'form-control', 
-                                    'value' => $usuario['usu']['usu_senha'],
-                                    'disabled'
-                                )); 
-                            ?>
-                        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php 
+                            echo $this->Form->input('usu_email', array(
+                                'label' => 'E-mail',
+                                'type' => 'text',
+                                'class' => 'form-control',
+                                'placeholder' => 'fulano@gmail.com',
+                                'value' => $usuario['usu']['usu_email'],
+                                'disabled'
+                            )); 
+                        ?>
                     </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php 
+                            echo $this->Form->input('usu_senha', array(
+                                'label' => 'Senha',
+                                'type' => 'password',
+                                'class' => 'form-control', 
+                                'value' => $usuario['usu']['usu_senha'],
+                                'disabled'
+                            )); 
+                        ?>
+                    </div>
+                </div>
             </div>
 
             <div class="modal-footer">
