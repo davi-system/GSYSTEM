@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="col-md-3">
-                                <?php
+                                <?php                                
                                     echo $this->Form->input('des_tipo_fk', array(
                                         'label' => 'Tipo',
                                         'type' => 'select',
@@ -48,7 +48,7 @@
                                         'empty' => true,
                                         'class' => 'form-select',
                                         'value' => $despesa['des']['des_tipo_fk'],
-                                        'id' => 'tipo'
+                                        'id' => 'tipo_edit'
                                     ));
                                 ?>
                             </div>
@@ -106,7 +106,7 @@
 
 <script>
 
-    function saveEditDespesa(id) {        
+    function saveEditDespesa(id) {               
 
         $.ajax({
             url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'salvaEditDespesa')); ?>`,
@@ -116,7 +116,7 @@
                 'id': id,
                 'descricao': $('#descricao').val(),
                 'valor': $('#valor').val(),
-                'tipo': $('#tipo').val(),
+                'tipo': $('#tipo_edit').val(),
                 'formaPagamento': $('#frp').val(),
                 'parcelas': $('#parcela').val()
             }

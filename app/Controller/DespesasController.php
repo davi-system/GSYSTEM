@@ -242,8 +242,7 @@ class DespesasController extends AppController {
                 'tip_usu_fk' => $usuario
             )
         ));
-        $this->set('tipoDespesa', $tipoDespesa);
-        // pr($tipoDespesa);exit;
+        $this->set('tipoDespesa', $tipoDespesa);        
     }
 
     public function salvarTipo()
