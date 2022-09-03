@@ -1,6 +1,6 @@
 <?php echo $this->Session->flash(); ?>
 
-<div id="principal-add">
+<div id="view-despesa">
     <div class="modal-header">
         <h3>Cadastro de Despesas</h3>
     </div>
@@ -36,22 +36,10 @@
                             ?>
                         </div>
                     </div>
-
+                    
                     <div class="row">
-                        <div class="col-md-3">
-                            <?php 
-                                echo $this->Form->input('des_valor', array(
-                                    'label' => 'Valor',
-                                    'type' => 'number',
-                                    'class' => 'form-control',
-                                    'required',
-                                    'placeholder' => 'Informe um valor'
-                                )); 
-                            ?>
-                        </div>
-                        
-                        <div class="input-group" style="width: 300px;">
-                            <div class="col-md-10">
+                        <div class="input-group">
+                            <div class="col-md-11">
                                 <?php 
                                     echo $this->Form->input('des_tipo_fk', array(
                                         'label' => 'Tipo',
@@ -63,6 +51,8 @@
                                     ));                                                                 
                                 ?>
                             </div>
+
+                            &nbsp;&nbsp;&nbsp;
 
                             <div>
                                 <?php 
@@ -77,8 +67,8 @@
                             </div>                            
                         </div>
 
-                        <div class="input-group" style="width: 300px;">                           
-                            <div class="col-md-10">
+                        <div class="input-group">                           
+                            <div class="col-md-11">
                                 <?php 
                                     echo $this->Form->input('des_frp_fk', array(
                                         'label' => 'Forma de Pagamento',
@@ -93,6 +83,8 @@
                                 ?>
                             </div>
 
+                            &nbsp;&nbsp;&nbsp;
+
                             <div>
                                 <?php 
                                     echo $this->Form->button('<i class="bi bi-plus"></i>', array(
@@ -105,8 +97,22 @@
                                 ?>
                             </div>                            
                         </div>
-                                            
-                        <div class="col-md-2">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?php 
+                                echo $this->Form->input('des_valor', array(
+                                    'label' => 'Valor',
+                                    'type' => 'number',
+                                    'class' => 'form-control',
+                                    'required',
+                                    'placeholder' => 'Informe um valor'
+                                )); 
+                            ?>
+                        </div>
+                                                                                       
+                        <div class="col-md-6">
                             <?php 
                                 echo $this->Form->input('des_parcela', array(
                                     'label' => 'Parcela',
@@ -118,19 +124,18 @@
                             ?>
                         </div>
                     </div>
-                                        
+
                     <br />
 
-                    <div class="col-md-3">
-                        <?php 
-                            echo $this->Form->button('Salvar', array(
-                                'title' => 'Salvar cadastro de despesa',
-                                'type' => 'submit',
-                                'class' => 'btn btn-primary'
-                            )); 
-                        ?>
-                    </div>
-
+                    <?php 
+                        echo $this->Form->button('<i class="bi bi bi-save2"></i> Salvar', array(
+                            'title' => 'Salvar cadastro de despesa',
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary',
+                            'escape' => false
+                        )); 
+                    ?>
+                                    
                 <?php echo $this->Form->end(); ?>
             </div>
         </div>

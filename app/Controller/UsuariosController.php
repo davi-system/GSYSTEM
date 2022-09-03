@@ -38,7 +38,7 @@ class UsuariosController extends AppController {
                     <script>                
                         swal(
                             "Sucesso!", 
-                            "Cadatro realizado com sucesso!", 
+                            "Cadatro concluido!", 
                             "success"
                         );
                     </script>');

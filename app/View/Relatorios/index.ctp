@@ -44,7 +44,7 @@
                                 'onkeyup' => "mascaraData(this, this.value)",
                                 'minlength' => '10',
                                 'maxlength' => '10',
-                                'placeholder' => 'Data início'                              
+                                'placeholder' => 'Data início'                                                                                                           
                             )); 
                         ?>
                     </div>
@@ -59,7 +59,7 @@
                                 'onkeyup' => "mascaraData(this, this.value)",
                                 'minlength' => '10',
                                 'maxlength' => '10',
-                                'placeholder' => 'Data fim'                              
+                                'placeholder' => 'Data fim'                                                                                      
                             )); 
                         ?>
                     </div>                    
@@ -70,25 +70,23 @@
 
                         <?php 
                             echo $this->Form->button('Buscar', array(
-                                'titile' => '',
+                                'title' => 'Buscar',
                                 'type' => 'submit',
-                                'class' => 'btn btn-primary',
-                                'escape' => false                                                                                    
+                                'class' => 'btn btn-primary'                                                                                                           
                             )); 
-                        ?>                      
-                        
+                        ?>                                           
+
                         <?php 
+                            // Envio as datas para o controller e depois recupero aqui
                             $dataInicio = (isset($data1)) ? $this->Utilitarios->separaData($data1) : '';
                             $dataFim = (isset($data2)) ? $this->Utilitarios->separaData($data2) : '';                            
 
-                            echo $this->Html->link('<i class="bi bi-file-earmark-spreadsheet"></i> Exportar Excel', array(
-                                'controller' => 'Relatorios', 
-                                'action' => 'r01Excel',
-                                $usuario, $dataInicio, $dataFim
-                            ), array(
-                                'class' => 'btn btn-success',
-                                'target' => '_blank',
-                                'escape' => false,
+                            echo $this->Form->button('<i class="bi bi-file-earmark-spreadsheet"></i> Exportar Excel', array(
+                                'title' => '',
+                                'type' => 'button',
+                                'onclick' => "btnExportarExcel({$usuario}, {$dataInicio}, {$dataFim})",                                                           
+                                'class' => 'btn btn-success',                                
+                                'escape' => false                                                                                                            
                             )); 
                         ?>
                     </div>
@@ -158,6 +156,11 @@
             mydata += '/';
             campo.value = mydata;
         }
+    }
+
+    function btnExportarExcel(usuario, data1, data2) {   
+
+        window.location.href = `<?php echo $this->Html->url(array('controller' => 'Relatorios', 'action' => 'r01Excel'), array('target' => '_blank')); ?>/${usuario}/${data1}/${data2}`;                
     }
 
 </script>
