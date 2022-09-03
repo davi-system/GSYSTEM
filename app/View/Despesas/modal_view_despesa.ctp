@@ -75,7 +75,7 @@
                                 <?php
                                     echo $this->Form->input('des_parcela', array(
                                         'label' => 'Parcela',
-                                        'type' => 'number',
+                                        'type' => 'text',
                                         'class' => 'form-control',
                                         'value' => $despesa['des']['des_parcela'],
                                         'id' => 'parcela',
