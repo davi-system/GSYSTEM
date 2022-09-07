@@ -1,6 +1,6 @@
 <?php echo $this->Session->flash(); ?>
 
-<div class="modal fade" id="modalEditDespesa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEditDespesa" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -20,7 +20,7 @@
                                         'type' => 'text',
                                         'class' => 'form-control',
                                         'value' => $despesa['des']['des_descricao'],
-                                        'id' => 'descricao'
+                                        'id' => 'descricao_edit'
                                     ));
                                 ?>
                             </div>
@@ -34,7 +34,7 @@
                                         'type' => 'number',
                                         'class' => 'form-control',
                                         'value' => $despesa['des']['des_valor'],
-                                        'id' => 'valor'
+                                        'id' => 'valor_edit'
                                     ));
                                 ?>
                             </div>
@@ -62,7 +62,7 @@
                                         'empty' => true,
                                         'class' => 'form-control',
                                         'value' => $despesa['des']['des_frp_fk'],
-                                        'id' => 'frp'
+                                        'id' => 'frp_edit'
                                     ));
                                 ?>
                             </div>
@@ -74,7 +74,7 @@
                                         'type' => 'number',
                                         'class' => 'form-control',
                                         'value' => $despesa['des']['des_parcela'],
-                                        'id' => 'parcela'
+                                        'id' => 'parcela_edit'
                                     ));
                                 ?>
                             </div>
@@ -106,7 +106,7 @@
 
 <script>
 
-    function saveEditDespesa(id) {               
+    function saveEditDespesa(id) {              
 
         $.ajax({
             url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'salvaEditDespesa')); ?>`,
@@ -114,22 +114,24 @@
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             data: {
                 'id': id,
-                'descricao': $('#descricao').val(),
-                'valor': $('#valor').val(),
+                'descricao': $('#descricao_edit').val(),
+                'valor': $('#valor_edit').val(),
                 'tipo': $('#tipo_edit').val(),
-                'formaPagamento': $('#frp').val(),
-                'parcelas': $('#parcela').val()
+                'formaPagamento': $('#frp_edit').val(),
+                'parcelas': $('#parcela_edit').val()
             }
         }).done((data) => {            
             swal({
-                    title: "Sucesso!",
-                    text: "Registro editado com sucesso!",
-                    icon: "success",
-                    button: false
-                });
-                setTimeout((data) => {
-                $(window.location.reload()).hide();
-            }, 2000);   
+                title: "Sucesso!",
+                text: "Registro editado com sucesso!",
+                icon: "success",
+                button: true
+            });
+            // setTimeout((data) => {
+            //     $(window.location.reload()).hide();
+            // }, 2000);   
+            $('#modalEditDespesa').modal('hide');
+            consultarDespesas();
         });
     }
 
