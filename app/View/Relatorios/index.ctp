@@ -1,14 +1,15 @@
 <?php echo $this->Session->flash(); ?>
 
+<br />
+
 <style>
     .date {
-        /* text-align: center; */
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
     }
 </style>
 
-<div id="principal-add">
+<div class="container">
     <div class="modal-header">
         <h3>Relatórios</h3>        
     </div>

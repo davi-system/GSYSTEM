@@ -1,5 +1,7 @@
 <?php echo $this->Session->flash(); ?>
 
+<br />
+
 <style>
     .texto {
         text-align: justify;
@@ -9,14 +11,14 @@
     }
 
     .texto2 {
-        text-align: center;
+        text-align: right;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 18px;
         font-weight: bold;
     }
 </style>
 
-<div id="principal-add">
+<div class="container">
     <div class="modal-header">
         <h3>Suporte</h3>
     </div>
@@ -39,39 +41,47 @@
                 <div class="row">                    
                     <div class="col-md-6">                        
                         <p class="texto">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem expedita 
-                            cumque minus atque quisquam iure cupiditate assumenda harum libero quos fuga quae
-                            voluptatibus facilis accusamus, consequuntur ipsa hic quis laudantium?
+                            Olá, esse sistema tem como objetivo ajudar você a desenvolver um controle financeiro de forma fácil, 
+                            rápido e seguro. Para que você possar ter um maior controle sobre sua vida financeira.
                         </p>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6">                        
                         <p class="texto2">
                             Contatos
                         </p>
                     
                         <p class="texto2">
-                            <i class="bi bi-envelope-fill" style="color:red;"></i> daviteste@gmail.com
+                            <i class="bi bi-envelope-fill" style="color:red;"></i> 
+                            gsystem@gmail.com
                         </p>
     
                         <p class="texto2">
-                            <i class="bi bi-telephone-fill" style="color:green;"></i> (14) 99999-9999
-                        </p>                        
+                            <i class="bi bi-telephone-fill" style="color:green;">
+                            </i> (14) 99999-9999
+                            &nbsp;
+                            <i class="bi bi-whatsapp" style="color:green;"></i>
+                            (14) 99999-9999
+                        </p>                                                                       
                     </div>
-                </div>
-
-                <br />
-
+                </div>                
+                
                 <div class="row">                    
                     <div class="col-md-6">
+                        <div class="alert alert-primary" role="alert">
+                            Conte para nós a sua experiência com o sistema, erros encontrados ou sugestões de melhorias 😊
+                        </div>
+
                         <?php 
                             echo $this->Form->input('descricao', array(   
-                                'label' => 'Feedback',                             
+                                'label' => '<b></b>',                             
                                 'type' => 'textarea',
                                 'class' => 'form-control',
                                 'required',
                                 'minlength' => '8',
-                                'maxlength' => '500'
+                                'maxlength' => '500',
+                                'escape' => false,
+                                'placeholder' => '...'
                             )); 
                         ?>
 
