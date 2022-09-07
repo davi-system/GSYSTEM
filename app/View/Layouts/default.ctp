@@ -32,6 +32,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			echo $this->Html->meta('icon');		
 			echo $this->Html->css('bootstrap.min.css');
 			echo $this->Html->css('style_usuarios.css');
+			echo $this->Html->css('style_despesa.css');
 			echo $this->Html->css('style_login.css');
 			echo $this->Html->css("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
 			echo $this->Html->css('jquery-ui.css');
