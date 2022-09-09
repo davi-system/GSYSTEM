@@ -21,7 +21,7 @@
                         echo $this->Form->input('usu_email', array(
                             'label' => false, 
                             'type' => 'email', 
-                            'class' => 'form-control',                                    
+                            'class' => 'form-control shadow bg-body rounded',                                    
                             'placeholder' => 'E-mail'
                         )); 
                     ?>                         
@@ -32,7 +32,7 @@
                         echo $this->Form->input('usu_senha', array(
                             'label' => false, 
                             'type' => 'password', 
-                            'class' => 'form-control',                                    
+                            'class' => 'form-control shadow bg-body rounded',                                    
                             'placeholder' => 'Senha'
                         )); 
                     ?>                                  
