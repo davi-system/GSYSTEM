@@ -30,11 +30,13 @@
                         <?php 
                             echo $this->Form->input('opcaoPesquisa', array(
                                 'label' => 'Buscar por',
-                                'type' => 'select',                                    
+                                'type' => 'select', 
+                                // 'empty' => true,                                   
                                 'options' => array('0' => 'Descrição', '1' => 'Tipo', '2' => 'Todos'),                                    
                                 'class' => 'form-select',
                                 'id' => 'opcaoPesquisa',
-                                'onchange' => 'tipoPesquisa();'
+                                'onchange' => 'tipoPesquisa();',
+                                'required'
                             )); 
                         ?>
                     </div>
@@ -130,19 +132,26 @@
         }
     }
 
-    function consultarDespesas() {
+    function consultarDespesas() {        
 
-        $.ajax({
-            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'listaDespesa')); ?>`,
-            type: 'POST',            
-            data: { 
-                'opcaoPesquisa' : $('#opcaoPesquisa').val(),
-                'descricao' : $('#descricao').val(),
-                'tipo' : $('#tipo').val()
-            }
-        }).done((data) => {
-            $('#listaDespesa').html(data);
-        });
+        let opcaoPesquisa = document.getElementById('opcaoPesquisa').value;
+        let descricao = document.getElementById('descricao').value
+
+        if(opcaoPesquisa == '0' && descricao == '') {
+            alert('Informe uma despesa!');
+        } else {
+            $.ajax({
+                url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'listaDespesa')); ?>`,
+                type: 'POST',            
+                data: { 
+                    'opcaoPesquisa' : $('#opcaoPesquisa').val(),
+                    'descricao' : $('#descricao').val(),
+                    'tipo' : $('#tipo').val()
+                }
+            }).done((data) => {
+                $('#listaDespesa').html(data);
+            });
+        }
     }
 
     function abreModalEditDespesa(id) {
