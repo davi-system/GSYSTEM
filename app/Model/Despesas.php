@@ -9,12 +9,44 @@ class Despesas extends AppModel {
     public $displayField = 'des_descricao';
     public $alias = 'des';
 
-    function listaDespesas($opcaPesquisa, $descricao, $tipo, $usuario)
+    // function listaDespesas($opcaPesquisa, $descricao, $tipo, $usuario)
+    // {        
+    //     if($opcaPesquisa == 0) {
+    //         $where = "upper(des_descricao) like '%$descricao%'";
+    //     } else {
+    //         $where = "des_tipo_fk = $tipo";
+    //     }
+
+    //     return $this->query(
+    //         "SELECT 
+    //             des.des_id, 
+    //             des.des_tipo_fk, 
+    //             tip.tip_descricao, 
+    //             des.des_frp_fk, 
+    //             frp.frp_descricao, 
+    //             des.des_descricao, 
+    //             des.des_valor, 
+    //             des.des_parcela, 
+    //             des.des_dtcriacao, 
+    //             des.des_horacriacao
+    //         FROM 
+    //             despesas AS des
+    //         INNER JOIN tipos AS tip ON tip.tip_id = des.des_tipo_fk
+    //         INNER JOIN forma_pagamento AS frp ON frp.frp_id = des.des_frp_fk
+    //         WHERE des_usu_fk = $usuario
+    //         and $where            
+    //         ORDER BY des_descricao"
+    //     );
+    // }
+
+    function listaDespesas($opcaoPesquisa, $descricao, $tipo, $usuario)
     {        
-        if($opcaPesquisa == 0) {
-            $where = "upper(des_descricao) like '%$descricao%'";
-        } else {
-            $where = "des_tipo_fk = $tipo";
+        if($opcaoPesquisa == '0') {
+            $and = "and upper(des_descricao) like '%$descricao%'";
+        } else if($opcaoPesquisa == '1') {
+            $and = "and des_tipo_fk = $tipo";
+        } else if($opcaoPesquisa == '2') {
+            $and = null;
         }
 
         return $this->query(
@@ -33,16 +65,9 @@ class Despesas extends AppModel {
                 despesas AS des
             INNER JOIN tipos AS tip ON tip.tip_id = des.des_tipo_fk
             INNER JOIN forma_pagamento AS frp ON frp.frp_id = des.des_frp_fk
-            WHERE $where
-            and des_usu_fk = $usuario            
+            WHERE des_usu_fk = $usuario
+            $and            
             ORDER BY des_descricao"
-        );
-    }
-
-    function deletaDespesa($id)
-    {        
-        return $this->query(
-            "DELETE FROM despesas WHERE des_id = $id"
         );
     }
 

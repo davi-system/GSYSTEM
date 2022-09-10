@@ -9,61 +9,69 @@
             </div>
 
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header text-white bg-warning"><i class="bi bi-person"></i> <b>Usuário</b></div>
+
+                    <div class="card-body">                     
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php 
+                                    echo $this->Form->input('usu_nome', array(
+                                        'label' => 'Nome',
+                                        'type' => 'text',
+                                        'class' => 'form-control',                                    
+                                        'value' => $usuario['usu']['usu_nome'],
+                                        'disabled'                                 
+                                    )); 
+                                ?>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php 
+                                    echo $this->Form->input('usu_email', array(
+                                        'label' => 'E-mail',
+                                        'type' => 'text',
+                                        'class' => 'form-control',
+                                        'placeholder' => 'fulano@gmail.com',
+                                        'value' => $usuario['usu']['usu_email'],
+                                        'disabled'
+                                    )); 
+                                ?>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php 
+                                    echo $this->Form->input('usu_senha', array(
+                                        'label' => 'Senha',
+                                        'type' => 'password',
+                                        'class' => 'form-control', 
+                                        'value' => $usuario['usu']['usu_senha'],
+                                        'disabled'
+                                    )); 
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer bg-transparent" style="text-align:right;">
+                        
                         <?php 
-                            echo $this->Form->input('usu_nome', array(
-                                'label' => 'Nome',
-                                'type' => 'text',
-                                'class' => 'form-control',                                    
-                                'value' => $usuario['usu']['usu_nome'],
-                                'disabled'                                 
+                            echo $this->Form->button('Editar', array(
+                                'title' => 'Editar cadastro',
+                                'type' => 'button',
+                                'onclick' => "editCadastroUsuario({$usuario['usu']['usu_id']});",
+                                'class' => 'btn btn-success',
+                                'escape' => false
                             )); 
                         ?>
+            
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php 
-                            echo $this->Form->input('usu_email', array(
-                                'label' => 'E-mail',
-                                'type' => 'text',
-                                'class' => 'form-control',
-                                'placeholder' => 'fulano@gmail.com',
-                                'value' => $usuario['usu']['usu_email'],
-                                'disabled'
-                            )); 
-                        ?>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php 
-                            echo $this->Form->input('usu_senha', array(
-                                'label' => 'Senha',
-                                'type' => 'password',
-                                'class' => 'form-control', 
-                                'value' => $usuario['usu']['usu_senha'],
-                                'disabled'
-                            )); 
-                        ?>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <?php 
-                    echo $this->Form->button('Editar Cadastro', array(
-                        'title' => 'Editar cadastro',
-                        'type' => 'button',
-                        'onclick' => "editCadastroUsuario({$usuario['usu']['usu_id']});",
-                        'class' => 'btn btn-success'
-                    )); 
-                ?>
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>

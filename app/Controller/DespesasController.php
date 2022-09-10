@@ -34,24 +34,38 @@ class DespesasController extends AppController {
         ));
         $this->set('tipos', $tipos);
 
-        if($this->request->is('post')) {                    
+        $totalDespesas = $this->Despesas->find('all', array(
+            'fields' => array(
+                "sum(des_valor) as total"
+            ),
+            'conditions' => array(
+                'des_usu_fk' => $usuario
+            )
+        ));
+        $this->set('totalDespesas', $totalDespesas);
+    }
 
-            $opcaoPesquisa = $this->request->data['Despesas']['opcaoPesquisa'];
-            $descricao = (isset($this->request->data['Despesas']['des_descricao'])) ? strtoupper(trim($this->request->data['Despesas']['des_descricao'])) : '';
-            $tipo = (isset($this->request->data['Despesas']['des_tipo'])) ? $this->request->data['Despesas']['des_tipo'] : '';             
-            
-            $usuarioLogin = $this->Session->read('Person.usuario');
-            $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');    
-            
-            if(isset($usuarioLogin['usu']['usu_id'])) {
-                $usuario = $usuarioLogin['usu']['usu_id'];
-            } else {
-                $usuario = $ultimoUsuarioAdd;
-            }
+    public function listaDespesa()
+    {
+        $this->layout = null;     
+        
+        // pr($this->request->data);exit;
 
-            $despesas = $this->Despesas->listaDespesas($opcaoPesquisa, $descricao, $tipo, $usuario);            
-            $this->set('despesas', $despesas);
+        $usuarioLogin = $this->Session->read('Person.usuario');
+        $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');    
+        
+        if(isset($usuarioLogin['usu']['usu_id'])) {
+            $usuario = $usuarioLogin['usu']['usu_id'];
+        } else {
+            $usuario = $ultimoUsuarioAdd;
         }
+
+        $opcaoPesquisa = $this->request->data['opcaoPesquisa'];
+        $descricao = (isset($this->request->data['descricao'])) ? strtoupper(trim($this->request->data['descricao'])) : '';
+        $tipo = (isset($this->request->data['tipo'])) ? $this->request->data['tipo'] : '';             
+        
+        $despesas = $this->Despesas->listaDespesas($opcaoPesquisa, $descricao, $tipo, $usuario);            
+        $this->set('despesas', $despesas);
     }
 
     public function add()
@@ -219,9 +233,9 @@ class DespesasController extends AppController {
     public function deletaDespesa()
     {
         $this->layout = null;
-        $this->autoRender = false;        
-
-        $this->Despesas->deletaDespesa($this->request->data['id']);
+        $this->autoRender = false;     
+        
+        $this->Despesas->delete($this->request->data['id']);        
     }
 
     public function modalAddTipo()

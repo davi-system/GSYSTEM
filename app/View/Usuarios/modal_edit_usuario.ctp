@@ -9,84 +9,95 @@
             </div>
 
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php 
-                            echo $this->Form->input('usu_nome', array(
-                                'label' => 'Nome',
-                                'type' => 'text',
-                                'class' => 'form-control',                                    
-                                'value' => $usuario['usu']['usu_nome'],
-                                'id' => 'nome'                                                                     
-                            )); 
-                        ?>
-                    </div>
-                </div>
+                <div class="card">
+                    <div class="card-header text-white bg-success"><i class="bi bi-person"></i><b> Usuário</b></div>
                 
-                <div class="row">
-                    <div class="col-md-12">
-                        <p id="alert" class="alert alert-danger" role="alert" style="display:none; position:absolute; top:40px;">E-mail inválido</p>
-                        <?php 
-                            echo $this->Form->input('usu_email', array(
-                                'label' => 'E-mail',
-                                'type' => 'text',
-                                'class' => 'form-control',
-                                'placeholder' => 'exemplo@gmail.com',
-                                'value' => $usuario['usu']['usu_email'],
-                                'id' => 'email',
-                                'onblur' => 'validateEmail()'                                  
-                            )); 
-                        ?>
+                    <div class="card-body">                                                                                                                                                                     
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php 
+                                    echo $this->Form->input('usu_nome', array(
+                                        'label' => 'Nome',
+                                        'type' => 'text',
+                                        'class' => 'form-control',                                    
+                                        'value' => $usuario['usu']['usu_nome'],
+                                        'id' => 'nome'                                                                     
+                                    )); 
+                                ?>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p id="alert" class="alert alert-danger" role="alert" style="display:none; position:absolute; top:40px;">E-mail inválido</p>
+                                <?php 
+                                    echo $this->Form->input('usu_email', array(
+                                        'label' => 'E-mail',
+                                        'type' => 'text',
+                                        'class' => 'form-control',
+                                        'placeholder' => 'exemplo@gmail.com',
+                                        'value' => $usuario['usu']['usu_email'],
+                                        'id' => 'email',
+                                        'onblur' => 'validateEmail()'                                  
+                                    )); 
+                                ?>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php 
+                                    echo $this->Form->input('usu_senha', array(
+                                        'label' => 'Senha',
+                                        'type' => 'password',
+                                        'class' => 'form-control', 
+                                        'value' => $usuario['usu']['usu_senha'],
+                                        'id' => 'senha'                                    
+                                    )); 
+                                ?>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php 
+                                    echo $this->Form->input('confirmaSenha', array(
+                                        'label' => 'Confirmar Senha',
+                                        'type' => 'password',
+                                        'class' => 'form-control',                              
+                                        'id' => 'confirmarSenha',
+                                        'placeholder' => 'confirmar senha'                                  
+                                    )); 
+                                ?>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
+                    
+                    <div class="card-footer bg-transparent" style="text-align: right;">                                                                                      
                         <?php 
-                            echo $this->Form->input('usu_senha', array(
-                                'label' => 'Senha',
-                                'type' => 'password',
-                                'class' => 'form-control', 
-                                'value' => $usuario['usu']['usu_senha'],
-                                'id' => 'senha'                                    
+                            echo $this->Form->button('<i class="bi bi-check"></i> Salvar', array(
+                                'title' => 'Editar cadastro',
+                                'type' => 'button',
+                                'onclick' => "salvarEditCadUsuario({$usuario['usu']['usu_id']});",
+                                'class' => 'btn btn-success',
+                                'id' => 'btnSalvar',
+                                'escape' => false
+                            ));
+
+                            
+                            echo "&nbsp;";
+                            
+
+                            echo $this->Form->button('Fechar', array(
+                                'title' => 'Fechar tela',
+                                'type' => 'button',
+                                'onclick' => "fechaModal({$usuario['usu']['usu_id']});",
+                                'class' => 'btn btn-secondary'
                             )); 
-                        ?>
-                    </div>
+                        ?>                
+                    </div>                    
                 </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php 
-                            echo $this->Form->input('confirmaSenha', array(
-                                'label' => 'Confirmar Senha',
-                                'type' => 'password',
-                                'class' => 'form-control',                              
-                                'id' => 'confirmarSenha',
-                                'placeholder' => 'confirmar senha'                                  
-                            )); 
-                        ?>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <?php 
-                    echo $this->Form->button('Salvar', array(
-                        'title' => 'Editar cadastro',
-                        'type' => 'button',
-                        'onclick' => "salvarEditCadUsuario({$usuario['usu']['usu_id']});",
-                        'class' => 'btn btn-primary',
-                        'id' => 'btnSalvar'
-                    ));
-
-                    echo $this->Form->button('Fechar', array(
-                        'title' => 'Fechar tela',
-                        'type' => 'button',
-                        'onclick' => "fechaModal({$usuario['usu']['usu_id']});",
-                        'class' => 'btn btn-secondary'
-                    )); 
-                ?>                
-            </div>
+            </div>            
         </div>
     </div>
 </div>
