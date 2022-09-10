@@ -1,7 +1,14 @@
 <?php echo $this->Session->flash(); ?>
 
+<style>
+    .modal-dialog {
+        width: 25%;
+        margin: 5% auto;
+    }
+</style>
+
 <div class="modal fade" id="modalEditUsuario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Editar Cadastro</h5>
