@@ -9,30 +9,38 @@
             </div>
 
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">                                                                                                  
+                <div class="card">
+                    <div class="card-header text-white bg-success"><b>Tipos da Despesa</b></div>
+                
+                    <div class="card-body">                                                                                                         
+                        <div class="row">
+                            <div class="col-md-12">                                                                                                  
+                                <?php 
+                                    echo $this->Form->input('tip_descricao', array(
+                                        'label' => 'Descrição',
+                                        'type' => 'text',
+                                        'class' => 'form-control',
+                                        'id' => 'descricao',
+                                        'value' => $tipoDespesa['tip']['tip_descricao']
+                                    )); 
+                                ?>   
+                            </div>                    
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer bg-transparent" style="text-align: right;">                                      
                         <?php 
-                            echo $this->Form->input('tip_descricao', array(
-                                'label' => 'Descrição',
-                                'type' => 'text',
-                                'class' => 'form-control',
-                                'id' => 'descricao',
-                                'value' => $tipoDespesa['tip']['tip_descricao']
+                            echo $this->Form->button('Salvar', array(
+                                'title' => 'Salvar cadastro',
+                                'type' => 'button',
+                                'class' => 'btn btn-success',
+                                'onclick' => "salvarEditTipo($idTipo);"
                             )); 
-                        ?>   
+                        ?>     
+                        
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                     </div>                    
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <?php 
-                    echo $this->Form->button('Salvar', array(
-                        'title' => 'Salvar cadastro',
-                        'type' => 'button',
-                        'class' => 'btn btn-primary',
-                        'onclick' => "salvarEditTipo($idTipo);"
-                    )); 
-                ?>                
+                </div>  
             </div>
         </div>
     </div>

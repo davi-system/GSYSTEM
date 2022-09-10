@@ -1,9 +1,24 @@
 <?php echo $this->Session->flash(); ?>
 
+<style>
+    .titulo-menu-superior {
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: underline;
+    }
+</style>
+
 <div>
     <nav class="navbar navbar-light bg-light px-3">
+        
+        <a class="navbar-brand" style="padding:4px;">            
+            <?php echo $this->Html->image('logo-gsystem.png', array('alt' => 'GSystem - Sistema de Controle Financeiro Pessoal', 'style' => 'width:40px; height:24px;', 'id' => 'img-logo')); ?>
+            &nbsp; 
+            <span class="titulo-menu-superior">Sistema de Controle Financeiro Pessoal</span>    
+        </a>
+
         <a class="navbar-brand" href="#"></a>
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills">            
 
             <li class="nav-item">
                 <a class="nav-link">
@@ -24,34 +39,38 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Ajuda</a>            
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><b>Ajuda</b></a>            
                 <ul class="dropdown-menu">
                     <li>
-                        <a style="cursor:pointer;" onclick="abreModalViewUsuario(<?php echo $codUsuario; ?>);" class="dropdown-item">Minha Conta</a>
+                        <a style="cursor:pointer;" onclick="abreModalViewUsuario(<?php echo $codUsuario; ?>);" class="dropdown-item"><b>Minha Conta</b></a>
                     </li>
-                    <li>
+
+                    <li>                        
                         <?php 
-                            echo $this->Html->link('Suporte', array(
+                            echo $this->Html->link('<b>Suporte</b>', array(
                                 'controller' => 'Suporte', 
                                 'action' => 'index'
                             ), array(
-                                'class' => 'dropdown-item'
+                                'class' => 'dropdown-item',
+                                'escape' => false
                             ));
-                        ?>
+                        ?>                        
                     </li>                  
                 </ul>
             </li>
     
             <li class="nav-item">
-                <?php 
-                    echo $this->Html->link('<i class="bi bi-box-arrow-left"></i> Logout', array(
-                        'controller' => 'Login',
-                        'action' => 'logout'
-                    ), array(
-                        'class' => 'nav-link',
-                        'escape' => false
-                    ));
-                ?>
+                <b>
+                    <?php 
+                        echo $this->Html->link('<i class="bi bi-box-arrow-left"></i> Sair', array(
+                            'controller' => 'Login',
+                            'action' => 'logout'
+                        ), array(
+                            'class' => 'nav-link',
+                            'escape' => false
+                        ));
+                    ?>
+                </b>
             </li>
         </ul>
     </nav>
@@ -62,27 +81,27 @@
         
             <nav class="nav nav-pills flex-column">  
                 <?php 
-                    echo $this->Html->link('<i class="bi bi-house"></i> Home', array(
-                        'controller' => 'Menu',
-                        'action' => 'index'
-                    ), array(
-                        'class' => 'nav-link',
-                        'escape' => false
-                    ));
+                    // echo $this->Html->link('<i class="bi bi-house"></i> Home', array(
+                    //     'controller' => 'Menu',
+                    //     'action' => 'index'
+                    // ), array(
+                    //     'class' => 'nav-link',
+                    //     'escape' => false
+                    // ));
                 ?>
                        
                 <?php 
-                    echo $this->Html->link('<i class="bi bi-plus-circle"></i> Cadastro de Despesa', array(
+                    echo $this->Html->link('<i class="bi bi-plus-circle"></i> <b>Cadastro de Despesa</b>', array(
                         'controller' => 'Despesas',
                         'action' => 'add'
                     ), array(
                         'class' => 'nav-link',
                         'escape' => false
                     ));
-                ?>
+                ?>                
         
                 <?php 
-                    echo $this->Html->link('<i class="bi bi-list-check"></i> Listar Despesa', array(
+                    echo $this->Html->link('<i class="bi bi-list-check"></i> <b>Listar Despesa</b>', array(
                         'controller' => 'Despesas',
                         'action' => 'index'
                     ), array(
@@ -92,7 +111,7 @@
                 ?>
                 
                 <?php 
-                    echo $this->Html->link('<i class="bi bi-card-text"></i> Relatório de Despesas', array(
+                    echo $this->Html->link('<i class="bi bi-card-text"></i> <b>Relatório de Despesas</b>', array(
                         'controller' => 'Relatorios',
                         'action' => 'index'
                     ), array(

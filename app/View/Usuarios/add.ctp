@@ -1,10 +1,11 @@
 <?php echo $this->Session->flash(); ?>
 
-<div id="principal-add">    
-    
+<br />
+
+<div class="container">
     <div class="modal-body">
         <div class="row">        
-            <div class="col-md-6" style="margin: 20px auto;">
+            <div class="col-md-4" style="margin: 0px auto;">
 
                 <div>            
                     <?php 
@@ -37,8 +38,7 @@
                                 'label' => 'Nome <font color="red">*</font>',
                                 'type' => 'text',
                                 'class' => 'form-control',                                    
-                                'required',
-                                'placeholder' => 'informe um nome'
+                                'required'                                
                             )); 
                         ?>
                     </div>
@@ -47,9 +47,8 @@
                         <?php 
                             echo $this->Form->input('usu_email', array(
                                 'label' => 'E-mail <font color="red">*</font>',
-                                'type' => 'text',
-                                'class' => 'form-control',
-                                'placeholder' => 'exemplo@exemplo.com',
+                                'type' => 'email',
+                                'class' => 'form-control',                                
                                 'required',
                                 'id' => 'email',
                                 'onblur' => 'validateEmail(this);'                                   
@@ -63,8 +62,7 @@
                                 'label' => 'Senha <font color="red">*</font>',
                                 'type' => 'password',
                                 'class' => 'form-control',
-                                'required',
-                                'placeholder' => 'informe uma senha',
+                                'required',                                
                                 'id' => 'senha'
                             )); 
                         ?>
@@ -77,8 +75,7 @@
                                 'type' => 'password',
                                 'class' => 'form-control',
                                 'required',
-                                'id' => 'confirma_senha',
-                                'placeholder' => 'confirmar senha'
+                                'id' => 'confirma_senha'                                
                             )); 
                         ?>
                     </div>
