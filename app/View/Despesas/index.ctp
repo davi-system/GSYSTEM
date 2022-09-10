@@ -20,88 +20,89 @@
                 'escape' => false
             ));
         ?>
-
+        
         <br /><br />
 
-        <div class="row">
-            <div class="col-md-12">
+        <div class="card">
+            <div class="card-header text-white" style="background-color:purple;"><i class="bi bi-list"></i> <b>Despesa</b></div>
+
+            <div class="card-body">                            
                 <div class="row">
-                    <div class="col-md-2">
-                        <?php 
-                            echo $this->Form->input('opcaoPesquisa', array(
-                                'label' => 'Buscar por',
-                                'type' => 'select', 
-                                // 'empty' => true,                                   
-                                'options' => array('0' => 'Descrição', '1' => 'Tipo', '2' => 'Todos'),                                    
-                                'class' => 'form-select',
-                                'id' => 'opcaoPesquisa',
-                                'onchange' => 'tipoPesquisa();',
-                                'required'
-                            )); 
-                        ?>
-                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <?php 
+                                    echo $this->Form->input('opcaoPesquisa', array(
+                                        'label' => 'Buscar por',
+                                        'type' => 'select',                                                                     
+                                        'options' => array('0' => 'Descrição', '1' => 'Tipo', '2' => 'Todos'),                                    
+                                        'class' => 'form-select',
+                                        'id' => 'opcaoPesquisa',
+                                        'onchange' => 'tipoPesquisa();',
+                                        'required'
+                                    )); 
+                                ?>
+                            </div>
 
-                    <div class="col-md-4" id="div_descricao">
-                        <?php 
-                            echo $this->Form->input('des_descricao', array(
-                                'label' => '',
-                                'type' => 'text',                                    
-                                'class' => 'form-control',
-                                'id' => 'descricao',                                    
-                                'placeholder' => 'informe uma descrição'
-                            )); 
-                        ?>
-                    </div>
-                    
-                    <div class="col-md-4" id="div_tipo" style="display:none;">
-                        <?php 
-                            echo $this->Form->input('des_tipo', array(
-                                'label' => '',
-                                'type' => 'select',
-                                'options' => $tipos,
-                                'empty' => true,
-                                'class' => 'form-select',
-                                'id' => 'tipo',                                    
-                                'required'                                
-                            )); 
-                        ?>
-                    </div>
-                    
-                    <!-- <div class="row"> -->
-                        <div class="col-md-2">
-                            <?php                            
-                                echo $this->Form->input('', array(
-                                    'label' => 'Total das Despesas',
-                                    'type' => 'text',                                                                        
-                                    'class' => 'form-control',
-                                    'value' => $totalDespesas['0']['0']['total'],                          
-                                    'disabled'                                    
-                                )); 
-                            ?>
-                        </div>
-                    <!-- </div>     -->
-
-                    <div class="col-md-3">
-                        <?php 
-                            echo $this->Form->button('<i class="bi bi-search"></i> Buscar', array(
-                                'title' => 'Consultar despesas',
-                                'type' => 'button',
-                                'onclick' => "consultarDespesas();",
-                                'class' => 'btn btn-primary',
-                                'style' => 'margin-top:24px;'                               
-                            )); 
-                        ?>
-                    </div>
-                </div>                    
+                            <div class="col-md-5" id="div_descricao">
+                                <?php 
+                                    echo $this->Form->input('des_descricao', array(
+                                        'label' => '',
+                                        'type' => 'text',                                    
+                                        'class' => 'form-control',
+                                        'id' => 'descricao',                                    
+                                        'placeholder' => 'descrição'
+                                    )); 
+                                ?>
+                            </div>
+                            
+                            <div class="col-md-5" id="div_tipo" style="display:none;">
+                                <?php 
+                                    echo $this->Form->input('des_tipo', array(
+                                        'label' => '',
+                                        'type' => 'select',
+                                        'options' => $tipos,
+                                        'empty' => 'selecione',
+                                        'class' => 'form-select',
+                                        'id' => 'tipo',                                    
+                                        'required'                                
+                                    )); 
+                                ?>
+                            </div>
                                                         
+                            <div class="col-md-2">
+                                <?php                            
+                                    echo $this->Form->input('', array(
+                                        'label' => 'Total das Despesas',
+                                        'type' => 'text',                                                                        
+                                        'class' => 'form-control',
+                                        'value' => $totalDespesas['0']['0']['total'],                          
+                                        'disabled'                                    
+                                    )); 
+                                ?>
+                            </div>                            
 
-                <br />
+                            <div class="col-md-2">
+                                <?php 
+                                    echo $this->Form->button('<i class="bi bi-search"></i> Buscar', array(
+                                        'title' => 'Consultar despesas',
+                                        'type' => 'button',
+                                        'onclick' => "consultarDespesas();",
+                                        'class' => 'btn',
+                                        'style' => 'margin-top:24px; background-color:purple; color:white;'                               
+                                    )); 
+                                ?>
+                            </div>
+                        </div>  
 
-                <div id="listaDespesa">
+                        <br /><br />
 
+                        <div id="listaDespesa">
+                        </div>                                                                                                                                  
+                    </div>            
                 </div>
-            </div>            
-        </div>
+            </div>
+        </div>                        
     </div>
 </div>
 
