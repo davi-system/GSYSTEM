@@ -3,7 +3,7 @@
 <style>
     .modal-dialog {
         width: 25%;
-        margin: 5% auto;
+        margin: 1% auto;
     }
 </style>
 
