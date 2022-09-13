@@ -74,12 +74,10 @@
         
         $.ajax({
             type: 'GET',
-            url: "<?php echo $this->Html->url(array('controller' => 'Usuarios', 'action' => 'modalAddUsuario')); ?>"
-            // contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        }).done((data) => {     
-            // console.log(data);
+            url: "<?php echo $this->Html->url(array('controller' => 'Usuarios', 'action' => 'modalAddUsuario')); ?>"            
+        }).done((data) => {                             				
             $('#modal').html(data);
-            $('#modalAddUsuario').modal('show');
+            $('#modalAddUsuario').modal('show').fadeTo('slow', 1);
         });
     }
 

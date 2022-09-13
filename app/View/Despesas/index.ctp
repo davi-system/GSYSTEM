@@ -2,7 +2,7 @@
 
 <br />
 
-<div class="container">
+<div class="container shadow p-3 mb-2 bg-body rounded">
     <div class="modal-header">
         <div class="modal-title">
             <h3>Listar Despesas</h3>
@@ -95,7 +95,7 @@
                             </div>
                         </div>  
 
-                        <br /><br />
+                        <br />
 
                         <div id="listaDespesa">
                         </div>                                                                                                                                  

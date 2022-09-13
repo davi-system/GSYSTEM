@@ -9,7 +9,7 @@
     }
 </style>
 
-<div class="container">
+<div class="container shadow p-3 mb-2 bg-body rounded">
     <div class="modal-header">
         <h3>Relatórios</h3>        
     </div>
@@ -110,40 +110,44 @@
                     <?php if(isset($despesas)) { ?>
         
                         <div class="row">
-                            <div class="col-md-12">                    
+                            <div class="col-md-12">
                                 <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align:center;">Cod. Despesa</th>
-                                            <th>Tipo</th>
-                                            <th>Forma de Pagamento</th>
-                                            <th>Descrição</th>
-                                            <th style="text-align:center;">Valor</th>
-                                            <th>Parcelas</th>
-                                            <th style="text-align:center;">Data Criação</th>
-                                            <th style="text-align:center;">Hora Criação</th>
-                                        </tr>                              
-                                    </thead>
-        
-                                    <tbody>
-                                        <?php
-                                            foreach($despesas as $des) {
-                                                echo "
-                                                    <tr>
-                                                        <td style='text-align:center;'>{$des['des']['des_id']}</td>
-                                                        <td>{$des['tip']['tip_descricao']}</td>
-                                                        <td>{$des['frp']['frp_descricao']}</td>
-                                                        <td>{$des['des']['des_descricao']}</td>
-                                                        <td style='text-align:center;'>{$des['des']['des_valor']}</td>
-                                                        <td style='text-align:center;'>{$des['des']['des_parcela']}</td>
-                                                        <td style='text-align:center;'>{$this->Utilitarios->formatarData($des['des']['des_dtcriacao'])}</td>
-                                                        <td style='text-align:center;'>{$des['des']['des_horacriacao']}</td>
-                                                    </tr>
-                                                ";
-                                            }
-                                        ?>
-                                    </tbody>
-                                </table>                    
+                                    <?php if(!empty($despesas)) { ?>                    
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:center;">Cod. Despesa</th>
+                                                <th>Tipo</th>
+                                                <th>Forma de Pagamento</th>
+                                                <th>Descrição</th>
+                                                <th style="text-align:center;">Valor</th>
+                                                <th>Parcelas</th>
+                                                <th style="text-align:center;">Data Criação</th>
+                                                <th style="text-align:center;">Hora Criação</th>
+                                            </tr>                              
+                                        </thead>
+            
+                                        <tbody>
+                                            <?php
+                                                foreach($despesas as $des) {
+                                                    echo "
+                                                        <tr>
+                                                            <td style='text-align:center;'>{$des['des']['des_id']}</td>
+                                                            <td>{$des['tip']['tip_descricao']}</td>
+                                                            <td>{$des['frp']['frp_descricao']}</td>
+                                                            <td>{$des['des']['des_descricao']}</td>
+                                                            <td style='text-align:center;'>{$des['des']['des_valor']}</td>
+                                                            <td style='text-align:center;'>{$des['des']['des_parcela']}</td>
+                                                            <td style='text-align:center;'>{$this->Utilitarios->formatarData($des['des']['des_dtcriacao'])}</td>
+                                                            <td style='text-align:center;'>{$des['des']['des_horacriacao']}</td>
+                                                        </tr>
+                                                    ";
+                                                }
+                                            ?>
+                                        </tbody>
+                                    <?php } else {
+                                        echo "<center><b>Nenhum registro encontrado!</b></center>";
+                                    } ?>                   
+                                </table> 
                             </div>
                         </div>
                     <?php } ?>
