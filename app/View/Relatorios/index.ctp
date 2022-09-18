@@ -91,14 +91,17 @@
                                 <?php 
                                     // Envio as datas para o controller e depois recupero aqui
                                     $dataInicio = (isset($data1)) ? $this->Utilitarios->separaData($data1) : '';
-                                    $dataFim = (isset($data2)) ? $this->Utilitarios->separaData($data2) : '';                            
+                                    $dataFim = (isset($data2)) ? $this->Utilitarios->separaData($data2) : '';
+                                    
+                                    $disabled = (empty($despesas) ? 'disabled' : '');
         
-                                    echo $this->Form->button('<i class="bi bi-file-earmark-spreadsheet"></i> Exportar Excel', array(
-                                        'title' => '',
+                                    echo $this->Form->button('<i class="bi bi-file-earmark-spreadsheet"></i> Excel', array(
+                                        'title' => 'Exportar para Excel',
                                         'type' => 'button',
                                         'onclick' => "btnExportarExcel({$usuario}, {$dataInicio}, {$dataFim})",                                                           
                                         'class' => 'btn btn-success',                                
-                                        'escape' => false                                                                                                            
+                                        'escape' => false,
+                                        $disabled                                                                                                          
                                     )); 
                                 ?>
                             </div>
