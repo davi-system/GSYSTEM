@@ -7,7 +7,7 @@ class LoginController extends AppController {
     var $uses = array('Usuarios');
 
     public function index()
-    {
+    {        
         if($this->request->is('post')) {
 
             $usuario = $this->Usuarios->find('count', array(                
@@ -47,8 +47,8 @@ class LoginController extends AppController {
                 $this->Session->setFlash('
                 <script>                
                     swal(
-                        "Negado!", 
-                        "Usuário ou Senha inválido!", 
+                        "Acesso Negado!", 
+                        "E-mail ou senha inválido!", 
                         "warning"
                     );
                 </script>');                
@@ -58,8 +58,9 @@ class LoginController extends AppController {
 
     public function logout()
     {
-        $this->Session->delete('Person.usuario');
-        $this->Session->delete('Person.nome');
+        // $this->Session->delete('Person.usuario');
+        // $this->Session->delete('Person.nome');
+        $this->Session->destroy();
         $this->redirect(array('action' => 'index'));
     }
 }

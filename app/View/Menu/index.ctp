@@ -3,83 +3,92 @@
 <style>
     .titulo-menu-superior {
         font-size: 15px;
-        font-family: Arial, Helvetica, sans-serif;
-        text-decoration: underline;
+        font-family: Arial, Helvetica, sans-serif;        
+    }   
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
     }
+
 </style>
 
 <div>
-    <nav class="navbar navbar-light bg-light px-3">
+    <!-- Header -->
+        <div style="margin: 10px 10px;">
+            <nav class="navbar navbar-light bg-light px-3 shadow p-3 mb-2 bg-body rounded">
+                
+                <a class="navbar-brand" style="padding:4px;">            
+                    <?php echo $this->Html->image('logo-gsystem.png', array('alt' => 'GSystem - Sistema de Controle Financeiro Pessoal', 'style' => 'width:40px; height:24px;', 'id' => 'img-logo')); ?>
+                    &nbsp; 
+                    <span class="titulo-menu-superior">Sistema de Controle Financeiro Pessoal</span>    
+                </a>
         
-        <a class="navbar-brand" style="padding:4px;">            
-            <?php echo $this->Html->image('logo-gsystem.png', array('alt' => 'GSystem - Sistema de Controle Financeiro Pessoal', 'style' => 'width:40px; height:24px;', 'id' => 'img-logo')); ?>
-            &nbsp; 
-            <span class="titulo-menu-superior">Sistema de Controle Financeiro Pessoal</span>    
-        </a>
-
-        <a class="navbar-brand" href="#"></a>
-        <ul class="nav nav-pills">            
-
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="bi bi-person-fill"></i>&nbsp;<?php echo '<font color="#000"><b>'.$usuario['usu']['usu_nome'].'</b></font>' ?>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="bi bi-hourglass-split"></i>&nbsp;<?php echo '<font color="#000"><b id="hora"></b></font>' ?>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="bi bi-calendar"></i>&nbsp;<?php echo '<font color="#000"><b>'.date('d/m/Y').'</b></font>' ?>
-                </a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><b>Ajuda</b></a>            
-                <ul class="dropdown-menu">
-                    <li>
-                        <a style="cursor:pointer;" onclick="abreModalViewUsuario(<?php echo $codUsuario; ?>);" class="dropdown-item"><b>Minha Conta</b></a>
+                <a class="navbar-brand" href="#"></a>
+                <ul class="nav nav-pills">            
+        
+                    <!-- <li class="nav-item">
+                        <a class="nav-link">
+                            <i class="bi bi-person-fill"></i>&nbsp;<?php //echo '<font color="#000"><b>'.$usuario['usu']['usu_nome'].'</b></font>' ?>
+                        </a>
+                    </li> -->
+        
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <i class="bi bi-hourglass-split"></i>&nbsp;<?php echo '<font color="#000"><b id="hora"></b></font>' ?>
+                        </a>
                     </li>
+        
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <i class="bi bi-calendar"></i>&nbsp;<?php echo '<font color="#000"><b>'.date('d/m/Y').'</b></font>' ?>
+                        </a>
+                    </li>
+        
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i>&nbsp;<?php echo '<font color="#000"><b>'.$usuario['usu']['usu_nome'].'</b></font>' ?></a>            
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a style="cursor:pointer;" onclick="abreModalViewUsuario(<?php echo $codUsuario; ?>);" class="dropdown-item"><i class="bi bi-person"></i><b> Minha Conta</b></a>
+                            </li>
+        
+                            <li>                        
+                                <?php 
+                                    echo $this->Html->link('<i class="bi bi-headset"></i><b> Suporte</b>', array(
+                                        'controller' => 'Suporte', 
+                                        'action' => 'index'
+                                    ), array(
+                                        'class' => 'dropdown-item',
+                                        'escape' => false
+                                    ));
+                                ?>                        
+                            </li>                  
 
-                    <li>                        
-                        <?php 
-                            echo $this->Html->link('<b>Suporte</b>', array(
-                                'controller' => 'Suporte', 
-                                'action' => 'index'
-                            ), array(
-                                'class' => 'dropdown-item',
-                                'escape' => false
-                            ));
-                        ?>                        
-                    </li>                  
+                            <li class="nav-item">
+                                <b>
+                                    <?php 
+                                        echo $this->Html->link('<i class="bi bi-box-arrow-right"></i><b> Sair</b>', array(
+                                            'controller' => 'Login',
+                                            'action' => 'logout'
+                                        ), array(
+                                            'class' => 'dropdown-item',
+                                            'escape' => false
+                                        ));
+                                    ?>
+                                </b>
+                            </li>
+                        </ul>
+                    </li>
+            
                 </ul>
-            </li>
-    
-            <li class="nav-item">
-                <b>
-                    <?php 
-                        echo $this->Html->link('<i class="bi bi-box-arrow-left"></i> Sair', array(
-                            'controller' => 'Login',
-                            'action' => 'logout'
-                        ), array(
-                            'class' => 'nav-link',
-                            'escape' => false
-                        ));
-                    ?>
-                </b>
-            </li>
-        </ul>
-    </nav>
-    
+            </nav>
+        </div>
+    <!-- -->
+
     <div style="width: 20%; margin: 10px 10px;">
-        <nav class="navbar navbar-light bg-light flex-column align-items-stretch p-2">
+        <nav class="navbar navbar-light bg-light flex-column align-items-stretch shadow p-3 mb-2 bg-body rounded">
             <a class="navbar-brand" href="#"></a>
         
-            <nav class="nav nav-pills flex-column">  
+            <!-- <nav>   -->
                 <?php 
                     // echo $this->Html->link('<i class="bi bi-house"></i> Home', array(
                     //     'controller' => 'Menu',
@@ -95,8 +104,8 @@
                         'controller' => 'Despesas',
                         'action' => 'add'
                     ), array(
-                        'class' => 'nav-link',
-                        'escape' => false
+                        'class' => 'nav-link shadow-sm p-3 mb-2 bg-body rounded',
+                        'escape' => false                                                                  
                     ));
                 ?>                
         
@@ -105,8 +114,9 @@
                         'controller' => 'Despesas',
                         'action' => 'index'
                     ), array(
-                        'class' => 'nav-link',
-                        'escape' => false
+                        'class' => 'nav-link shadow-sm p-3 mb-2 bg-body rounded',                        
+                        'escape' => false,
+                        'id' => 'a'
                     ));
                 ?>
                 
@@ -115,11 +125,11 @@
                         'controller' => 'Relatorios',
                         'action' => 'index'
                     ), array(
-                        'class' => 'nav-link',
+                        'class' => 'nav-link shadow-sm p-3 mb-2 bg-body rounded',
                         'escape' => false
                     ));
                 ?> 
-            </nav>
+            <!-- </nav> -->
         </nav>
     </div>
 </div>

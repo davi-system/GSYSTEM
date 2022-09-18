@@ -6,46 +6,41 @@ class UsuariosController extends AppController {
 
     var $uses = array('Usuarios');
 
-    public function add()
+    public function modalAddUsuario()
     {
-        if($this->request->is('post')) {
+        $this->layout = null;
+    }
 
-            $verificaEmailExiste = $this->Usuarios->find('count', array(
-                'conditions' => array(
-                    'usu_email' => $this->request->data['Usuarios']['usu_email']
-                )
-            ));
-            
-            if($verificaEmailExiste > 0) {
-                $this->Session->setFlash('
-                <script>                
-                    swal(
-                        "Atenção!", 
-                        "Esse e-mail já existe cadastrado no sistema!", 
-                        "warning"
-                    );
-                </script>');
-            } else {            
-                $this->request->data['Usuarios']['usu_dtcriacao'] = date('Y-m-d');
-                $this->request->data['Usuarios']['usu_horacriacao'] = date('H:i:s');
-    
-                $this->Usuarios->create();    
-                if($this->Usuarios->save($this->request->data['Usuarios'])) {
+    public function verificaUsuarioExiste()
+    {
+        $this->layout = null;
+        $this->autoRender = false;
 
-                    $this->Session->write('idUsuario.add', $this->Usuarios->id);            
+        $verificaEmailExiste = $this->Usuarios->find('count', array(
+            'conditions' => array(
+                'usu_email' => $this->request->data['email']
+            )
+        ));
 
-                    $this->Session->setFlash('
-                    <script>                
-                        swal(
-                            "Sucesso!", 
-                            "Cadatro concluido!", 
-                            "success"
-                        );
-                    </script>');
-                    $this->redirect(array('controller' => 'Menu', 'action' => 'index'));
-                }
-            }
-        }
+        return json_encode($verificaEmailExiste);
+    }
+
+    public function saveAddUsuario()
+    {
+        $this->layout = null;
+        $this->autoRender = false;
+
+        $usu = array();
+        $usu['usu_nome'] = $this->request->data['nome'];
+        $usu['usu_email'] = $this->request->data['email'];
+        $usu['usu_senha'] = $this->request->data['senha'];
+        $usu['usu_dtcriacao'] = date('Y-m-d');
+        $usu['usu_horacriacao'] = date('H:i:s');
+
+        $this->Usuarios->create();
+        $this->Usuarios->save($usu);
+
+        $this->Session->write('idUsuario.add', $this->Usuarios->id);        
     }
 
     public function modalViewUsuario()
