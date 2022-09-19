@@ -4,7 +4,7 @@ App::uses('Controller', 'Controller');
 
 class RelatoriosController extends AppController {
 
-    public $components = array("Utilitarios");
+    public $components = array("Utilitarios");    
 
     var $uses = array('Despesas');    
 
@@ -29,6 +29,7 @@ class RelatoriosController extends AppController {
             $this->set('data1', $data1);
             $this->set('data2', $data2);
     
+            // Consultando e enviando para view            
             $this->set('despesas', $this->Despesas->relatorioDespesas(
                 $usuario, 
                 $this->Utilitarios->formataData($data1), 
@@ -41,10 +42,23 @@ class RelatoriosController extends AppController {
     {        
         $this->layout = null;        
 
+        // Consultando e enviando para view
         $this->set('despesas', $this->Despesas->relatorioDespesas(
             $usuario,
-            $this->Utilitarios->formataData($this->Utilitarios->ajuntaFormataData($data1)), 
-            $this->Utilitarios->formataData($this->Utilitarios->ajuntaFormataData($data2))
+            $this->Utilitarios->formataData(str_pad($this->Utilitarios->ajuntaFormataData($data1) , 8 , '0' , STR_PAD_LEFT)), 
+            $this->Utilitarios->formataData(str_pad($this->Utilitarios->ajuntaFormataData($data2) , 8 , '0' , STR_PAD_LEFT))
         ));        
+    }
+    
+    public function r01Pdf($usuario, $data1, $data2) {        
+        
+        $this->layout = null;
+        
+        // Consultando e enviando para view
+        $this->set('despesas', $this->Despesas->relatorioDespesas(
+            $usuario,
+            $this->Utilitarios->formataData(str_pad($this->Utilitarios->ajuntaFormataData($data1) , 8 , '0' , STR_PAD_LEFT)), 
+            $this->Utilitarios->formataData(str_pad($this->Utilitarios->ajuntaFormataData($data2) , 8 , '0' , STR_PAD_LEFT))
+        ));
     }
 }
