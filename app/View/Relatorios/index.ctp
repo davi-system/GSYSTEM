@@ -104,6 +104,25 @@
                                         $disabled                                                                                                          
                                     )); 
                                 ?>
+
+                                &nbsp;&nbsp;
+                                        
+                                <?php 
+                                    // Envio as datas para o controller e depois recupero aqui
+                                    $dataInicio = (isset($data1)) ? $this->Utilitarios->separaData($data1) : '';
+                                    $dataFim = (isset($data2)) ? $this->Utilitarios->separaData($data2) : '';
+                                    
+                                    $disabled = (empty($despesas) ? 'disabled' : '');
+
+                                    echo $this->Form->button('<i class="bi bi-file-earmark-pdf"></i> PDF', array(
+                                        'title' => 'Exportar para Excel',
+                                        'type' => 'button',
+                                        'onclick' => "btnExportarPdf({$usuario}, {$dataInicio}, {$dataFim})",                                                           
+                                        'class' => 'btn btn-danger',                                
+                                        'escape' => false,
+                                        $disabled                                                                                                          
+                                    )); 
+                                ?>
                             </div>
                         </div>
                     <?php echo $this->Form->end(); ?>
@@ -182,6 +201,11 @@
     function btnExportarExcel(usuario, data1, data2) {   
 
         window.location.href = `<?php echo $this->Html->url(array('controller' => 'Relatorios', 'action' => 'r01Excel'), array('target' => '_blank')); ?>/${usuario}/${data1}/${data2}`;                
+    }
+
+    function btnExportarPdf(usuario, data1, data2) {   
+
+        window.location.href = `<?php echo $this->Html->url(array('controller' => 'Relatorios', 'action' => 'r01Pdf'), array('target' => '_blank')); ?>/${usuario}/${data1}/${data2}`;                
     }
 
 </script>
