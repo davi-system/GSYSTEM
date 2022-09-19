@@ -1,4 +1,7 @@
 <?php
+require_once(APP . 'Vendor' . DS . 'dompdf' . DS . 'autoload.inc.php'); 
+
+use Dompdf\Dompdf;
 /**
  * Application level View Helper
  *
@@ -44,6 +47,15 @@ class UtilitariosHelper extends Helper {
         header("Content-Disposition: attachment; filename=$fileName.xls");                 
         header("Pragma: no-cache");
         echo $html;
+    }
+
+    public function exportarDadosPDF($fileName, $html)
+    {                             
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        $dompdf->stream($fileName);
     }
 
     public function separaData($data)
