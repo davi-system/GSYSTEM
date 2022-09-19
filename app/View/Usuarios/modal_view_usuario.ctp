@@ -1,7 +1,14 @@
 <?php echo $this->Session->flash(); ?>
 
+<style>
+    .modal-dialog {
+        width: 25%;
+        margin: 1% auto;
+    }
+</style>
+
 <div class="modal fade" id="modalViewUsuario" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Visualizar Cadastro</h5>

@@ -26,7 +26,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<?php echo $this->Html->charset(); ?>
 		
-		<title></title>
+		<title><?php echo $title_for_layout?></title>
 
 		<?php
 			echo $this->Html->meta('icon');		
@@ -48,7 +48,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		?>
 	</head>
 	<body>
-		<?php echo $this->Flash->render(); ?>
+		<?php echo $this->Flash->render(); ?>	
+		
+		<div id="header">    		
+			<?php //require_once 'header.ctp'; ?>	
+		</div>
 		<?php echo $this->fetch('content'); ?>
 	</body>
 	

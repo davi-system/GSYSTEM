@@ -18,7 +18,7 @@
     }
 </style>
 
-<div class="container">
+<div class="container shadow p-3 mb-2 bg-body rounded">
     <div class="modal-header">
         <h3>Suporte</h3>
     </div>
