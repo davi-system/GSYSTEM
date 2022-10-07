@@ -88,16 +88,33 @@
         <nav class="navbar navbar-light bg-light flex-column align-items-stretch shadow p-3 mb-2 bg-body rounded">
             <a class="navbar-brand" href="#"></a>
         
-            <!-- <nav>   -->
-                <?php 
-                    // echo $this->Html->link('<i class="bi bi-house"></i> Home', array(
-                    //     'controller' => 'Menu',
-                    //     'action' => 'index'
-                    // ), array(
-                    //     'class' => 'nav-link',
-                    //     'escape' => false
-                    // ));
-                ?>
+            <!-- <nav> -->
+                <!-- Administrador -->                            
+                    <nav class="nav nav-pills flex-column">
+                        <?php 
+                            if($permissaoAdm == 'S') {
+                            
+                                echo "<a class='nav-link shadow-sm p-3 mb-2 bg-body rounded' onclick='listarFeedbacks();'><i class='bi bi-person'></i> <b>Administrador</b></a>";
+
+                                echo "
+                                    <div style='display:none' id='listarFeedbacks'>
+                                        <nav class='nav nav-pills flex-column shadow-none bg-light rounded'>                                        
+                                            ".
+                                                $this->Html->link('<i class="bi bi-list"></i> <b>Listar Feedbacks</b>', array(
+                                                    'controller' => 'Administrador',
+                                                    'action' => 'index'
+                                                ), array(
+                                                    'class' => 'nav-link ms-3 my-1',
+                                                    'escape' => false                                                                
+                                                ))
+                                            ."                     
+                                        </nav>                   
+                                    </div>
+                                ";
+                            }
+                        ?>   
+                    </nav>   
+                <!-- -->                  
                        
                 <?php 
                     echo $this->Html->link('<i class="bi bi-plus-circle"></i> <b>Cadastro de Despesa</b>', array(
@@ -199,6 +216,13 @@
             x = '0' + x;
         } 
         return x;
+    }
+
+    function listarFeedbacks() {
+
+        $('#listarFeedbacks').css({
+            'display' : ''
+        });
     }
     
 </script>
