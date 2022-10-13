@@ -26,7 +26,67 @@
         <div class="card">
             <div class="card-header text-white" style="background-color:purple;"><i class="bi bi-list"></i> <b>Usuarios x Feedbacks</b></div>
 
-            <div class="card-body">   
+            <div class="card-body">
+
+                <?php echo $this->Form->create('ListaFeed', array('url', array('controller' => 'Administrador', 'action' => 'index'))); ?>
+                
+                    <div class="row">
+                        <div class="col-md-5">
+                            <?php 
+                                echo $this->Form->input('usu_id', array(
+                                    'label' => 'Nome',
+                                    'type' => 'select',
+                                    'empty' => true,
+                                    'options' => $usuarios,
+                                    'class' => 'form-select',
+                                    'required'
+                                )); 
+                            ?>
+                        </div>
+
+                        <div class="col-md-3">
+                            <?php 
+                                echo $this->Form->input('mes', array(
+                                    'label' => 'Mês',
+                                    'type' => 'text',                                
+                                    'class' => 'form-control',
+                                    'maxlength' => '2',
+                                    'mixlength' => '2',
+                                    'placeholder' => '00',
+                                    'required'                                    
+                                )); 
+                            ?>
+                        </div>
+
+                        <div class="col-md-3">
+                            <?php 
+                                echo $this->Form->input('ano', array(
+                                    'label' => 'Ano',
+                                    'type' => 'text',                                
+                                    'class' => 'form-control',
+                                    'maxlength' => '4',
+                                    'mixlength' => '4',
+                                    'placeholder' => '0000',
+                                    'required'                                    
+                                )); 
+                            ?>
+                        </div>
+
+                        <div class="col-md-1">
+                            <?php 
+                                echo $this->Form->button('Buscar', array(
+                                    'title' => 'Buscar',
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary',
+                                    'style' => 'margin-top:25px;'                                
+                                )); 
+                            ?>
+                        </div>
+                    </div>
+
+                <?php echo $this->Form->end(); ?>            
+
+                <br />
 
                 <?php if(isset($feedbackUsuarios)) { ?>
                     <div class="row">
@@ -110,6 +170,23 @@
             $('#modal').html(data);
             $('#modalFeedbackUsuario').modal('show');
         });
+    }
+
+    function mascaraData(campo, valor){
+
+        var mydata = '';
+
+        mydata += valor;
+
+        if(mydata.length == 2) {
+            mydata += '/';
+            campo.value = mydata;
+        }
+
+        if(mydata.length == 5) {
+            mydata += '/';
+            campo.value = mydata;
+        }
     }
 
 </script>
