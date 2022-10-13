@@ -4,10 +4,28 @@ App::uses('Controller', 'Controller');
 
 class AdministradorController extends AppController {
 
-    var $uses = array('Suporte');
+    public $components = array("Utilitarios");   
+
+    var $uses = array('Suporte', 'Usuarios');
 
     public function index()
     {                   
+        $usuarios = $this->Usuarios->find('list', array(
+            'order' => 'usu_nome'
+        ));
+        $this->set('usuarios', $usuarios);
+
+        $usuario = '';
+        $mes = '';
+        $ano = '';
+
+        if($this->request->is('post')) {    
+                        
+            $usuario = "sup_usu_fk = ".$this->request->data['ListaFeed']['usu_id']."";
+            $mes = "MONTH(sup_dtcriacao) = '".$this->request->data['ListaFeed']['mes']."'";
+            $ano = "YEAR(sup_dtcriacao) = '".$this->request->data['ListaFeed']['ano']."'";                        
+        }
+
         $options = array(
             'fields' => array(
                 'sup.sup_id',
@@ -30,8 +48,14 @@ class AdministradorController extends AppController {
             'order' => array(
                 'sup_id' => 'desc'
             ),
-            'limit' => 10
-        );
+            'limit' => 10,
+            'conditions' => array(
+                'sup_situacao' => 'A',
+                $usuario,
+                $mes,
+                $ano             
+            )
+        );        
 
         $this->paginate = $options;
  
