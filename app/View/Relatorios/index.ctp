@@ -115,7 +115,7 @@
                                     $disabled = (empty($despesas) ? 'disabled' : '');
 
                                     echo $this->Form->button('<i class="bi bi-file-earmark-pdf"></i> PDF', array(
-                                        'title' => 'Exportar para Excel',
+                                        'title' => 'Exportar para PDF',
                                         'type' => 'button',
                                         'onclick' => "btnExportarPdf({$usuario}, {$dataInicio}, {$dataFim})",                                                           
                                         'class' => 'btn btn-danger',                                

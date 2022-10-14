@@ -31,7 +31,7 @@
                 <?php echo $this->Form->create('ListaFeed', array('url', array('controller' => 'Administrador', 'action' => 'index'))); ?>
                 
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <?php 
                                 echo $this->Form->input('usu_id', array(
                                     'label' => 'Nome',
@@ -44,7 +44,7 @@
                             ?>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <?php 
                                 echo $this->Form->input('mes', array(
                                     'label' => 'Mês',
@@ -58,7 +58,7 @@
                             ?>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <?php 
                                 echo $this->Form->input('ano', array(
                                     'label' => 'Ano',
@@ -78,8 +78,32 @@
                                     'title' => 'Buscar',
                                     'type' => 'submit',
                                     'class' => 'btn btn-primary',
-                                    'style' => 'margin-top:25px;'                                
+                                    'style' => 'margin-top:25px;'                              
                                 )); 
+                            ?>
+                        </div>
+
+                        <div class="col-md-1">
+                            <?php 
+                                $usuario = (isset($usuario) ? $usuario : '');
+                                $mes = (isset($mes) ? $mes : '');
+                                $ano = (isset($ano) ? $ano : '');
+
+                                if(empty($usuario) || empty($mes) || empty($ano) || empty($feedbackUsuarios)) {
+                                    $disabled = 'disabled';
+                                } else {
+                                    $disabled = '';
+                                }
+
+                                echo $this->Form->button('<i class="bi bi-file-earmark-pdf"></i> PDF', array(
+                                    'title' => 'Exportar para PDF',
+                                    'type' => 'button',                                                                                              
+                                    'class' => 'btn btn-danger',                                
+                                    'escape' => false,
+                                    'style' => 'margin-top:25px;',
+                                    'onclick' => "exportarPDF({$usuario}, {$mes}, {$ano})",
+                                    $disabled                                                                                                                              
+                                ));
                             ?>
                         </div>
                     </div>
@@ -187,6 +211,11 @@
             mydata += '/';
             campo.value = mydata;
         }
+    }
+
+    function exportarPDF(usuario, mes, ano) {   
+
+        window.location.href = `<?php echo $this->Html->url(array('controller' => 'Administrador', 'action' => 'imprimirRelatorioFeedback'), array('target' => '_blank')); ?>/${usuario}/${mes}/${ano}`;                
     }
 
 </script>
