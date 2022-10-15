@@ -53,7 +53,7 @@ class UtilitariosHelper extends Helper {
     {                             
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         $dompdf->stream($fileName);
     }
