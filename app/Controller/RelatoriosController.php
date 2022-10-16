@@ -24,41 +24,35 @@ class RelatoriosController extends AppController {
         if($this->request->is('post')) {            
 
             $data1 = $this->request->data['Rel']['data1'];
-            $data2 = $this->request->data['Rel']['data2'];
+            $data2 = $this->request->data['Rel']['data2'];            
             
-            $this->set('data1', $data1);
-            $this->set('data2', $data2);
+            $this->set('data1', $this->Utilitarios->formatoAmericanoSemTraco($data1));
+            $this->set('data2', $this->Utilitarios->formatoAmericanoSemTraco($data2));
     
-            // Consultando e enviando para view            
-            $this->set('despesas', $this->Despesas->relatorioDespesas(
-                $usuario, 
-                $this->Utilitarios->formataData($data1), 
-                $this->Utilitarios->formataData($data2)
-            ));            
+            $despesas = $this->Despesas->relatorioDespesas($usuario, $this->Utilitarios->formataData($data1), $this->Utilitarios->formataData($data2));        
+            $this->set('despesas', $despesas);            
         }    
     }
 
     public function r01Excel($usuario, $data1, $data2)
     {        
-        $this->layout = null;        
+        $this->layout = null;     
+        
+        $dataInicio = $this->Utilitarios->ajuntaFormataData($data1);
+        $dataFim = $this->Utilitarios->ajuntaFormataData($data2);
 
-        // Consultando e enviando para view
-        $this->set('despesas', $this->Despesas->relatorioDespesas(
-            $usuario,
-            $this->Utilitarios->formataData(str_pad($this->Utilitarios->ajuntaFormataData($data1) , 8 , '0' , STR_PAD_LEFT)), 
-            $this->Utilitarios->formataData(str_pad($this->Utilitarios->ajuntaFormataData($data2) , 8 , '0' , STR_PAD_LEFT))
-        ));        
+        $despesas = $this->Despesas->relatorioDespesas($usuario, $dataInicio, $dataFim);
+        $this->set('despesas', $despesas);
     }
     
     public function r01Pdf($usuario, $data1, $data2) {        
         
-        $this->layout = null;
-        
-        // Consultando e enviando para view
-        $this->set('despesas', $this->Despesas->relatorioDespesas(
-            $usuario,
-            $this->Utilitarios->formataData(str_pad($this->Utilitarios->ajuntaFormataData($data1) , 8 , '0' , STR_PAD_LEFT)), 
-            $this->Utilitarios->formataData(str_pad($this->Utilitarios->ajuntaFormataData($data2) , 8 , '0' , STR_PAD_LEFT))
-        ));
+        $this->layout = null;        
+
+        $dataInicio = $this->Utilitarios->ajuntaFormataData($data1);
+        $dataFim = $this->Utilitarios->ajuntaFormataData($data2);        
+
+        $despesas = $this->Despesas->relatorioDespesas($usuario, $dataInicio, $dataFim);
+        $this->set('despesas', $despesas);        
     }
 }
