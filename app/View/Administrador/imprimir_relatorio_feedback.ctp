@@ -5,8 +5,8 @@
 
         <style>
             #principal {
-                width:90%;
-                margin:0px auto;
+                width:90%;  
+                margin:0px auto;                              
             }
 
             .titulo_valor {
@@ -52,5 +52,5 @@
         </div>
     ";
 
-    $this->Utilitarios->exportarDadosPDF("rel_usuario_feedbacks", $html);
+    $this->Utilitarios->exportarDadosPDF("rel_usuario_feedbacks", $html, 'landscape');
 ?>
