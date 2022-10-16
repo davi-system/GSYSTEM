@@ -10,8 +10,9 @@ class AdministradorController extends AppController {
 
     public function index()
     {                           
-        $usuarios = $this->Usuarios->find('list', array(
+        $usuarios = $this->Usuarios->find('all', array(
             'fields' => array(
+                'usu.usu_id',
                 'usu.usu_nome'
             ),
             'joins' => array(                
@@ -27,7 +28,12 @@ class AdministradorController extends AppController {
             ),
             'group' => 'usu_id'
         ));
-        $this->set('usuarios', $usuarios);
+        
+        foreach($usuarios as $user) {
+            $users[$user['usu']['usu_id']] = $user['usu']['usu_id'].' - '.$user['usu']['usu_nome'];
+        }        
+        $this->set('usuarios', $users);
+
 
         $usuario = '';
         $mes = '';
