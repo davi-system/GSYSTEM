@@ -9,9 +9,23 @@ class AdministradorController extends AppController {
     var $uses = array('Suporte', 'Usuarios');
 
     public function index()
-    {                   
+    {                           
         $usuarios = $this->Usuarios->find('list', array(
-            'order' => 'usu_nome'
+            'fields' => array(
+                'usu.usu_nome'
+            ),
+            'joins' => array(                
+                array(
+                    'table' => 'Suporte',
+                    'alias' => 'sup',
+                    'type' => 'inner',
+                    'conditions' => array('usu.usu_id = sup_usu_fk')
+                )
+            ),
+            'conditions' => array(
+                'sup_situacao' => 'A',
+            ),
+            'group' => 'usu_id'
         ));
         $this->set('usuarios', $usuarios);
 
@@ -19,18 +33,18 @@ class AdministradorController extends AppController {
         $mes = '';
         $ano = '';
 
-        if($this->request->is('post')) {    
+        if($this->request->is('post')) {            
                         
             $this->set('usuario', $this->request->data['ListaFeed']['usu_id']);
             $this->set('mes', $this->request->data['ListaFeed']['mes']);
             $this->set('ano', $this->request->data['ListaFeed']['ano']);
 
-            $usuario = "sup_usu_fk = ".$this->request->data['ListaFeed']['usu_id']."";
-            $mes = "MONTH(sup_dtcriacao) = '".$this->request->data['ListaFeed']['mes']."'";
-            $ano = "YEAR(sup_dtcriacao) = '".$this->request->data['ListaFeed']['ano']."'";
-        }
-
-        $options = array(
+            $usuario = "sup.sup_usu_fk = ".$this->request->data['ListaFeed']['usu_id']."";
+            $mes = "MONTH(sup.sup_dtcriacao) = '".$this->request->data['ListaFeed']['mes']."'";
+            $ano = "YEAR(sup.sup_dtcriacao) = '".$this->request->data['ListaFeed']['ano']."'";
+        }          
+        
+        $feedbackUsuarios = $this->Suporte->find('all', array(
             'fields' => array(                
                 'sup.sup_id', 
                 'sup.sup_descricao', 
@@ -50,20 +64,14 @@ class AdministradorController extends AppController {
             ),
             'order' => array(
                 'sup_id' => 'desc'
-            ),
-            'limit' => 20,
+            ),            
             'conditions' => array(
                 'sup_situacao' => 'A',
                 $usuario,
                 $mes,
                 $ano             
             )
-        );        
-
-        $this->paginate = $options;
- 
-        // Roda a consulta, já trazendo os resultados paginados
-        $feedbackUsuarios = $this->paginate('Suporte');
+        ));     
         $this->set('feedbackUsuarios', $feedbackUsuarios);        
     }
 
