@@ -28,7 +28,7 @@
 
             <div class="card-body">
 
-                <?php echo $this->Form->create('ListaFeed', array('url', array('controller' => 'Administrador', 'action' => 'index'))); ?>
+                <?php echo $this->Form->create('ListaFeed', array('url', array('controller' => 'Administrador', 'action' => 'index'))); ?>                    
                 
                     <div class="row">
                         <div class="col-md-6">
@@ -167,14 +167,7 @@
                             </table> 
                         </div>
                     </div>
-                <?php } ?>    
-
-                <?php                         
-                    echo $this->Paginator->prev('« anterior', null, null, array('class' => 'desabilitado'))."&nbsp;";
-                    echo $this->Paginator->numbers()."&nbsp;";
-                    echo $this->Paginator->next('próximo »', null, null, array('class' => 'desabilitado'));
-                ?>
-                                                     
+                <?php } ?>                                                     
             </div>
         </div>                        
     </div>
@@ -194,23 +187,6 @@
             $('#modal').html(data);
             $('#modalFeedbackUsuario').modal('show');
         });
-    }
-
-    function mascaraData(campo, valor){
-
-        var mydata = '';
-
-        mydata += valor;
-
-        if(mydata.length == 2) {
-            mydata += '/';
-            campo.value = mydata;
-        }
-
-        if(mydata.length == 5) {
-            mydata += '/';
-            campo.value = mydata;
-        }
     }
 
     function exportarPDF(usuario, mes, ano) {   

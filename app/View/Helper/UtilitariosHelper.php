@@ -49,11 +49,14 @@ class UtilitariosHelper extends Helper {
         echo $html;
     }
 
-    public function exportarDadosPDF($fileName, $html)
+    public function exportarDadosPDF($fileName, $html, $setPaper)
     {                             
+        // landscape = A folha fica na horizontal
+        // portrait = A folha fica na vertical
+
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->setPaper('a4', $setPaper);
         $dompdf->render();
         $dompdf->stream($fileName);
     }
@@ -64,7 +67,7 @@ class UtilitariosHelper extends Helper {
 
         $dia = $date['0'];
         $mes = $date['1'];
-        $ano = $date['2'];            
+        $ano = $date['2'];
         
         return $dia.$mes.$ano;                
     }
