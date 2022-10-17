@@ -90,8 +90,8 @@
         
                                 <?php 
                                     // Envio as datas para o controller e depois recupero aqui
-                                    $dataInicio = (isset($data1)) ? $this->Utilitarios->separaData($data1) : '';
-                                    $dataFim = (isset($data2)) ? $this->Utilitarios->separaData($data2) : '';
+                                    $dataInicio = (isset($data1)) ? $data1 : '';
+                                    $dataFim = (isset($data2)) ? $data2 : '';
                                     
                                     $disabled = (empty($despesas) ? 'disabled' : '');
         
@@ -109,13 +109,13 @@
                                         
                                 <?php 
                                     // Envio as datas para o controller e depois recupero aqui
-                                    $dataInicio = (isset($data1)) ? $this->Utilitarios->separaData($data1) : '';
-                                    $dataFim = (isset($data2)) ? $this->Utilitarios->separaData($data2) : '';
+                                    $dataInicio = (isset($data1)) ? $data1 : '';                                    
+                                    $dataFim = (isset($data2)) ? $data2 : '';                                    
                                     
-                                    $disabled = (empty($despesas) ? 'disabled' : '');
+                                    $disabled = (empty($despesas) ? 'disabled' : '');                                    
 
                                     echo $this->Form->button('<i class="bi bi-file-earmark-pdf"></i> PDF', array(
-                                        'title' => 'Exportar para Excel',
+                                        'title' => 'Exportar para PDF',
                                         'type' => 'button',
                                         'onclick' => "btnExportarPdf({$usuario}, {$dataInicio}, {$dataFim})",                                                           
                                         'class' => 'btn btn-danger',                                
@@ -136,8 +136,7 @@
                                 <table class="table table-striped table-hover">
                                     <?php if(!empty($despesas)) { ?>                    
                                         <thead>
-                                            <tr>
-                                                <th style="text-align:center;">Cod. Despesa</th>
+                                            <tr>                                                
                                                 <th>Tipo</th>
                                                 <th>Forma de Pagamento</th>
                                                 <th>Descrição</th>
@@ -152,8 +151,7 @@
                                             <?php
                                                 foreach($despesas as $des) {
                                                     echo "
-                                                        <tr>
-                                                            <td style='text-align:center;'>{$des['des']['des_id']}</td>
+                                                        <tr>                                                            
                                                             <td>{$des['tip']['tip_descricao']}</td>
                                                             <td>{$des['frp']['frp_descricao']}</td>
                                                             <td>{$des['des']['des_descricao']}</td>
@@ -203,7 +201,7 @@
         window.location.href = `<?php echo $this->Html->url(array('controller' => 'Relatorios', 'action' => 'r01Excel'), array('target' => '_blank')); ?>/${usuario}/${data1}/${data2}`;                
     }
 
-    function btnExportarPdf(usuario, data1, data2) {   
+    function btnExportarPdf(usuario, data1, data2) {
 
         window.location.href = `<?php echo $this->Html->url(array('controller' => 'Relatorios', 'action' => 'r01Pdf'), array('target' => '_blank')); ?>/${usuario}/${data1}/${data2}`;                
     }

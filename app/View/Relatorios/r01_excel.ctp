@@ -1,11 +1,12 @@
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
 <?php 
-    header('charset=utf-8');
+    //header('charset=utf-8');
 
     $html = "                           
         <table border='1'>
             <thead>    
-                <tr>                            
-                    <th>Cod. Despesa</th>
+                <tr>                                                
                     <th>Tipo</th>
                     <th>Forma de Pagamento</th>
                     <th>Descrição</th>
@@ -20,8 +21,7 @@
             <tbody>";                    
                 foreach($despesas as $des) {
                     $html .= "
-                    <tr>
-                        <td>{$des['des']['des_id']}</td>
+                    <tr>                        
                         <td>{$des['tip']['tip_descricao']}</td>
                         <td>{$des['frp']['frp_descricao']}</td>
                         <td>{$des['des']['des_descricao']}</td>

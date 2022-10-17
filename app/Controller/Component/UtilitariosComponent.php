@@ -17,9 +17,20 @@ class UtilitariosComponent extends Component {
     }
 
     public function ajuntaFormataData($data)
-    {
-        $date = str_split($data, 2);        
+    {                
+        $ano = substr($data, 0, 4);
+        $mes = substr($data, 4, 2); 
+        $dia = substr($data, 6, 8);
+        
+        return $ano.'-'.$mes.'-'.$dia;
+    }
 
-        return $date['0'].'/'.$date['1'].'/'.$date['2'].$date['3'];        
+    public function formatoAmericanoSemTraco($date)
+    {
+        $dataFormatoBrasileiro = DateTime::createFromFormat('d/m/Y', $date);
+        $dataFormatoAmericano = $dataFormatoBrasileiro->format('Y-m-d');
+
+        $formatandoData = explode('-', $dataFormatoAmericano);
+        return $formatandoData['0'].$formatandoData['1'].$formatandoData['2'];
     }
 }

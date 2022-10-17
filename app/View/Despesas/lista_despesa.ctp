@@ -4,8 +4,7 @@
         <?php if(!empty($despesas)) { ?>     
             <thead>
                 <tr>
-                    <th>Ações</th>
-                    <th>ID</th>
+                    <th>Ações</th>                    
                     <th>Tipo</th>
                     <th>Forma de Pagamento</th>
                     <th>Descrição</th>
@@ -48,8 +47,7 @@
                                         'class' => 'btn btn-danger'                                
                                     ))
                                 ."
-                                </td>
-                                <td>{$des['des']['des_id']}</td>
+                                </td>                                
                                 <td>{$des['tip']['tip_descricao']}</td>
                                 <td>{$des['frp']['frp_descricao']}</td>
                                 <td>{$des['des']['des_descricao']}</td>

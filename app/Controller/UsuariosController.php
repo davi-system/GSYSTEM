@@ -34,6 +34,7 @@ class UsuariosController extends AppController {
         $usu['usu_nome'] = $this->request->data['nome'];
         $usu['usu_email'] = $this->request->data['email'];
         $usu['usu_senha'] = $this->request->data['senha'];
+        $usu['usu_adm'] = 'N';
         $usu['usu_dtcriacao'] = date('Y-m-d');
         $usu['usu_horacriacao'] = date('H:i:s');
 
