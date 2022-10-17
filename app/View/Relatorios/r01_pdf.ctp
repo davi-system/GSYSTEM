@@ -55,5 +55,5 @@
     
     ";
 
-    $this->Utilitarios->exportarDadosPDF("rel_despesas", $html);
+    $this->Utilitarios->exportarDadosPDF("rel_despesas", $html, 'portrait');
 ?>
