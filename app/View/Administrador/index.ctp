@@ -5,7 +5,7 @@
 <div class="container shadow p-3 mb-2 bg-body rounded">
     <div class="modal-header">
         <div class="modal-title">
-            <h3>Lista de Feedback</h3>
+            <h3>Relatório de Usuários & Feedbacks</h3>
         </div>
     </div>
 

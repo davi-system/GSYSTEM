@@ -68,9 +68,7 @@ class LoginController extends AppController {
     }
 
     public function logout()
-    {
-        // $this->Session->delete('Person.usuario');
-        // $this->Session->delete('Person.nome');
+    {                
         $this->Session->destroy();
         $this->redirect(array('action' => 'index'));
     }

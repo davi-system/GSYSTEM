@@ -43,6 +43,7 @@ class UtilitariosHelper extends Helper {
     public function exportarDadosExcel($fileName, $html)
     {                             
         header("Content-type: application/xls");
+        header("Content-Encoding: UTF-8"); 
         header("Content-type: application/force-download");     
         header("Content-Disposition: attachment; filename=$fileName.xls");                 
         header("Pragma: no-cache");

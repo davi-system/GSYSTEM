@@ -19,8 +19,13 @@ class MenuController extends AppController {
 
         $this->set('codUsuario', $codUsuario);      
         
-        $permissaoAdm = $this->Session->read('Person.adm');
-        $this->set('permissaoAdm', $permissaoAdm['usu']['usu_adm']);
+        $permissaoAdm = $this->Session->read('Person.adm');        
+        if(isset($permissaoAdm)) {
+            $adm = $permissaoAdm['usu']['usu_adm'];
+        } else {
+            $adm = 'N';
+        }
+        $this->set('permissaoAdm', $adm);
 
         $usuario = $this->Usuarios->find('first', array(
             'fields' => array(

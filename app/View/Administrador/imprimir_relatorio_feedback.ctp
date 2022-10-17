@@ -16,7 +16,7 @@
 
         <div id='principal'>
 
-            <h3 align='center'>Despesas Cadastradas</h3>
+            <h3 align='center'>Relatório Usuarios & Feedbacks</h3>
 
             <table border=1>                
                 <thead>

@@ -136,8 +136,7 @@
                                 <table class="table table-striped table-hover">
                                     <?php if(!empty($despesas)) { ?>                    
                                         <thead>
-                                            <tr>
-                                                <th style="text-align:center;">Cod. Despesa</th>
+                                            <tr>                                                
                                                 <th>Tipo</th>
                                                 <th>Forma de Pagamento</th>
                                                 <th>Descrição</th>
@@ -152,8 +151,7 @@
                                             <?php
                                                 foreach($despesas as $des) {
                                                     echo "
-                                                        <tr>
-                                                            <td style='text-align:center;'>{$des['des']['des_id']}</td>
+                                                        <tr>                                                            
                                                             <td>{$des['tip']['tip_descricao']}</td>
                                                             <td>{$des['frp']['frp_descricao']}</td>
                                                             <td>{$des['des']['des_descricao']}</td>
