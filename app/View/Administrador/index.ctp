@@ -37,7 +37,7 @@
                                     'label' => 'Nome',
                                     'type' => 'select',
                                     'empty' => true,
-                                    'options' => $usuarios,
+                                    'options' => ((isset($usuarios) ? $usuarios : '')),
                                     'class' => 'form-select',
                                     'required'
                                 )); 
