@@ -47,9 +47,7 @@ class DespesasController extends AppController {
 
     public function listaDespesa()
     {
-        $this->layout = null;     
-        
-        // pr($this->request->data);exit;
+        $this->layout = null;            
 
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');    
@@ -126,7 +124,7 @@ class DespesasController extends AppController {
                         "success"
                     );
                 </script>');
-                $this->redirect(array('controller' => 'Menu', 'action' => 'index'));
+                $this->redirect(array('action' => 'add'));
             }
         }
     }

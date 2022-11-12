@@ -27,14 +27,16 @@ class AdministradorController extends AppController {
                 'sup_situacao' => 'A',
             ),
             'group' => 'usu_id'
-        ));
-        
+        ));                
+                
         foreach($usuarios as $user) {
             $users[$user['usu']['usu_id']] = $user['usu']['usu_id'].' - '.$user['usu']['usu_nome'];
-        }        
-        $this->set('usuarios', $users);
+        }   
 
-
+        if(isset($users)) {
+            $this->set('usuarios', $users);
+        }
+        
         $usuario = '';
         $mes = '';
         $ano = '';
