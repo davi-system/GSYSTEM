@@ -79,7 +79,7 @@
                                             'required'
                                         )); 
                                     ?>
-                                </div>                                           
+                                </div>                                                            
         
                                 <div class="col-md-2">
                                     <?php 
@@ -88,6 +88,7 @@
                                             'type' => 'text',
                                             'id' => 'valor',
                                             'class' => 'form-control',
+                                            'maxlength' => '5',
                                             'required'                                    
                                         )); 
                                     ?>
@@ -161,11 +162,34 @@
             $('#modal').html(data);
             $('#modalAddFrp').modal('show');
         });
-    }
+    }      
 
-    let valor = document.getElementById('valor').value;
-    if(valor.length ) {
 
-    }
+    // Logica que só permite carcater numérico ->
+        // Pego o valor digitado no input
+        const valor = document.querySelector('#valor');
+
+        // Adiciono um evento e crio uma função
+        valor.addEventListener('keypress', function(e) 
+            {
+                if(!checkChar(e)) {
+                    e.preventDefault();
+                }
+            }
+        );
+
+        // Função que recebe o caracter digitado e retorna true quando está dentro do padrão [0-9]
+        function checkChar(e) 
+        {
+            const char = String.fromCharCode(e.keyCode);            
+
+            const padrao = '[0-9]';
+
+            if(char.match(padrao)) 
+            {
+                return true;
+            }
+        }
+    // <-
 
 </script>
