@@ -34,7 +34,7 @@
 
                 <div class="card-body">                            
                     
-                    <?php echo $this->Form->create('Rel', array('url' => array('controller' => 'Relatorios', 'action' => 'index'))); ?>
+                    <?php echo $this->Form->create('Rel', array('url' => array('controller' => 'Relatorios', 'action' => 'index'), 'id' => 'form')); ?>
                         <div class="row">                    
                             <div>
                                 <h4 align="center">Informe uma periodo para tirar o relatório</h4>
@@ -52,6 +52,7 @@
                                         'onkeyup' => "mascaraData(this, this.value)",
                                         'minlength' => '10',
                                         'maxlength' => '10',
+                                        'id' => 'data1',
                                         'placeholder' => '00/00/0000'                                                                                                           
                                     )); 
                                 ?>
@@ -67,6 +68,7 @@
                                         'onkeyup' => "mascaraData(this, this.value)",
                                         'minlength' => '10',
                                         'maxlength' => '10',
+                                        'id' => 'data2',
                                         'placeholder' => '00/00/0000'                                                                                      
                                     )); 
                                 ?>
@@ -79,10 +81,11 @@
                                 <?php 
                                     echo $this->Form->button('<i class="bi bi-search"></i> Buscar', array(
                                         'title' => 'Buscar',
-                                        'type' => 'submit',
+                                        'type' => 'button',
                                         'class' => 'btn',
                                         'style' => 'background-color:purple; color:white;',
-                                        'escape' => false                                                                                                        
+                                        'escape' => false,
+                                        'onclick' => "validaData();"                                                                                                      
                                     )); 
                                 ?>  
                                 
@@ -181,7 +184,7 @@
 
     function mascaraData(campo, valor){
 
-        var mydata = '';
+        let mydata = '';
 
         mydata += valor;
 
@@ -193,6 +196,20 @@
         if(mydata.length == 5) {
             mydata += '/';
             campo.value = mydata;
+        }
+    }  
+    
+    function validaData()
+    {
+        let data1 = $('#data1').val();
+        let data2 = $('#data2').val();
+        
+        if(data1 > data2) {
+            alert('Data início não pode ser maior!');
+        } else if(data1 == '' || data2 == '') {
+            alert('A campo(s) sem data!');
+        } else {
+            $('#form').submit();
         }
     }
 

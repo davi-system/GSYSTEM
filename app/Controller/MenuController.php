@@ -17,9 +17,7 @@ class MenuController extends AppController {
         } else {
             $codUsuario = $this->Session->read('idUsuario.add');
         }
-        $this->set('codUsuario', $codUsuario);        
-              
-        // $this->set('nome', $this->Session->read('Person.nome'));
+        $this->set('codUsuario', $codUsuario);                    
 
         $nome = $this->Session->read('Person.nome');
 
