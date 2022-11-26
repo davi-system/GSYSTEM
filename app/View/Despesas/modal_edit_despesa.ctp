@@ -127,10 +127,7 @@
                 text: "Registro editado com sucesso!",
                 icon: "success",
                 button: true
-            });
-            // setTimeout((data) => {
-            //     $(window.location.reload()).hide();
-            // }, 2000);   
+            });            
             $('#modalEditDespesa').modal('hide');
             consultarDespesas();
         });

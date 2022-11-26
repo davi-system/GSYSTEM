@@ -195,10 +195,7 @@
                     text: "Registro excluido com sucesso!",
                     icon: "success",
                     button: true
-                });
-                // setTimeout((data) => {
-                //     $(window.location.reload()).hide();
-                // }, 2000);  
+                });                 
                 consultarDespesas();
             });
         }

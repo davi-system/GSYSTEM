@@ -31,7 +31,7 @@
                 <?php echo $this->Form->create('ListaFeed', array('url', array('controller' => 'Administrador', 'action' => 'index'))); ?>                    
                 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <?php 
                                 echo $this->Form->input('usu_id', array(
                                     'label' => 'Nome',
@@ -83,7 +83,7 @@
                             ?>
                         </div>
 
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <?php 
                                 $usuario = (isset($usuario) ? $usuario : '');
                                 $mes = (isset($mes) ? $mes : '');

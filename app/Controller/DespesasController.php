@@ -105,7 +105,6 @@ class DespesasController extends AppController {
 
         if($this->request->is('post')) {
             
-
             $quantidadeParcela = (!empty($this->request->data['Despesas']['des_parcela'])) ? $this->request->data['Despesas']['des_parcela'] : 0;
 
             $this->request->data['Despesas']['des_usu_fk'] = $usuario;
@@ -393,5 +392,4 @@ class DespesasController extends AppController {
         $frp['frp_descricao'] = $this->request->data['descricao'];
         $this->FormaPagamento->save($frp);
     }
-
 }
