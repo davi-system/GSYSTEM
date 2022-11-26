@@ -392,5 +392,4 @@ class DespesasController extends AppController {
         $frp['frp_descricao'] = $this->request->data['descricao'];
         $this->FormaPagamento->save($frp);
     }
-
 }
