@@ -8,32 +8,25 @@ class MenuController extends AppController {
 
     public function index()
     {
-        // pegando o id e nome do usuario logado ou adicionado
-        $codUser = $this->Session->read('Person.usuario');        
+        // ID da Sessão do usuário
+        $codUser = $this->Session->read('Person.usuario');               
         
-        if(isset($codUser['usu']['usu_id'])) {
-            $codUsuario = $codUser['usu']['usu_id'];
+        // Verifico se é um usuário que já existe ou se é novo
+        if(isset($codUser)) {
+            $codUsuario = $codUser;
         } else {
             $codUsuario = $this->Session->read('idUsuario.add');
-        }        
-
-        $this->set('codUsuario', $codUsuario);      
-        
-        $permissaoAdm = $this->Session->read('Person.adm');        
-        if(isset($permissaoAdm)) {
-            $adm = $permissaoAdm['usu']['usu_adm'];
-        } else {
-            $adm = 'N';
         }
-        $this->set('permissaoAdm', $adm);
+        $this->set('codUsuario', $codUsuario);        
+              
+        // $this->set('nome', $this->Session->read('Person.nome'));
 
-        $usuario = $this->Usuarios->find('first', array(
-            'fields' => array(
-                'usu_nome'
-            ), 'conditions' => array(
-                'usu_id' => $codUsuario
-            )
-        ));        
-        $this->set('usuario', $usuario);
+        $nome = $this->Session->read('Person.nome');
+
+        if(isset($nome)) {
+            $this->set('nome', $this->Session->read('Person.nome'));
+        } else {
+            $this->set('nome', $this->Session->read('Person.nomeUsuarioNovo'));
+        }
     }
 }

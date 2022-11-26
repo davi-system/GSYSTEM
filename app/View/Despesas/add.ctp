@@ -47,7 +47,7 @@
                                             'label' => 'Descrição <font color="red">*</font>',
                                             'type' => 'text',
                                             'class' => 'form-control',
-                                            'required'                                    
+                                            'required'                                            
                                         )); 
                                     ?>
                                 </div>
@@ -60,9 +60,9 @@
                                             'label' => 'Tipo <font color="red">*</font>',
                                             'type' => 'select',
                                             'options' => $tipos,
-                                            'empty' => true,
+                                            'empty' => 'selecione',
                                             'class' => 'form-select',
-                                            'required'
+                                            'required'                                            
                                         ));                                                                 
                                     ?>
                                 </div>                                               
@@ -73,7 +73,7 @@
                                             'label' => 'Forma de Pagamento <font color="red">*</font>',
                                             'type' => 'select',
                                             'options' => $formaPagamento,
-                                            'empty' => true,
+                                            'empty' => 'selecione',
                                             'class' => 'form-select',
                                             'id' => 'formaPagamento',                                    
                                             'required'
@@ -89,7 +89,9 @@
                                             'id' => 'valor',
                                             'class' => 'form-control',
                                             'maxlength' => '5',
-                                            'required'                                    
+                                            'required',
+                                            'placeholder' => '0'
+                                                                                
                                         )); 
                                     ?>
                                 </div>
@@ -100,7 +102,8 @@
                                             'label' => 'Parcela',
                                             'type' => 'number',                                    
                                             'class' => 'form-control',
-                                            'id' => 'parcela'                                                               
+                                            'id' => 'parcela',
+                                            'placeholder' => '0'                                                               
                                         )); 
                                     ?>
                                 </div>                                                      

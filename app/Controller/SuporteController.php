@@ -11,8 +11,8 @@ class SuporteController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');         
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $codUsuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $codUsuario = $usuarioLogin;
         } else {
             $codUsuario = $ultimoUsuarioAdd;
         }

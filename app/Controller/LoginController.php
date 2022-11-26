@@ -18,41 +18,58 @@ class LoginController extends AppController {
                 )
             ));
 
+            // se for maior que 0 existe usuário
             if($usuario > 0) {
-                $this->Session->write('Person.usuario', $this->Usuarios->find('first', array(
-                    'fields' => array(
-                        'usu_id'
-                    ),
-                    'conditions' => array(
-                        'usu_email' => $this->request->data['LoginUser']['usu_email'],
-                        'usu_senha' => $this->request->data['LoginUser']['usu_senha']
-                    )
-                )));
 
-                $this->Session->write('Person.nome', $this->Usuarios->find('first', array(
+                $dadosDoUsuario = $this->Usuarios->find('first', array(
                     'fields' => array(
-                        'usu_nome'
-                    ),
-                    'conditions' => array(
-                        'usu_email' => $this->request->data['LoginUser']['usu_email'],
-                        'usu_senha' => $this->request->data['LoginUser']['usu_senha']
-                    )
-                )));
-
-                $this->Session->write('Person.adm', $this->Usuarios->find('first', array(
-                    'fields' => array(
+                        'usu_id',
+                        'usu_nome',
                         'usu_adm'
                     ),
                     'conditions' => array(
                         'usu_email' => $this->request->data['LoginUser']['usu_email'],
                         'usu_senha' => $this->request->data['LoginUser']['usu_senha']
                     )
-                )));
-
-                $this->redirect(array(
-                    'controller' => 'Menu', 
-                    'action' => 'index'
                 ));
+
+                // pr($dadosDoUsuario);exit;
+
+                $this->Session->write('Person.usuario', $dadosDoUsuario['usu']['usu_id']);
+                $this->Session->write('Person.nome', $dadosDoUsuario['usu']['usu_nome']);
+                $this->Session->write('Person.adm', $dadosDoUsuario['usu']['usu_adm']);
+
+                // $this->Session->write('Person.usuario', $this->Usuarios->find('first', array(
+                //     'fields' => array(
+                //         'usu_id'
+                //     ),
+                //     'conditions' => array(
+                //         'usu_email' => $this->request->data['LoginUser']['usu_email'],
+                //         'usu_senha' => $this->request->data['LoginUser']['usu_senha']
+                //     )
+                // )));
+
+                // $this->Session->write('Person.nome', $this->Usuarios->find('first', array(
+                //     'fields' => array(
+                //         'usu_nome'
+                //     ),
+                //     'conditions' => array(
+                //         'usu_email' => $this->request->data['LoginUser']['usu_email'],
+                //         'usu_senha' => $this->request->data['LoginUser']['usu_senha']
+                //     )
+                // )));
+
+                // $this->Session->write('Person.adm', $this->Usuarios->find('first', array(
+                //     'fields' => array(
+                //         'usu_adm'
+                //     ),
+                //     'conditions' => array(
+                //         'usu_email' => $this->request->data['LoginUser']['usu_email'],
+                //         'usu_senha' => $this->request->data['LoginUser']['usu_senha']
+                //     )
+                // )));
+
+                $this->redirect(array('controller' => 'Menu', 'action' => 'index'));
 
             } else {
                 $this->Session->setFlash('
