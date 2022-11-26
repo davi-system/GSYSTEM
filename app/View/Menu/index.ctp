@@ -25,13 +25,7 @@
         
                 <a class="navbar-brand" href="#"></a>
                 <ul class="nav nav-pills">            
-        
-                    <!-- <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="bi bi-person-fill"></i>&nbsp;<?php //echo '<font color="#000"><b>'.$usuario['usu']['usu_nome'].'</b></font>' ?>
-                        </a>
-                    </li> -->
-        
+                          
                     <li class="nav-item">
                         <a class="nav-link">
                             <i class="bi bi-hourglass-split"></i>&nbsp;<?php echo '<font color="#000"><b id="hora"></b></font>' ?>

@@ -1,7 +1,6 @@
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-<?php 
-    //header('charset=utf-8');
+<?php
 
     $html = "                           
         <table border='1'>
