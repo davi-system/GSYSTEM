@@ -134,8 +134,7 @@
                 swal({
                     title: "Sucesso!",
                     text: "Tipo da despesa excluido com sucesso!",
-                    icon: "success",
-                    // button: false
+                    icon: "success"                
                 });
 
                 setTimeout((data) => {

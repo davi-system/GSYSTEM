@@ -41,6 +41,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			echo $this->Html->script('jquery-ui.js');
 			echo $this->Html->script('datepicker.js');
 			echo $this->Html->script('sweetalert.min.js');
+			echo $this->Html->script('jquery.maskMoney.min.js');
 						
 			echo $this->fetch('meta');
 			echo $this->fetch('css');
