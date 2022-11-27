@@ -17,14 +17,22 @@ class MenuController extends AppController {
         } else {
             $codUsuario = $this->Session->read('idUsuario.add');
         }
-        $this->set('codUsuario', $codUsuario);                    
+        $this->set('codUsuario', $codUsuario);                            
 
-        $nome = $this->Session->read('Person.nome');
-
-        if(isset($nome)) {
-            $this->set('nome', $this->Session->read('Person.nome'));
+        // Estou pegando o nome do usuário logado
+        $nome = $this->Usuarios->find('first', array(
+            'fields' => array(
+                'usu_nome'
+            ),
+            'conditions' => array(
+                'usu_id' => $codUser 
+            )
+        ));        
+    
+        if(isset($codUser)) {
+            $this->set('nome', $nome['usu']['usu_nome']);            
         } else {
-            $this->set('nome', $this->Session->read('Person.nomeUsuarioNovo'));
+            $this->set('nome', $this->Session->read('Person.nomeUsuarioNovo'));            
         }
     }
 }

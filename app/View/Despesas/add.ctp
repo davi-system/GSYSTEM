@@ -47,7 +47,8 @@
                                             'label' => 'Descrição <font color="red">*</font>',
                                             'type' => 'text',
                                             'class' => 'form-control',
-                                            'required'                                            
+                                            'required',
+                                            'maxlegth' => '100'                                            
                                         )); 
                                     ?>
                                 </div>

@@ -29,7 +29,7 @@
                                         <div class="card-body">                                                                                                                                                                                                                                     
                                             <div class="col-md-12">
             
-                                                <label><b><?php echo $cha['sup']['sup_id']; ?> - Cartão</b></label>
+                                                <label><b>Cartão</b></label>
                                                 <?php 
                                                     echo $this->Form->input('descricao', array(
                                                         'label' => false,

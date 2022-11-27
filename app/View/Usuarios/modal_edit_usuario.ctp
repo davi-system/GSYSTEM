@@ -172,8 +172,8 @@
                     icon: "success",
                     button: false
                 });
-                    setTimeout((data) => {
-                    $(window.location.reload()).hide();                
+                setTimeout((data) => {
+                    $(window.location.reload());                
                 }, 2000);         
             });
         }

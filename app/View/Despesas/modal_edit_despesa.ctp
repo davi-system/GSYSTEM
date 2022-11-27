@@ -48,8 +48,7 @@
                                             echo $this->Form->input('des_tipo_fk', array(
                                                 'label' => 'Tipo',
                                                 'type' => 'select',
-                                                'options' => $tipos,
-                                                'empty' => true,
+                                                'options' => $tipos,                                                
                                                 'class' => 'form-select',
                                                 'value' => $despesa['des']['des_tipo_fk'],
                                                 'id' => 'tipo_edit'
@@ -62,9 +61,8 @@
                                             echo $this->Form->input('des_frp_fk', array(
                                                 'label' => 'Forma de Pagamento',
                                                 'type' => 'select',
-                                                'options' => $formaPagamento,
-                                                'empty' => true,
-                                                'class' => 'form-control',
+                                                'options' => $formaPagamento,                                                
+                                                'class' => 'form-select',
                                                 'value' => $despesa['des']['des_frp_fk'],
                                                 'id' => 'frp_edit'
                                             ));
