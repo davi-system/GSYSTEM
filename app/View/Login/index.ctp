@@ -4,6 +4,7 @@
     .novo_usuario {
         color:blue; 
         cursor:pointer;
+        text-decoration: none;
     }
 
     .novo_usuario:hover {
