@@ -4,13 +4,13 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Visualizar Despesa</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Visualização do Feedback</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
                 <div class="card">
-                    <div class="card-header text-white bg-warning"><i class="bi bi-binoculars"></i> <b>Despesa</b></div>
+                    <div class="card-header text-white bg-warning"><i class="bi bi-binoculars"></i> <b>Feedback</b></div>
 
                     <div class="card-body">                            
                        <div class="row">

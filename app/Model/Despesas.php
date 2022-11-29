@@ -37,7 +37,9 @@ class Despesas extends AppModel {
             INNER JOIN forma_pagamento AS frp ON frp.frp_id = des.des_frp_fk
             WHERE des_usu_fk = $usuario
             $and            
-            ORDER BY des_descricao"
+            ORDER BY 
+            des.des_id desc,
+            des_descricao"
         );
     }
 

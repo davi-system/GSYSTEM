@@ -85,7 +85,7 @@
                             echo $this->Form->button('<i class="bi bi-check"></i> Salvar', array(
                                 'title' => 'Editar cadastro',
                                 'type' => 'button',
-                                'onclick' => "salvarEditCadUsuario({$usuario['usu']['usu_id']});",
+                                'onclick' => "consultaEmailExiste({$usuario['usu']['usu_id']});",
                                 'class' => 'btn btn-success',
                                 'id' => 'btnSalvar',
                                 'escape' => false
@@ -110,6 +110,39 @@
 </div>
 
 <script>
+
+    const emailAtual = $('#email').val();
+
+    function consultaEmailExiste(idUsuario)
+    {
+        let emailAlterado = $('#email').val();
+
+        $.ajax({
+            url: "<?php echo $this->Html->url(array('controller' => 'Usuarios', 'action' => 'verificaEmailExiste')); ?>",
+            type: "POST",            
+            data: {     
+                'email': $('#email').val()                
+            }
+        }).done((data) => {
+            
+            if(emailAtual === emailAlterado) {
+                salvarEditCadUsuario(idUsuario)
+            } else {
+
+                let obj = JSON.parse(data);            
+    
+                if(obj > 0) {
+                    swal({
+                        title: "Atenção!",
+                        text: "Esse e-mail já existe!",
+                        icon: "info",                    
+                    });                
+                } else {
+                    salvarEditCadUsuario(idUsuario);
+                }
+            }
+        });
+    }
 
     function salvarEditCadUsuario(id) {
 
@@ -139,8 +172,8 @@
                     icon: "success",
                     button: false
                 });
-                    setTimeout((data) => {
-                    $(window.location.reload()).hide();                
+                setTimeout((data) => {
+                    $(window.location.reload());                
                 }, 2000);         
             });
         }

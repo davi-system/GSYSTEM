@@ -35,10 +35,7 @@ class AppController extends Controller {
     public $components = array(
         'DebugKit.Toolbar', 
         'Session',
-        'Flash'
-    );
-
-    // function beforeFilter() {
-    //     $this->Auth->allow('index', 'view');
-    // }
+        'Flash',
+        'Paginator'
+    );   
 }

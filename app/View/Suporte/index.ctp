@@ -10,8 +10,7 @@
         font-weight: bold;
     }
 
-    .texto2 {
-        text-align: right;
+    .texto2 {        
         font-family: Arial, Helvetica, sans-serif;
         font-size: 18px;
         font-weight: bold;
@@ -47,15 +46,15 @@
                         
                             <div class="card-body">                                                                                                                                                                                                                     
                                 <div class="row">                    
-                                    <div class="col-md-6">                        
+                                    <div class="col-md-9">                        
                                         <p class="texto">
                                             Olá, esse sistema tem como objetivo ajudar você a desenvolver um controle financeiro de forma fácil, 
                                             rápido e seguro. Para que você possar ter um maior controle sobre sua vida financeira.
                                         </p>
                                     </div>
                 
-                                    <div class="col-md-6">                        
-                                        <p class="texto2">
+                                    <div class="col-md-3">                        
+                                        <p class="texto2" align="center">
                                             Contatos
                                         </p>
                                     
@@ -65,11 +64,9 @@
                                         </p>
                     
                                         <p class="texto2">
-                                            <i class="bi bi-telephone-fill" style="color:green;">
-                                            </i> (14) 99999-9999
-                                            &nbsp;
-                                            <i class="bi bi-whatsapp" style="color:green;"></i>
-                                            (14) 99999-9999
+                                            <i class="bi bi-telephone-fill" style="color:green;"></i> (14) 99777-3693
+                                            <br />
+                                            <i class="bi bi-whatsapp" style="color:green;"></i> (14) 99777-3693
                                         </p>                                                                       
                                     </div>
                                 </div>                
@@ -95,7 +92,7 @@
                                                 'class' => 'form-control',
                                                 'required',
                                                 'minlength' => '8',
-                                                'maxlength' => '500',
+                                                'maxlength' => '100',
                                                 'escape' => false,
                                                 'placeholder' => '...'
                                             )); 

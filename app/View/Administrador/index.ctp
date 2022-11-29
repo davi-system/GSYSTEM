@@ -34,9 +34,9 @@
                         <div class="col-md-5">
                             <?php 
                                 echo $this->Form->input('usu_id', array(
-                                    'label' => 'Nome',
+                                    'label' => 'Usuário',
                                     'type' => 'select',
-                                    'empty' => true,
+                                    'empty' => 'selecione',
                                     'options' => ((isset($usuarios) ? $usuarios : '')),
                                     'class' => 'form-select',
                                     'required'
@@ -85,6 +85,7 @@
 
                         <div class="col-md-2">
                             <?php 
+                            
                                 $usuario = (isset($usuario) ? $usuario : '');
                                 $mes = (isset($mes) ? $mes : '');
                                 $ano = (isset($ano) ? $ano : '');
@@ -93,7 +94,7 @@
                                     $disabled = 'disabled';
                                 } else {
                                     $disabled = '';
-                                }
+                                }                              
 
                                 echo $this->Form->button('<i class="bi bi-file-earmark-pdf"></i> PDF', array(
                                     'title' => 'Exportar para PDF',
@@ -164,7 +165,14 @@
                                 <?php } else {
                                     echo "<center><b>Nenhum registro encontrado!</b></center>";
                                 } ?>                   
-                            </table> 
+                            </table>                             
+
+                            <?php
+                                echo $this->Paginator->prev('anterior', null, null, array('class' => 'desabilitado'))."&nbsp;"; 
+                                echo $this->Paginator->numbers()."&nbsp;";
+                                echo $this->Paginator->next('próximo', null, null, array('class' => 'desabilitado'));
+                            ?>
+
                         </div>
                     </div>
                 <?php } ?>                                                     

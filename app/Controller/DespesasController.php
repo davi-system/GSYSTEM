@@ -15,8 +15,8 @@ class DespesasController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $usuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $usuario = $usuarioLogin;
         } else {
             $usuario = $ultimoUsuarioAdd;
         }   
@@ -52,8 +52,8 @@ class DespesasController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');    
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $usuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $usuario = $usuarioLogin;
         } else {
             $usuario = $ultimoUsuarioAdd;
         }
@@ -71,8 +71,8 @@ class DespesasController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $usuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $usuario = $usuarioLogin;
         } else {
             $usuario = $ultimoUsuarioAdd;
         }    
@@ -135,8 +135,8 @@ class DespesasController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $usuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $usuario = $usuarioLogin;
         } else {
             $usuario = $ultimoUsuarioAdd;
         }
@@ -174,7 +174,7 @@ class DespesasController extends AppController {
                 'des_id' => $this->request->data['id']
             )
         ));
-        $this->set('despesa', $despesa);        
+        $this->set('despesa', $despesa);             
     }
 
     public function salvaEditDespesa()
@@ -195,36 +195,35 @@ class DespesasController extends AppController {
 
     public function modalViewDespesa()
     {
-        $this->layout = null;
-        
-        $this->set('id', $this->request->data['id']);
-        
-        $tipos = $this->Tipos->find('list', array(
-            'fields' => array(
-                'tip_descricao'
-            ),
-            'order' => array(
-                'tip_descricao'
-            )
-        ));
-        $this->set('tipos', $tipos);
-
-        $formaPagamento = $this->FormaPagamento->find('list', array(
-            'fields' => array(
-                'frp_descricao'
-            ),
-            'order' => array(
-                'frp_descricao'
-            )
-        ));
-        $this->set('formaPagamento', $formaPagamento);
+        $this->layout = null;        
 
         $despesa = $this->Despesas->find('first', array(
+            'fields' => array(
+                'des.des_descricao',
+                'des.des_valor',
+                'Tipos.tip_descricao',
+                'Forma_Pagamento.frp_descricao',
+                'des.des_parcela'
+            ),
+            'joins' => array(
+                array(
+                    'table' => 'tipos',
+                    'type' => 'inner',
+                    'alias' => 'Tipos',
+                    'conditions' => array('Tipos.tip_id = des.des_tipo_fk')
+                ),
+                array(
+                    'table' => 'forma_pagamento',
+                    'type' => 'inner',
+                    'alias' => 'Forma_Pagamento',
+                    'conditions' => array('Forma_Pagamento.frp_id = des.des_frp_fk')
+                )
+            ),
             'conditions' => array(
                 'des_id' => $this->request->data['id']                
             )
         ));
-        $this->set('despesa', $despesa);        
+        $this->set('despesa', $despesa);                
     }
 
     public function deletaDespesa()
@@ -242,8 +241,8 @@ class DespesasController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $usuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $usuario = $usuarioLogin;
         } else {
             $usuario = $ultimoUsuarioAdd;
         }
@@ -264,8 +263,8 @@ class DespesasController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $usuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $usuario = $usuarioLogin;
         } else {
             $usuario = $ultimoUsuarioAdd;
         }
@@ -321,8 +320,8 @@ class DespesasController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $usuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $usuario = $usuarioLogin;
         } else {
             $usuario = $ultimoUsuarioAdd;
         }
@@ -343,8 +342,8 @@ class DespesasController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $usuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $usuario = $usuarioLogin;
         } else {
             $usuario = $ultimoUsuarioAdd;
         }

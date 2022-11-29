@@ -1,5 +1,17 @@
 <?php echo $this->Session->flash(); ?>
 
+<style>
+    .novo_usuario {
+        color:blue; 
+        cursor:pointer;
+        text-decoration: none;
+    }
+
+    .novo_usuario:hover {
+        color: green;
+    }
+</style>
+
 <div id="principal">
     <div class="modal-body">
         <div class="row">
@@ -55,7 +67,7 @@
                     <br />
                                                         
                     <div style="text-align:center;">
-                        Não tem uma conta ainda? <a onclick="abreModalAddUsuario();" style="color:blue; cursor:pointer;">Registrar agora</a>                        
+                        Não tem uma conta ainda? <a onclick="abreModalAddUsuario();" class="novo_usuario">Registrar agora</a>                        
                     </div>
     
                 <?php echo $this->Form->end(); ?>
