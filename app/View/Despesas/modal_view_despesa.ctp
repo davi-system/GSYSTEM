@@ -36,7 +36,7 @@
                                         <?php
                                             echo $this->Form->input('des_valor', array(
                                                 'label' => 'Valor',
-                                                'type' => 'number',
+                                                'type' => 'text',
                                                 'class' => 'form-control',
                                                 'value' => $despesa['des']['des_valor'],
                                                 'id' => 'valor',
@@ -49,11 +49,9 @@
                                         <?php
                                             echo $this->Form->input('des_tipo_fk', array(
                                                 'label' => 'Tipo',
-                                                'type' => 'select',
-                                                'options' => $tipos,
-                                                'empty' => true,
+                                                'type' => 'text',                                                
                                                 'class' => 'form-control',
-                                                'value' => $despesa['des']['des_tipo_fk'],
+                                                'value' => $despesa['Tipos']['tip_descricao'],
                                                 'id' => 'tipo',
                                                 'disabled'
                                             ));
@@ -64,11 +62,9 @@
                                         <?php
                                             echo $this->Form->input('des_frp_fk', array(
                                                 'label' => 'Forma de Pagamento',
-                                                'type' => 'select',
-                                                'options' => $formaPagamento,
-                                                'empty' => true,
+                                                'type' => 'text',                                                                                                
                                                 'class' => 'form-control',
-                                                'value' => $despesa['des']['des_frp_fk'],
+                                                'value' => $despesa['Forma_Pagamento']['frp_descricao'],
                                                 'id' => 'frp',
                                                 'disabled'
                                             ));

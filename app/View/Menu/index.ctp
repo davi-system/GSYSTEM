@@ -7,142 +7,194 @@
     }   
 
     .dropdown:hover .dropdown-menu {
-        display: block;
+        display: block;        
+    }
+
+    .dropdown-toggle:hover {
+        color: green;
+    }
+    
+    .dropdown-item:hover {
+        background: green;
+        color: white;
+    }    
+
+    .nav-link:hover {
+        /* background: green; */
+        color: green;
+    }
+
+    .menu-e-submenu {
+        cursor: pointer;
     }
 
 </style>
 
 <div>
-    <!-- Header -->
+    <!-- Menu Superior -->
         <div style="margin: 10px 10px;">
             <nav class="navbar navbar-light bg-light px-3 shadow p-3 mb-2 bg-body rounded">
                 
-                <a class="navbar-brand" style="padding:4px;">            
-                    <?php echo $this->Html->image('logo-gsystem.png', array('alt' => 'GSystem - Sistema de Controle Financeiro Pessoal', 'style' => 'width:40px; height:24px;', 'id' => 'img-logo')); ?>
-                    &nbsp; 
-                    <span class="titulo-menu-superior">Sistema de Controle Financeiro Pessoal</span>    
-                </a>
+                <!-- Imagem & Descrição -->
+                    <a class="navbar-brand" style="padding:4px;">            
+                        <?php echo $this->Html->image('logo-gsystem.png', array('alt' => 'GSystem - Sistema de Controle Financeiro Pessoal', 'style' => 'width:40px; height:24px;', 'id' => 'img-logo')); ?>
+                        &nbsp; 
+                        <span class="titulo-menu-superior">Sistema de Controle Financeiro Pessoal</span>    
+                    </a>
+                <!-- -->
         
                 <a class="navbar-brand" href="#"></a>
-                <ul class="nav nav-pills">            
-                          
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="bi bi-hourglass-split"></i>&nbsp;<?php echo '<font color="#000"><b id="hora"></b></font>' ?>
-                        </a>
-                    </li>
+                <ul class="nav nav-pills">
+                    
+                    <!-- Hora & Data -->                  
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <i class="bi bi-hourglass-split"></i>&nbsp;<?php echo '<font color="#000"><b id="hora"></b></font>' ?>
+                            </a>
+                        </li>
+            
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <i class="bi bi-calendar"></i>&nbsp;<?php echo '<font color="#000"><b>'.date('d/m/Y').'</b></font>' ?>
+                            </a>
+                        </li>
+                    <!-- -->
         
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="bi bi-calendar"></i>&nbsp;<?php echo '<font color="#000"><b>'.date('d/m/Y').'</b></font>' ?>
-                        </a>
-                    </li>
-        
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i>&nbsp;<?php echo '<font color="#000"><b>'.$usuario['usu']['usu_nome'].'</b></font>' ?></a>            
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a style="cursor:pointer;" onclick="abreModalViewUsuario(<?php echo $codUsuario; ?>);" class="dropdown-item"><i class="bi bi-person"></i><b> Minha Conta</b></a>
-                            </li>
-        
-                            <li>                        
-                                <?php 
-                                    echo $this->Html->link('<i class="bi bi-headset"></i><b> Suporte</b>', array(
-                                        'controller' => 'Suporte', 
-                                        'action' => 'index'
-                                    ), array(
-                                        'class' => 'dropdown-item',
-                                        'escape' => false
-                                    ));
-                                ?>                        
-                            </li>                  
+                    <!-- Dropdown do Perfil -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi bi-person-circle"></i>&nbsp;<?php echo '<font color="#000"><b>'.$nome.'</b></font>' ?></a>            
+                            <ul class="dropdown-menu">
+                                <!-- Minha Conta -->
+                                    <li>
+                                        <a 
+                                            style="cursor:pointer;" 
+                                            onclick="abreModalViewUsuario(<?php echo $codUsuario; ?>);" 
+                                            class="dropdown-item"
+                                        >
+                                            <i class="bi bi-person"></i><b> Minha Conta</b>
+                                        </a>
+                                    </li>
+                                <!-- -->
+            
+                                <!-- Suporte -->
+                                    <li>                        
+                                        <?php 
+                                            echo $this->Html->link('<i class="bi bi-headset"></i><b> Suporte</b>', array(
+                                                'controller' => 'Suporte', 
+                                                'action' => 'index'
+                                            ), array(
+                                                'class' => 'dropdown-item',
+                                                'escape' => false
+                                            ));
+                                        ?>                        
+                                    </li>
+                                <!-- -->           
 
-                            <li class="nav-item">
-                                <b>
-                                    <?php 
-                                        echo $this->Html->link('<i class="bi bi-box-arrow-right"></i><b> Sair</b>', array(
-                                            'controller' => 'Login',
-                                            'action' => 'logout'
-                                        ), array(
-                                            'class' => 'dropdown-item',
-                                            'escape' => false
-                                        ));
-                                    ?>
-                                </b>
-                            </li>
-                        </ul>
-                    </li>
+                                <!-- Logout -->
+                                    <li class="nav-item">
+                                        <b>
+                                            <?php 
+                                                echo $this->Html->link('<i class="bi bi-box-arrow-right"></i><b> Sair</b>', array(
+                                                    'controller' => 'Login',
+                                                    'action' => 'logout'
+                                                ), array(
+                                                    'class' => 'dropdown-item',
+                                                    'escape' => false
+                                                ));
+                                            ?>
+                                        </b>
+                                    </li>
+                                <!-- -->
+                            </ul>
+                        </li>
+                    <!-- -->
             
                 </ul>
             </nav>
         </div>
     <!-- -->
 
-    <div style="width: 20%; margin: 10px 10px;">
-        <nav class="navbar navbar-light bg-light flex-column align-items-stretch shadow p-3 mb-2 bg-body rounded">
-            <a class="navbar-brand" href="#"></a>
-        
-            <!-- <nav> -->
+    <!-- Menu Lateral -->
+        <div style="width: 20%; margin: 10px 10px;">
+            <nav class="navbar navbar-light bg-light flex-column align-items-stretch shadow p-3 mb-2 bg-body rounded">
+                <a class="navbar-brand" href="#"></a>
+                        
                 <!-- Administrador -->                            
-                    <nav class="nav nav-pills flex-column">
-                        <?php 
-                            if($permissaoAdm == 'S') {
-                            
-                                echo "<a class='nav-link shadow-sm p-3 mb-2 bg-body rounded' onclick='listarFeedbacks();'><i class='bi bi-person'></i> <b>Administrador</b></a>";
+                    <?php if($this->Session->read('Person.adm') == 'S') { ?>
 
-                                echo "
-                                    <div style='display:none' id='listarFeedbacks'>
-                                        <nav class='nav nav-pills flex-column shadow-none bg-light rounded'>                                        
-                                            ".
-                                                $this->Html->link('<i class="bi bi-list"></i> <b>Listar Feedbacks</b>', array(
-                                                    'controller' => 'Administrador',
-                                                    'action' => 'index'
-                                                ), array(
-                                                    'class' => 'nav-link ms-3 my-1',
-                                                    'escape' => false                                                                
-                                                ))
-                                            ."                     
-                                        </nav>                   
-                                    </div>
-                                ";
-                            }
-                        ?>   
-                    </nav>   
+                        <nav>
+                            <a 
+                                class="nav-link shadow-sm p-3 mb-2 bg-body rounded menu-e-submenu" 
+                                onclick="listarFeedbacks();"
+                                id="adm"                                
+                            >
+                                <i class="bi bi-person"></i> <b>Administrador</b>
+                            </a>                            
+
+                            <ul style="list-style: none;">
+                                <!-- Listar Feedbacks -->
+                                    <li style="display:none" id="listarFeedbacks">
+                                        <div>
+                                            <nav class="nav nav-pills flex-column shadow-none bg-light rounded">                                                                                            
+                                                <?php 
+                                                    echo $this->Html->link("<i class='bi bi-list'></i> <b>Listar Feedbacks</b>", array(
+                                                        "controller" => "Administrador",
+                                                        "action" => "index"
+                                                    ), array(
+                                                        "class" => "nav-link ms-1 my-1",
+                                                        "escape" => false                                                    
+                                                    ));
+                                                ?>                                                                         
+                                            </nav>                   
+                                        </div>
+                                    </li>
+                                <!-- -->
+                            </ul>                                                                             
+                        </nav>
+
+                    <?php } ?>
                 <!-- -->                  
-                       
-                <?php 
-                    echo $this->Html->link('<i class="bi bi-plus-circle"></i> <b>Cadastro de Despesa</b>', array(
-                        'controller' => 'Despesas',
-                        'action' => 'add'
-                    ), array(
-                        'class' => 'nav-link shadow-sm p-3 mb-2 bg-body rounded',
-                        'escape' => false                                                                  
-                    ));
-                ?>                
+                        
+                <!-- Cadastro de Despesas -->
+                    <?php 
+                        echo $this->Html->link('<i class="bi bi-plus-circle"></i> <b>Cadastro de Despesa</b>', array(
+                            'controller' => 'Despesas',
+                            'action' => 'add'
+                        ), array(
+                            'class' => 'nav-link shadow-sm p-3 mb-2 bg-body rounded',
+                            'escape' => false                                                                  
+                        ));
+                    ?>
+                <!-- -->              
         
-                <?php 
-                    echo $this->Html->link('<i class="bi bi-list-check"></i> <b>Listar Despesa</b>', array(
-                        'controller' => 'Despesas',
-                        'action' => 'index'
-                    ), array(
-                        'class' => 'nav-link shadow-sm p-3 mb-2 bg-body rounded',                        
-                        'escape' => false,
-                        'id' => 'a'
-                    ));
-                ?>
+                <!-- Lista Despesas -->
+                    <?php 
+                        echo $this->Html->link('<i class="bi bi-list-check"></i> <b>Listar Despesa</b>', array(
+                            'controller' => 'Despesas',
+                            'action' => 'index'
+                        ), array(
+                            'class' => 'nav-link shadow-sm p-3 mb-2 bg-body rounded',                        
+                            'escape' => false,
+                            'id' => 'a'
+                        ));
+                    ?>
+                <!-- -->
                 
-                <?php 
-                    echo $this->Html->link('<i class="bi bi-card-text"></i> <b>Relatório de Despesas</b>', array(
-                        'controller' => 'Relatorios',
-                        'action' => 'index'
-                    ), array(
-                        'class' => 'nav-link shadow-sm p-3 mb-2 bg-body rounded',
-                        'escape' => false
-                    ));
-                ?> 
-            <!-- </nav> -->
-        </nav>
-    </div>
+                <!-- Relatórios -->
+                    <?php 
+                        echo $this->Html->link('<i class="bi bi-card-text"></i> <b>Relatório de Despesas</b>', array(
+                            'controller' => 'Relatorios',
+                            'action' => 'index'
+                        ), array(
+                            'class' => 'nav-link shadow-sm p-3 mb-2 bg-body rounded',
+                            'escape' => false
+                        ));
+                    ?>
+                <!-- -->
+
+            </nav>
+        </div>
+    <!-- -->
 </div>
 
 <div id="modal">
@@ -213,6 +265,8 @@
     }
 
     function listarFeedbacks() {
+
+        console.log($('#adm').val());
 
         $('#listarFeedbacks').css({
             'display' : ''

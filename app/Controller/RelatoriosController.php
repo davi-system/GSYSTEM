@@ -13,8 +13,8 @@ class RelatoriosController extends AppController {
         $usuarioLogin = $this->Session->read('Person.usuario');
         $ultimoUsuarioAdd = $this->Session->read('idUsuario.add');            
         
-        if(isset($usuarioLogin['usu']['usu_id'])) {
-            $usuario = $usuarioLogin['usu']['usu_id'];
+        if(isset($usuarioLogin)) {
+            $usuario = $usuarioLogin;
         } else {
             $usuario = $ultimoUsuarioAdd;
         }

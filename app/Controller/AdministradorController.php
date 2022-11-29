@@ -50,9 +50,9 @@ class AdministradorController extends AppController {
             $usuario = "sup.sup_usu_fk = ".$this->request->data['ListaFeed']['usu_id']."";
             $mes = "MONTH(sup.sup_dtcriacao) = '".$this->request->data['ListaFeed']['mes']."'";
             $ano = "YEAR(sup.sup_dtcriacao) = '".$this->request->data['ListaFeed']['ano']."'";
-        }          
+        }   
         
-        $feedbackUsuarios = $this->Suporte->find('all', array(
+        $options = array(
             'fields' => array(                
                 'sup.sup_id', 
                 'sup.sup_descricao', 
@@ -78,9 +78,14 @@ class AdministradorController extends AppController {
                 $usuario,
                 $mes,
                 $ano             
-            )
-        ));     
-        $this->set('feedbackUsuarios', $feedbackUsuarios);        
+            ),
+            'order' => array('Noticia.created' => 'DESC'),
+            'limit' => 10
+        );
+ 
+        $this->paginate = $options;
+
+        $this->set('feedbackUsuarios', $this->paginate('Suporte'));
     }
 
     public function modalFeedbackUsuario($id)

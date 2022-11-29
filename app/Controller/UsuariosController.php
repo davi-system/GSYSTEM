@@ -41,7 +41,14 @@ class UsuariosController extends AppController {
         $this->Usuarios->create();
         $this->Usuarios->save($usu);
 
-        $this->Session->write('idUsuario.add', $this->Usuarios->id);        
+        // Guardo o ID do novo usuário cadastrado
+        $this->Session->write('idUsuario.add', $this->Usuarios->id);     
+        
+        $nomeUsuarioNovo = $this->Usuarios->find('first', array(
+            'fields' => array('usu_nome'),
+            'conditions' => array('usu_id' => $this->Usuarios->id)
+        ));
+        $this->Session->write('Person.nomeUsuarioNovo', $nomeUsuarioNovo['usu']['usu_nome']);
     }
 
     public function modalViewUsuario()
@@ -66,6 +73,20 @@ class UsuariosController extends AppController {
             )
         ));
         $this->set('usuario', $usuario); 
+    }
+
+    public function verificaEmailExiste()
+    {
+        $this->layout = null;
+        $this->autoRender = false;
+        
+        $email = $this->Usuarios->find('count', array(
+            'conditions' => array(
+                'usu_email' => $this->request->data['email']
+            )
+        ));
+
+        return json_encode($email);
     }
 
     public function salvaEditCadUsuario()
