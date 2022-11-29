@@ -100,25 +100,30 @@
 
 <script>
 
-    function saveNovaFormaDePagamento() {        
+    function saveNovaFormaDePagamento() {   
+        
+        if($('#descricao').val() == '') {
+            alert('Descrição não pode ficar em branco!');
+        } else {
 
-        $.ajax({
-            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'salvarFormaPagamento')); ?>`,
-            type: "POST",            
-            data: {                
-                'descricao': $('#descricao').val()                
-            }
-        }).done((data) => {            
-            swal({
-                title: "Sucesso!",
-                text: "Nova forma de pagamento cadastrada com sucesso!",
-                icon: "success",
-                button: false
+            $.ajax({
+                url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'salvarFormaPagamento')); ?>`,
+                type: "POST",            
+                data: {                
+                    'descricao': $('#descricao').val()                
+                }
+            }).done((data) => {            
+                swal({
+                    title: "Sucesso!",
+                    text: "Nova forma de pagamento cadastrada com sucesso!",
+                    icon: "success",
+                    button: false
+                });
+                setTimeout((data) => {
+                    $(window.location.reload()).hide();
+                }, 2000);   
             });
-            setTimeout((data) => {
-                $(window.location.reload()).hide();
-            }, 2000);   
-        });
+        }
     }
 
     function excluirFormaPagamento(frpId) {
