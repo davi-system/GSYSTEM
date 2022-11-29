@@ -20,7 +20,7 @@
                                         'label' => 'Descrição',
                                         'type' => 'text',
                                         'class' => 'form-control',
-                                        'id' => 'descricao'
+                                        'id' => 'descricao'                                        
                                     )); 
                                 ?>   
                             </div>                    
@@ -103,25 +103,31 @@
 
 <script>
 
-    function saveNovoTipo() {        
+    function saveNovoTipo() {   
+        
+        if($('#descricao').val() == '') {
+            alert('Descrição não pode ficar em branco!');
+        } else {
 
-        $.ajax({
-            url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'salvarTipo')); ?>`,
-            type: "POST",            
-            data: {                
-                'descricao': $('#descricao').val()                
-            }
-        }).done((data) => {            
-            swal({
-                title: "Sucesso!",
-                text: "Novo tipo cadastrado com sucesso!",
-                icon: "success",
-                button: false
+            $.ajax({
+                url: `<?php echo $this->Html->url(array('controller' => 'Despesas', 'action' => 'salvarTipo')); ?>`,
+                type: "POST",            
+                data: {                
+                    'descricao': $('#descricao').val()                
+                }
+            }).done((data) => {            
+                swal({
+                    title: "Sucesso!",
+                    text: "Novo tipo cadastrado com sucesso!",
+                    icon: "success",
+                    button: false
+                });
+                setTimeout((data) => {
+                    $(window.location.reload()).hide();
+                }, 2000);   
             });
-            setTimeout((data) => {
-                $(window.location.reload()).hide();
-            }, 2000);   
-        });
+        }
+
     }
 
     function excluirTipoDespesa(tipId) {
